@@ -1,0 +1,95 @@
+<hamber-dir></hamber-dir>
+<editinfo-dir>
+    <div id="content3" class="snap-content contanet_profile">
+        <div id="toolbar">
+            <a href="" id="open-right"></a>
+            <p class="logo_name" >ویرایش اطلاعات من</p>
+            <div class="icons">
+                <a href="" onclick="window.history.back();" class="close"></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <!--=================================-->
+        <div class="mt_15 grid">
+            <form  id="skill_uni">
+                <label class="db">
+                    <span class="db">نام شما</span>
+                    <input type="text" class="db inp_def mt_10 req" name="name" id="name" placeholder="نام خود را وارد کنید ...">
+                </label>
+                <!--================================================================-->
+                <label class="db">
+                    <span class="db">سال تولد خود را وارد کنید</span>
+                    <input type="number" class="db inp_def mt_10 req" name="age" id="age" placeholder="سال تولد خود را وارد کنید">
+                </label>
+                <!--================================================================-->
+                <label class="db">
+                    <span class="db">مقطع تحصیلی</span>
+                    <select class="sel_def mt_10" name="grade" id="grade">
+                        <option value="null">تحصیلات</option>
+                        <option value="0">دیپلم</option>
+                        <option value="1">کاردانی</option>
+                        <option value="2">کارشناسی</option>
+                        <option value="3">کارشناسی ارشد</option>
+                        <option value="4">دکترا</option>
+                    </select>
+                </label>
+                <!--================================================================-->
+                <label class="db">
+                    <span class="db">رشته ی تحصیلی</span>
+                    <input type="text" class="db inp_def mt_10" name="field" id="field" placeholder="رشته ی تحصیلی شما . مثلا مهندسی نرم افزار">
+                </label>
+                <!--================================================================-->
+                <label class="db">
+                    <span class="sel_def mt_10" class="db" >جنسیت</span>
+                    <select class="sel_def mt_10" name="gender" id="gender">
+                        <option value="null">جنسیت</option>
+                        <option value="0">آقا</option>
+                        <option value="1">خانم</option>
+                    </select>
+                </label>
+                <!--================================================================-->
+                <label class="db" >
+                    <span class="db">وضعیت تاهل</span>
+                    <select class="sel_def mt_10" name="married" id="married">
+                        <option value="null">وضعیت تاهل</option>
+                        <option value="0">مجرد</option>
+                        <option value="1">متاهل</option>
+                    </select>
+                </label>
+                <!--================================================================-->
+                <label class="db mt_15" id="state">
+                    <span class="db">استان محل سکونت</span>
+                    <select name="state" class="mt_10 sel_def"></select>
+                </label>
+                <label id="city" class="db mt_15">
+                    <span class="db">شهر محل سکونت</span>
+                    <select name="city" class="mt_10 sel_def" >
+                        <option value="null">شهر محل سکونت</option>
+                    </select>
+                </label>
+                <!--================================================================-->
+                <label class="db">
+                    <span class="db">وضعیت شغلی</span>
+                    <select class="sel_def mt_10" name="status" id="status">
+                        <option value="0">فعلا هیچی ...</option>
+                        <option value="1">آماده به کار</option>
+                        <option value="2">صاحب کار</option>
+                    </select>
+                </label>
+                <!--================================================================-->
+                <label class="db">
+                    <span class="db">درباره ی من</span>
+                    <textarea type="text" class="db inp_def mt_10" name="description" id="description" placeholder="توضیح مختصری در مورد خودتان ..." rows="6"></textarea>
+                </label>
+                <!--================================================================-->
+                <input type="submit" class="btn_blue submit_register" value="ثبت و ذخیره اطلاعات">
+            </form>
+            <!--=================================-->
+            <div class="skill_list"></div>
+            <!--=================================-->
+        </div>
+    </div>
+        <!--=================================-->
+
+</editinfo-dir>

@@ -1,0 +1,59 @@
+<hamber-dir></hamber-dir>
+<imgvid-dir class="showuser2-dir">
+    <div id="content22" class="snap-content contanet_profile ">
+        <div id="toolbar">
+            <a href="" id="open-right"></a>
+            <p class="logo_name" >نمونه کار های من</p>
+            <div class="icons">
+                <a href="" onclick="window.history.back();" class="close"></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <!--=================================-->
+        <div class="mt_15 grid">
+            <form class="mvd_img" action="" method="post">
+                <label class="db">
+                    <span class="db">متن مربوط به رزومه</span>
+                    <textarea type="text"  class="db inp_def mt_10 req text_img_vid" id="text_img_vid" rows="5" name="text" placeholder="در چند کلمه نمونه کار را توضیح دهید"></textarea>
+                </label>
+                <input type="button" id="uploadBtn" class="btn_blue submit_register" value=" انتخاب فایل از تلفن همراه">
+            </form>
+            <div id="progressOuter" class="progress progress-striped active" style="display:none;">
+                <div id="progressBar" class="progress-bar progress-bar-success"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                </div>
+            </div>
+            <div id="msgBox"></div>
+        </div>
+        <!--==============Cv_list===================-->
+        <div class="cv_list">
+            <!--===============cv_one==================-->
+            <div class="cv_one"  ng-repeat="element in portfolio | orderBy:'-parseInt(p_id)' " p_id="{{element.p_id}}">
+                <div class="photo_cv" p_id="{{element.p_id}}">
+                    <div class="img" ng-if="element.p_type == '0'" style="background-image:url('{{base_url}}/uploads/portfolio/images-small/{{element.p_name}}')"></div>
+                    <div class="img" ng-if="element.p_type == '1'" style="background-image:url('img/video-player.jpg')"></div>
+                    <span class="date">{{element.dates}}</span>
+                    <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
+                    <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
+                </div>
+                <div class="extra bs">
+                    <span class="text">{{element.p_text}}</span>
+                    <ul class="count">
+                        <li ng-if="element.l_count" ng-class="{'liked':element.member_do_like != null ,'unliked':element.member_do_like == null }" class="like do_like">{{element.l_count}}&zwnj;</li>
+                        <li ng-if="!element.l_count" class="like do_like">0</li>
+                        <li ng-if="element.c_count" class="comment">{{element.c_count}}&zwnj;</li>
+                        <li ng-if="!element.c_count" class="comment">0</li>
+                        <li ng-if="element.v_count" class="view">{{element.v_count}}&zwnj;</li>
+                        <li ng-if="!element.v_count" class="view">0</li>
+                        <li class="more">&zwnj;
+                            <div class="porfolio_spam remove_portfolio" p_id="{{element.p_id}}"><span>حذف</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--=================================-->
+        </div>
+        <!--===========end cv_list======================-->
+    </div>
+    <!--=================================-->
+</imgvid-dir>
