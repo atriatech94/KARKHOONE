@@ -269,7 +269,6 @@ angular.module('myapp')
             var p_id = $(this).attr('p_id');
             // console.log(p_id);
             $.get(base_url+'/api_upload/portfolio_violation_report/UdsfdfPLo-0df98sdfUYH-oodffu/'+localStorage.getItem('user_id')+'/'+p_id,function(data){
-                    scope.$apply(function(){scope.user_spam = '1';});
                    $('body .lpro').addClass("none");
             }).fail(function(){
                 $('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');

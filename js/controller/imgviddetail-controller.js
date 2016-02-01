@@ -2,6 +2,7 @@ angular.module('myapp')
 .controller('imgviddetailController', function($scope,$rootScope,$routeParams,$http) {
     show_anim();
     $scope.base_url = base_url ;
+    $scope.user_id = localStorage.getItem("user_id") ;
     if($rootScope.p_one_detail !== undefined)
     {
         $scope.p_one_detail = $rootScope.p_one_detail ;
@@ -143,6 +144,19 @@ angular.module('myapp')
                 $('.cv_list').on("click",".video_play",function(){
                     url = $(this).attr('video_address');
                     VideoPlayer.play(url);
+                });
+                /*====================================================*/
+                $(".cv_list").on("click",".porfolio_spam",function(){
+                    $('body .lpro').removeClass("none");
+                    var p_id = $(this).attr('p_id');
+                    // console.log(p_id);
+                    $.get(base_url+'/api_upload/portfolio_violation_report/UdsfdfPLo-0df98sdfUYH-oodffu/'+localStorage.getItem('user_id')+'/'+p_id,function(data){
+                            scope.$apply(function(){scope.user_spam = '1';});
+                           $('body .lpro').addClass("none");
+                    }).fail(function(){
+                        $('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');
+                        $('body .lpro').addClass("none");
+                    });
                 });
                 /*====================================================*/
             }/* end */

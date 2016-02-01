@@ -31,8 +31,11 @@
                         <li ng-if="!element.c_count" class="comment">0</li>
                         <li ng-if="element.v_count" class="view">{{element.v_count}}&zwnj;</li>
                         <li ng-if="!element.v_count" class="view">0</li>
-                        <li class="more">&zwnj;
+                        <li ng-if="element.member_id == user_id" class="more">&zwnj;
                             <div class="porfolio_spam remove_portfolio" p_id="{{element.p_id}}"><span>حذف</span></div>
+                        </li>
+                        <li ng-if="element.member_id != user_id" ng-if="element.member_do_like == null" class="more">&zwnj;
+                            <div class="porfolio_spam" p_id="{{element.p_id}}"><span>گزارش تخلف</span></div>
                         </li>
                     </ul>
                 </div>

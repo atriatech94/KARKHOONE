@@ -54,6 +54,7 @@ angular.module('myapp')
                         cache: false,
                         contentType: false,
                         processData: false,
+                        timeout:60000,
                          
                     }).done(function(data) {
                          /* chechk inset and login user into software */
