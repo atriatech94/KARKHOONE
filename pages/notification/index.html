@@ -1,0 +1,59 @@
+<hamber-dir></hamber-dir>
+<notificationarchive-dir>
+    <div id="content20" class="snap-content contanet_profile">
+        <div id="toolbar">
+            <a href="" id="open-right"></a>
+            <p class="logo_name" >آرشیو اعلان ها</p>
+            <div class="icons">
+                <a href="" class="refresh_msg"></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+<!--======================================================================-->
+        <div class="mt_15 grid chat_view">
+            <div class="of_list">
+                <div class="user_list follower chat_lists">
+                    <h4 ng-if="friend_requests" class="header_notif">درخواست های دوستی : </h4>
+                    <div ng-repeat="request in friend_requests | orderBy:'-date':true "   class="user_one chat_one notif_block2"  user_id="{{request.member_id}}"  scope="search" >
+                        <div ng-if="request.picname == '' && request.gender == '0'" class="user_one_image"><span style="background-image:url(img/user_men.jpg)"></span></div>
+                        <div ng-if="request.picname == '' && request.gender == '1'" class="user_one_image"><span style="background-image:url(img/user_women.jpg)"></span></div>
+                        <div ng-if="request.picname !='' " class="user_one_image"><span style="background-image:url({{base_url}}/uploads/user_img/{{request.picname}});"></span></div>
+                        <div class="user_one_info">
+                            <h3  class="nm_ch" your_id="{{request.member_id}}"  user_image="{{request.picname}}">{{request.name}}</h3>
+                            <span>{{request.dates}}</span>
+                        </div>
+                        <div class="request_btn"><button type="button" class="accept_freq" requested_id="{{request.member_id}}" >قبول</button>  <button requested_id="{{request.member_id}}"  type="button" class="reject_freq">رد</button></div>
+                        <div class="clear"></div>
+                    </div>
+                    <h4  ng-if="portfolio_likes" class="header_notif">آخرین نظرات و پسندیده ها :  </h4>
+                    <div ng-repeat="portfolio_like in portfolio_likes | orderBy:'date':true "   class="user_one chat_one notif_block"  user_id="{{portfolio_like.member_id}}"  scope="search" >
+                        <div ng-if="portfolio_like.picname == '' && portfolio_like.gender == '0'" class="user_one_image"><span style="background-image:url(img/user_men.jpg)"></span></div>
+                        <div ng-if="portfolio_like.picname == '' && portfolio_like.gender == '1'" class="user_one_image"><span style="background-image:url(img/user_women.jpg)"></span></div>
+                        <div ng-if="portfolio_like.picname !='' " class="user_one_image"><span style="background-image:url({{base_url}}/uploads/user_img/{{portfolio_like.picname}});"></span></div>
+                        <div class="user_one_info">
+                            <h3 ng-if="portfolio_like.age" class="nm_ch notif_h3" your_id="{{portfolio_like.member_id}}"  user_image="{{portfolio_like.picname}}"><a href="#/profile/{{portfolio_like.member_id}}">{{portfolio_like.name}}</a>
+                                برای این
+                                <a href="#/portfolio_detail/{{portfolio_like.p_id}}">نمونه کار</a>
+                               نظر داده است .
+                            </h3>
+                            <h3 ng-if="!portfolio_like.age" class="nm_ch notif_h3" your_id="{{portfolio_like.member_id}}"  user_image="{{portfolio_like.picname}}"><a href="#/profile/{{portfolio_like.member_id}}">{{portfolio_like.name}}</a>
+                               این
+                                <a href="#/portfolio_detail/{{portfolio_like.p_id}}">نمونه کار</a>
+                              را پسندیده است .
+                            </h3>
+                            
+                            <span>{{portfolio_like.dates}}</span>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+
+                </div>
+                <div class="loading_users"></div>
+                <div class="refresh_loading"></div> 
+            </div>
+        </div>
+    </div>
+    <!------=======================================================================------>
+</notificationarchive-dir>
+
