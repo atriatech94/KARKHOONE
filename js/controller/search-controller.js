@@ -113,9 +113,6 @@ angular.module('myapp')
                                 result +='<span>'+element.state+'، '+element.city+' </span>';
                                 result +='</div>';
                                 result +='<div class="user_one_options">';
-                                result +='<span class="user_cm">'+element.msg+'</span>';
-                                result +='<span class="user_like">'+element.followers+'</span>';
-                                result +='<span class="user_view">'+element.view+'</span>';
                                 result +='</div>';
                                 result +='<div class="clear"></div>';
                                 result +='</div>';

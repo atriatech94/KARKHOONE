@@ -14,6 +14,12 @@ angular.module('myapp')
                 var post_one = Array();
                 var ofs_two = 0;
                 /*====================================================*/
+                if(now_h != "profile" ){
+                    $rootScope.postnear = undefined;
+                    $rootScope.postnear_ofset  = undefined;
+                    $rootScope.profile_info_tab = undefined;
+                }
+                /*====================================================*/
                  if($rootScope.postnear !== undefined){
                     
                     var data =  $rootScope.postnear ;

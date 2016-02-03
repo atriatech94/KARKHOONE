@@ -25,9 +25,14 @@ angular.module('myapp')
     
     $scope.now_year = moment().format('jYYYY');
     $scope.base_url = base_url;
-    $scope.info = JSON.parse(localStorage.getItem("info"));
-    $scope.followers = JSON.parse(localStorage.getItem("followers"));
-    console.log($scope.followers);
+    $.get(base_url+"/api_upload/get_ffc/UPssdsdffdfLo-098UdfsdfYdsdffdsH-ooesdfdsfWu/"+localStorage.getItem("user_id"),function(datas){
+           var havij = JSON.parse(datas);
+           $scope.info = havij.info;  
+           $scope.followers = havij.followers;            
+    });
+    
+    
+    // console.log($scope.followers);
     
 })
 .directive('myprofileDir' , function ($rootScope){
@@ -60,50 +65,54 @@ angular.module('myapp')
 				/*====================================================*/
                 $('.short_info').on("click",".user_img",function(){
                     if(!$(this).hasClass("user_img_change")){
-                        //
-                        $('.profile_pic').trigger("click");
+                        $('.takePictureField').trigger("click");
                         return false;
                     }
                 });
-                $('.profile_pic').change(function() {
-                    $('.change_profile_img').submit();
-                });
-                $(".change_profile_img").submit(function(){
-                    if (!isImage($('.img_upload').val())) {
+                $('.takePictureField').change(function(event) {
+                    if (!isImage($('.takePictureField').val())) {
                         alert('فرمت فایل انتخابی اشتباه است . مجدد تلاش نمایید ');
-                        $('.profile_pic').trigger("click");
+                        return false;
+                    }else{
+                        resize_image(event,"imageResized_myprofile");
                     }
+                });
+                $(document).on("imageResized_myprofile", function (event) {
                     $('.short_info .user_img').addClass("user_img_change");
-                    var formData = new FormData($(this)[0]);
-                     $.ajax({
-                         
-                        url: base_url+"api/change_image/Passwd12-amin-APload3/"+localStorage.getItem("user_id"),
-                        type: 'POST',
-                        data: formData,
-                        async: false,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                         
-                    }).done(function(data) {
-                         /* chechk inset and login user into software */
-                         $('.short_info .user_img').removeClass("user_img_change");
-                         var user_data = JSON.parse(data);
-                         scope.$apply(function(){
-                             scope.user_info[0].picname = user_data.picname;
-                             var user_info_local = JSON.parse(localStorage.getItem("user_info"));
-                             user_info_local[0].picname = user_data.picname;
-                             localStorage.setItem("user_info",JSON.stringify(user_info_local));
+                    var data = new FormData($(".change_profile_img")[0]);
+                    if (event.blob) 
+                    {
+                        data.append('profile_pic', event.blob);
+                        
+                        $.ajax({
+                            url: base_url+"api/change_image/Passwd12-amin-APload3/"+localStorage.getItem("user_id"),
+                            type: 'POST',
+                            data: data,
+                            async: true,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+
+                        }).done(function(data) {
+                             /* chechk inset and login user into software */
+                             $('.short_info .user_img').removeClass("user_img_change");
+                             var user_data = JSON.parse(data);
+                             scope.$apply(function(){
+                                 scope.user_info[0].picname = user_data.picname;
+                                 $('body .snap-drawers .user_menu_info .img').css('background-image','url("'+base_url+'/uploads/user_img-medium/'+user_data.picname+'")');
+                                 var user_info_local = JSON.parse(localStorage.getItem("user_info"));
+                                 user_info_local[0].picname = user_data.picname;
+                                 localStorage.setItem("user_info",JSON.stringify(user_info_local));
+                             });
+
+
+
+                         }).fail(function(){
+                            /*if user cant send data such as no internet access*/
+                             $('.short_info .user_img').removeClass("user_img_change");
+                             $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
                          });
-                         
-                         
-                         
-                     }).fail(function(){
-                        /*if user cant send data such as no internet access*/
-                         $('.short_info .user_img').removeClass("user_img_change");
-                         $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
-                     });
-                    
+                    }//end if
                     return false;
                 });
                  /*===================================================*/
@@ -229,7 +238,7 @@ angular.module('myapp')
                     $("#skill_uni").submit(function(){
                         
                         var skill =  $("#skill").val().trim();
-                        if(skill.length < 10 ){$('body .alert .msg').text("مهارت وارد شده باید حداقل 10 کاکتر باشد .").parent('.alert').removeClass('none'); return false;}
+                        if(skill.length < 4 ){$('body .alert .msg').text("رشته تحصیلی وارد شده باید حداقل 4 کارکتر باشد .").parent('.alert').removeClass('none'); return false;}
                         $('body .lpro').removeClass("none");
                     
                         $.post(base_url+"/api_inapp/add_skill/AminKarKhuneh1222/",{member_id:user_id,skill:skill,type:"0"},function(data){
@@ -261,7 +270,7 @@ angular.module('myapp')
                     $("#skill_job").submit(function(){
                         
                         var skill =  $("#skill2").val().trim();
-                        if(skill.length < 10 ){$('body .alert .msg').text("مهارت وارد شده باید حداقل 10 کاکتر باشد .").parent('.alert').removeClass('none'); return false;}
+                        if(skill.length < 4 ){$('body .alert .msg').text("مهارت یا شغل وارد شده باید حداقل 4 کارکتر باشد .").parent('.alert').removeClass('none'); return false;}
                         $('body .lpro').removeClass("none");
                     
                         $.post(base_url+"/api_inapp/add_skill/AminKarKhuneh1222/",{member_id:user_id,skill:skill,type:"1"},function(data){
@@ -372,7 +381,7 @@ angular.module('myapp')
                     now_year = moment().format('jYYYY');
                     var submited = 0;
                     usr_data = new Object();
-                    $('#skill_uni').submit(function(){
+                    $('.skill_uni').submit(function(){
                      
                         name = $("#name").val();
                         age = $("#age").val();
@@ -386,7 +395,7 @@ angular.module('myapp')
                         status = $("#status").val();
 
                         var errors_req = new Array();                        
-                        $('#skill_uni .req').each(function(index,element){
+                        $('.skill_uni .req').each(function(index,element){
                             if($(this).val() == "" || $(this).val() === undefined ){errors_req.push($(this).prev('span').text());}
                         });
                         if(errors_req.length > 0)

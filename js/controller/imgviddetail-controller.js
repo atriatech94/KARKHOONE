@@ -10,7 +10,7 @@ angular.module('myapp')
     }else{
         show_anim();
 
-        $http.get(base_url+"/api_upload/portfolio_one/UPsdfLo-098UYdfdsH-ooesdfWu/"+$routeParams.p_id)
+        $http.get(base_url+"/api_upload/portfolio_one/UPsdfLo-098UYdfdsH-ooesdfWu/"+$routeParams.p_id + "/" + localStorage.getItem("user_id"))
         .success(function(data){
             if(data.length == 0){
                 window.history.back();
@@ -151,7 +151,7 @@ angular.module('myapp')
                     var p_id = $(this).attr('p_id');
                     // console.log(p_id);
                     $.get(base_url+'/api_upload/portfolio_violation_report/UdsfdfPLo-0df98sdfUYH-oodffu/'+localStorage.getItem('user_id')+'/'+p_id,function(data){
-                            scope.$apply(function(){scope.user_spam = '1';});
+                            scope.$apply(function(){scope.p_one_detail[0].report = '1';});
                            $('body .lpro').addClass("none");
                     }).fail(function(){
                         $('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');
@@ -159,6 +159,23 @@ angular.module('myapp')
                     });
                 });
                 /*====================================================*/
+                /*====================================================*/
+                $(".cv_list").on("click",".portfolio_unviolation",function(){
+                    $('body .lpro').removeClass("none");
+                    var p_id = $(this).attr('p_id');
+                    // console.log(p_id);
+                    $.get(base_url+'/api_upload/portfolio_unviolation_report/UdsfsdfdfPLo-0df98sfsdfUYH-oodfdfsfu/'+localStorage.getItem('user_id')+'/'+p_id,function(data){
+                        $('body .lpro').addClass("none");
+                        scope.$apply(function(){
+                                scope.p_one_detail[0].report = null;
+                            });
+
+                    }).fail(function(){
+                        $('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');
+                        $('body .lpro').addClass("none");
+                    });
+                });
+		/*====================================================*/
             }/* end */
 }}) 
 .filter('fromNow', function() {

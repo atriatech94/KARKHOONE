@@ -11,12 +11,16 @@
         </div>
         <!--=================end header============================-->
         <div class="register_form bs">
-            <form  id="form_three"  method="POST"  enctype="multipart/form-data">
+            <form  id="form_three"  method="POST" enctype="multipart/form-data">
+                
                 <label class="title_form"><span><img id="user_image_up" src="img/user.png" /></span><text><h1>یک عکس برای خود انتخاب کنید</h1></text></label>
                 <label class="title_form"><span class="bg-gray select_image"><img src="img/plus.png" /></span><text><h3>شخصات خود را تکمیل نمایید .</h3><p>پر کردن این موارد ضروری است .</p></text></label>
-                <input id="image_sel" onchange="showimagepreview(this)" accept="image/*" style="display:none;" type="file" class="img_upload" name="file_upload" />
-                <input type="hidden" id="datas" name="name" value="" >
+                <input type="hidden" id="datas" class="user_datas" name="name" value="" >
+                <input name="imagefile23" style="display:none" type="file" class="image_sample" accept="image/*"  />
             </form>
+            <form id="amin" class="form_there" enctype="multipart/form-data"><input onchange="showimagepreview(this)" accept="image/*" name="imagefile[]" style="display:none" type="file" class="takePictureField" accept="image/*"  /></form>
+            <form id="amin2"  enctype="multipart/form-data"><input id="image_sel"  style="display:none;" type="file" class="img_upload" name="profile_pic" /></form>
+
         <!--=================end register_form============================-->
         </div>
         <!--=================end register_form============================-->

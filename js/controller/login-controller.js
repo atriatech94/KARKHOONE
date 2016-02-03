@@ -12,7 +12,9 @@ angular.module('myapp')
                     if(localStorage.getItem("user_id")){
                         window.location.hash = "#/wall";
                     }
-                    
+                    /*==================================================*/
+                    $('.english_only').keyup(function(){english_only($(this));});
+                    /*==================================================*/
                     $("#login_form").on("submit",function(){
                         clearTimeout(timeout);
                         var errors_req = new Array();                        

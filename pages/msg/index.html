@@ -28,6 +28,8 @@
                             <h5 ng-if="element.is_read != '0' || element.msg_you_id != user_id">{{element.msg_txt}}</h5>
                             <span>{{element.dates}}</span>
                         </div>
+                        <div class="user_one_options" ng-if="element.msg_me_id == user_id"><div your_id="{{element.msg_you_id}}" msg_chat_id="{{element.msg_chat_id}}" class="chat_remove"><i class="fa fa-trash-o"></i></div></div>
+                        <div class="user_one_options" ng-if="element.msg_me_id != user_id"><div your_id="{{element.msg_me_id}}" msg_chat_id="{{element.msg_chat_id}}" class="chat_remove"><i class="fa fa-trash-o"></i></div></div>
                         <div class="clear"></div>
                     </div>
                 </div>

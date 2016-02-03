@@ -12,6 +12,12 @@ angular.module('myapp')
                 var post_one = Array();
                 var ofs_three = 0;
                 /*====================================================*/
+                if(now_h != "profile" ){
+                    $rootScope.posthasjob = undefined;
+                    $rootScope.posthasjob_ofset  = undefined;
+                    $rootScope.profile_info_tab = undefined;
+                }
+                /*====================================================*/
                  if($rootScope.posthasjob !== undefined){
                      var data =  $rootScope.posthasjob ;
                      data.forEach(function(element,index){

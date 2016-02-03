@@ -42,7 +42,8 @@
                 <div class="extra bs">
                     <span class="text">{{element.p_text}}</span>
                     <ul class="count">
-                        <li ng-if="element.l_count" ng-class="{'liked':element.member_do_like != null ,'unliked':element.member_do_like == 'null' }" class="like do_like">{{element.l_count}}&zwnj;</li>
+                        <li ng-if="element.l_count && element.member_do_like" class="like do_like liked">{{element.l_count}}&zwnj;</li>
+                        <li ng-if="element.l_count && !element.member_do_like"  class="like do_like unliked">{{element.l_count}}&zwnj;</li>
                         <li ng-if="!element.l_count" class="like do_like unliked">0</li>
                         <li ng-if="element.c_count" class="comment">{{element.c_count}}&zwnj;</li>
                         <li ng-if="!element.c_count" class="comment">0</li>

@@ -12,6 +12,12 @@ angular.module('myapp')
                 var ofs_one = 0;
                 var time_one = 0;
                 /*====================================================*/
+                if(now_h != "profile" ){
+                    $rootScope.postone = undefined;
+                    $rootScope.postone_ofset  = undefined;
+                    $rootScope.profile_info_tab = undefined;
+                }
+                /*====================================================*/
                 if($rootScope.postone !== undefined){
                     
                     var data =  $rootScope.postone ;

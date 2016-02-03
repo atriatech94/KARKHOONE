@@ -7,7 +7,7 @@ angular.module('myapp')
 			link: function() {
 				
 				/*====================================================*/
-                
+                $('.english_only').keyup(function(){english_only($(this));});
 				/*====================================================*/
                 var timeout ;
                 var user_info = new Object();
@@ -22,8 +22,6 @@ angular.module('myapp')
                     $('#regform_one #repasswd').val(user_info.passwd);
                     $('#regform_one #mobile').attr("type","text").val(user_info.mobile).attr("type","number");
                 }
-                
-                
 				$(function(){
                     $('#regform_one').on("submit",function(){
                         

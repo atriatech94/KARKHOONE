@@ -11,13 +11,19 @@ angular.module('myapp')
 				/*===============================================================================*/  
                 var snapper = new Snap({ element: document.getElementById('content20'), disable: 'left'});
                 $("body #content20").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
-                /*===============================================================================*/ 
+                /*=================================================*/ 
+                if(now_h != "msg_detail" ){
+                    $rootScope.msg = undefined;
+                    $rootScope.msg_ofset  = undefined;
+                }
+                /*=================================================*/ 
                 var ofset = 0;
                 var last_id = 0;
                 var post_one = Array();
+                var is_reqe = 0 ;
                 var days3 = moment().subtract(24, 'hour').valueOf() ; 
                 console.log(days3);
-				/*====================================================*/
+				/*==================================================*/
                 if($rootScope.msg !== undefined){
                     scope.datas = $rootScope.msg ;
                     ofset =  $rootScope.msg_ofset ;
@@ -26,39 +32,42 @@ angular.module('myapp')
                 
 				/*====================================================*/
                 function fetch_serche_one(){
-    
                     $(".follower").next('.loading_users').show();
                     $(".follower").next('.refresh_loading').hide();
-                    $.get(base_url+"/api_chat/chat_list/A3deWW-00353SSS-CHat/"+localStorage.getItem("user_id")+"/"+ofset+"/"+last_id,function(datas){
-                        
-                        data = new Object();
-                        data = JSON.parse(datas);
-                        console.log(data);
-                        $(".follower").next('.loading_users').hide();
-                        $('body .lpro').addClass("none");
+                    
+                    if(is_reqe == 0){
+                        is_reqe = 1;
+                        $.get(base_url+"/api_chat/chat_list/A3deWW-00353SSS-CHat/"+localStorage.getItem("user_id")+"/"+ofset+"/"+last_id,function(datas){
+                            is_reqe = 0;
+                            data = new Object();
+                            data = JSON.parse(datas);
+                            console.log(data);
+                            $(".follower").next('.loading_users').hide();
+                            $('body .lpro').addClass("none");
 
-                        if(data.length > 0 )
-                        {
-                            data.forEach(function(element,index){
-                                var d = new Date(element.date);
-                                element.dates =    moment(element.date).calendar();
-                                post_one.push(element);
-                            });
-                            scope.$apply(function(){
-                                scope.datas = post_one ;
-                                $rootScope.msg = post_one ;
-                                $rootScope.msg_ofset = ofset;
-                            });   
-                            ofset += 20 ;
-                            is_req = 0;
-                            
-                        }
-                        else if(ofset == 0){$(".one_ids").next('.refresh_loading').show();}
+                            if(data.length > 0 )
+                            {
+                                data.forEach(function(element,index){
+                                    var d = new Date(element.date);
+                                    element.dates = moment(element.date).calendar();
+                                    post_one.push(element);
+                                });
+                                scope.$apply(function(){
+                                    scope.datas = post_one ;
+                                    $rootScope.msg = post_one ;
+                                    $rootScope.msg_ofset = ofset;
+                                });   
+                                ofset += 20 ;
+                                is_req = 0;
+
+                            }
+                            else if(ofset == 0){$(".one_ids").next('.refresh_loading').show();}
 
 
-                    }).fail(function(){
-                        $(".one_ids").next('.refresh_loading').show();
-                    });
+                        }).fail(function(){
+                            $(".one_ids").next('.refresh_loading').show();
+                        });
+                    }
                    
                 }//end function
                /*====================================================*/
@@ -68,6 +77,25 @@ angular.module('myapp')
                     var twoes =  $('#content20 .follower').height() ;
                     console.log(twoes - ones);
                     if((  twoes - ones) < 600 && is_req==0 ){ is_req = 1; fetch_serche_one($rootScope.search_data,$rootScope.search_address); }
+                });
+                
+                /*====================================================*/
+                $('.user_list').on("click",".chat_remove",function(){
+                    var msg_chat_id = $(this).attr('msg_chat_id');
+                    var x;
+                    if (confirm("آیا برای حذف اطمینان دارید") == true) {
+                        $.get(base_url+"/api_upload/disable_all_msg/UPssdfo-098UdfsdfY-oosfWu/"+localStorage.getItem("user_id")+"/"+$(this).attr("your_id"),function(datas){});
+                        var pp_id = $.grep(scope.datas,function(element){
+                            return element.msg_chat_id != msg_chat_id;
+                        });
+                        console.log(pp_id);
+                        scope.$apply(function(){
+                            
+                            $rootScope.msg = pp_id;
+                            scope.datas = pp_id;
+                        });
+                        return false;     
+                    }               
                 });
                 /*====================================================*/
 				$('.chat_view').delegate(".chat_one","click",function(){
@@ -85,9 +113,11 @@ angular.module('myapp')
                 $('.contanet_profile').on("click",".refresh_msg",function(){
                     ofset = 0;
                     last_id = 0;
-                    scope.$apply(function(){ scope.datas = null;post_one = [];});
+                    scope.$apply(function(){ post_one = [];});
                     fetch_serche_one();
                 });
+
+                
           /*====================================================*/
             }/* end */
 }})
@@ -119,13 +149,9 @@ angular.module('myapp')
 				me = scope.user_id;
 
                 setInterval(function(){
-
                     if(!socket){
-
                         send(me,  you, "havij", "blabla");
                     }
-
-
                     ;}, 5000);
 				
 				console.log(you,me);

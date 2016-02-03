@@ -42,17 +42,19 @@
                      <!--================end some_flowers=============-->
                     <div class="clear"></div>
                     <div class="btn_profile">
-                        <span class="btn_profile_like">{{user_info[0].followers}}&zwnj;</span>
-                        <span class="btn_profile_msg">{{user_info[0].msg}}&zwnj;</span>
-                        <span class="btn_profile_view">{{user_info[0].view}}&zwnj;</span>
+                        <div><span class="btn_profile_like">{{user_info[0].followers}}&zwnj;</span></div>
+                        <div><span class="btn_profile_msg">{{user_info[0].msg}}&zwnj;</span></div>
+                        <div><span class="btn_profile_view">{{user_info[0].view}}&zwnj;</span></div>
+                        <div class="clear"></div>
                     </div>
                     <!--================end btn_profile=============-->
                     <div class="circle_btn">
-                        <span class="circle_btn_like active" ng-if="follower.indexOf(user_info[0].member_id) > -1" user_id="{{user_info[0].member_id}}" ></span>
-                        <span class="circle_btn_like" ng-if="follower.indexOf(user_info[0].member_id) == -1" user_id="{{user_info[0].member_id}}" ></span>
-                        <span class="circle_btn_msg"  user_id="{{user_info[0].member_id}}"></span>
-                        <span class="circle_btn_view active" user_id="{{user_info[0].member_id}}"  ng-if="checked.indexOf(user_info[0].member_id) !== -1" ></span>
-                        <span class="circle_btn_view" user_id="{{user_info[0].member_id}}"  ng-if="checked.indexOf(user_info[0].member_id) == -1"  ></span>
+                        <div ng-if="follower.indexOf(user_info[0].member_id) > -1"><span class="circle_btn_like active"  user_id="{{user_info[0].member_id}}" ></span></div>
+                        <div ng-if="follower.indexOf(user_info[0].member_id) == -1"><span class="circle_btn_like"  user_id="{{user_info[0].member_id}}" ></span></div>
+                        <div><span class="circle_btn_msg"></span></div>
+                        <div ng-if="checked.indexOf(user_info[0].member_id) !== -1" ><span class="circle_btn_view active" user_id="{{user_info[0].member_id}}" ></span></div>
+                        <div ng-if="checked.indexOf(user_info[0].member_id) == -1" ><span class="circle_btn_view" user_id="{{user_info[0].member_id}}"  ></span></div>
+                        <div class="clear"></div>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -76,12 +78,12 @@
             </div>
         </div>
         <!--======================end contant_profile====================-->
-        <div class="skills" ng-if="row[0]" >
+        <div class="skills" ng-if="count_s1 != 0" >
             <img src="img/edjucate.png">
             <span ng-repeat="row in user_skill" ><p ng-if="row[2]==0">{{row[0]}}</p></span>
         </div>
         <!--======================end contant_profile====================-->
-        <div class="skills resume" ng-if="row[1]">
+        <div class="skills resume" ng-if="count_s2 != 0">
             <img src="img/resume.png">
             <span ng-repeat="row in user_skill" ><p ng-if="row[2]==1">{{row[0]}}</p></span>
         </div>
@@ -120,16 +122,17 @@
                 <div class="extra bs">
                     <span class="text">{{element.p_text}}</span>
                     <ul class="count">
-                        <li ng-if="element.l_count" ng-class="{'liked':element.member_do_like != null ,'unliked':element.member_do_like == 'null' }" class="like do_like">{{element.l_count}}&zwnj;</li>
+                        <li ng-if="element.l_count && element.member_do_like" class="like do_like liked">{{element.l_count}}&zwnj;</li>
+                        <li ng-if="element.l_count && !element.member_do_like"  class="like do_like unliked">{{element.l_count}}&zwnj;</li>
                         <li ng-if="!element.l_count" class="like do_like unliked">0</li>
                         <li ng-if="element.c_count" class="comment">{{element.c_count }}</li>
                         <li ng-if="!element.c_count" class="comment">0</li>
                         <li ng-if="element.v_count" class="view">{{element.v_count }}</li>
                         <li ng-if="!element.v_count" class="view">0</li>
-                        <li ng-if="element.member_do_like == null" class="more">&zwnj;
+                        <li ng-if="element.report == null" class="more">&zwnj;
                             <div class="porfolio_spam" p_id="{{element.p_id}}"><span>گزارش تخلف</span></div>
                         </li>
-                        <li ng-if="element.member_do_like != null" p_id="{{element.p_id}}" class="portfolio_drop"><span></span></li>
+                        <li ng-if="element.report != null" p_id="{{element.p_id}}" class="portfolio_drop portfolio_unviolation"><span></span></li>
                     </ul>
                 </div>
             </div>

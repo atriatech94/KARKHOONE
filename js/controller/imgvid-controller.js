@@ -20,6 +20,7 @@ angular.module('myapp')
                          
                          data = JSON.parse(datas);
                          console.log(data);
+                         
                          data.forEach(function(element,index){
                              element.dates =  moment(element.p_date).calendar();
                              element.cap = Math.round(parseInt(element.p_filesize)/1048576)/1024;

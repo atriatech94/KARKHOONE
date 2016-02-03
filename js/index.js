@@ -39,7 +39,7 @@ function init(member_id, callback) {
             if(message.command == "new_message"){
                 //when user receive message from server
                 
-                if(localStorage.getItem('user_id') == message.msg_you_id){
+                if(localStorage.getItem('user_id') == message.msg_you_id && $('.logo_name').attr('your_id') == message.msg_me_id){
                 	if(window.location.hash == "#/msg_detail")
                 		socket.send(JSON.stringify({'command':'make_msg_as_read', 'msg_insert_id':message.msg_insert_id, 'msg_id':message.msg_id}));
 	                var appends = '<div class="msg_one you" id="msg-'+message.msg_id+'" >';
@@ -350,6 +350,103 @@ function isVideo(filename) {
 }
 function show_anim(){$('body .loader_css').addClass('start_animation');}
 function hide_anim(){$('body .loader_css').removeClass('start_animation');}
+
+/*===============================================================*/
 $.ajaxSetup({
     timeout: 15000,
+});
+
+/*===============================================================*/
+function resize_image(revent,vars){
+	   
+    var file = revent.target.files[0];
+    // Ensure it's an image
+    if(file.type.match(/image.*/)) {
+        console.log('An image has been loaded');
+
+        // Load the image
+        var reader = new FileReader();
+        reader.onload = function (readerEvent) {
+            var image = new Image();
+            image.onload = function (imageEvent) {
+
+                // Resize the image
+                var canvas = document.createElement('canvas'),
+                    max_size = 800,// TODO : pull max size from a site config
+                    width = image.width,
+                    height = image.height;
+                  //  var dems
+                    if (width > height){
+                        if (width > max_size){
+                            height *= max_size / width;
+                            width = max_size;
+
+                        }
+                    }else{
+                        if (height > max_size){
+                            width *= max_size / height;
+                            height = max_size;
+                        }
+                    }
+                canvas.width = width;
+                canvas.height = height;
+                canvas.getContext('2d').drawImage(image, 0, 0, width, height);
+                var dataUrl = canvas.toDataURL('image/jpeg');
+                var resizedImage = dataURLToBlob(dataUrl);
+                $.event.trigger({
+                    type: vars ,
+                    blob: resizedImage ,
+                   // dem : 
+                });
+            }
+            image.src = readerEvent.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+	
+		var dataURLToBlob = function(dataURL) {
+		var BASE64_MARKER = ';base64,';
+		if (dataURL.indexOf(BASE64_MARKER) == -1) {
+			var parts = dataURL.split(',');
+			var contentType = parts[0].split(':')[1];
+			var raw = parts[1];
+	
+			return new Blob([raw], {type: contentType});
+		}
+	
+		var parts = dataURL.split(BASE64_MARKER);
+		var contentType = parts[0].split(':')[1];
+		var raw = window.atob(parts[1]);
+		var rawLength = raw.length;
+	
+		var uInt8Array = new Uint8Array(rawLength);
+	
+		for (var i = 0; i < rawLength; ++i) {
+			uInt8Array[i] = raw.charCodeAt(i);
+		}
+	
+		return new Blob([uInt8Array], {type: contentType});
+	}
+}
+
+function english_only(input){   	
+    var spacechar = input.val().substr(input.val().length - 1);
+    spacechar = spacechar.charCodeAt();
+    if( spacechar >= 1570 && spacechar <= 1712){
+        input.val('');
+        $('body .alert .msg').text("ورودی اطلاعات برای این فیلد باید انگلیسی باشد .").parent('.alert').removeClass('none');
+        return false;
+    }
+}
+var last_h = 0;
+var now_h = 1;
+$(window).bind( 'hashchange', function(e) {
+    last_h = now_h ;
+    loc =  window.location.hash;
+    loc = loc.replace("#/", "");
+    
+    loc = loc.split('/');
+    now_h = loc[0] ;
+    
+   // console.log(now_h);
 });

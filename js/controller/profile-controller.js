@@ -2,13 +2,15 @@ angular.module('myapp')
 .controller('ProfileController', function($scope,$rootScope,$routeParams,$http) {
     show_anim();
     $scope.portfolios = 0;
+    $scope.count_s1 = 0;
+    $scope.count_s2 = 0;
     $scope.user_id = $routeParams.user_id;
      if($rootScope.profile_info !== undefined){
         $scope.user_info = $rootScope.profile_info;
     }
     $http.get(base_url+"/api_inapp/get_user_info/Att6i3-HaREWin0B3-98FFGG858HY/"+$routeParams.user_id+"/"+localStorage.getItem("user_id") )
     .success(function(response){
-        console.log(response.user_info.portfolio,response);
+        //console.log(response.user_info.portfolio,response);
         hide_anim();
         if(response.is_friend == '1'){
         /*user isn t my friend*/
@@ -21,7 +23,7 @@ angular.module('myapp')
                                 response.user_info[0].mobile = undefined;
                                 break;
                             case "email":
-                                response.user_info[0].mobile = undefined;
+                                response.user_info[0].email = undefined;
                                 break;
                             case "cv":
                                 response.user_skill = undefined;
@@ -30,17 +32,15 @@ angular.module('myapp')
                                 response.user_info.portfolio = undefined;
                                 break;
                             default:
-
                         }//end sqwitch
                     }
                 });
             }
-            
         }else{
         /*user isn t my friend*/
-            console.log("not my freid");
+           // console.log("not my freid");
             if(response.user_perms != null){
-                console.log(response.user_perms);
+             //   console.log(response.user_perms);
                 response.user_perms.forEach(function(element,index){
                     if(element.access_level != "2" ){
                         switch(element.perm_name) {
@@ -48,7 +48,7 @@ angular.module('myapp')
                                 response.user_info[0].mobile = undefined;
                                 break;
                             case "email":
-                                response.user_info[0].mobile = undefined;
+                                response.user_info[0].email = undefined;
                                 break;
                             case "cv":
                                 response.user_skill = undefined;
@@ -64,13 +64,33 @@ angular.module('myapp')
             }
         }
         
-       
+       /**/
+        if(localStorage.getItem("user_follower") == null){
+            localStorage.setItem("user_follower","[]");
+        }
+        if(localStorage.getItem("user_checked") == null){
+            localStorage.setItem("user_checked","[]");
+        }
+       /**/
         $scope.user_info = response.user_info ;
         $scope.user_skill = response.user_skill;
         $scope.user_spam = response.spam[0].count;
         $scope.portfolios = response.user_info.portfolio;
         $scope.info = response.info;
         $scope.followers = response.followers;
+        $scope.now_year = moment().format('jYYYY');
+        $scope.base_url = base_url;
+        $scope.follower = JSON.parse( localStorage.getItem("user_follower") ) ;
+        $scope.checked = JSON.parse( localStorage.getItem("user_checked") ) ;
+        
+        if($scope.user_skill != null &&$scope.user_skill.length > 0){
+        $scope.user_skill.forEach(function(element,index){
+            if(element[2] == "0")
+                $scope.count_s1++;
+            else
+                $scope.count_s2++;
+        }); 
+    }
         
        if(response.user_info.length == '0' ){
            $('body .alert .msg').text("کاربر غیر فعال می باشد .").parent('.alert').removeClass('none');
@@ -90,11 +110,7 @@ angular.module('myapp')
                 var snapper = new Snap({ element: document.getElementById('content47'), disable: 'left'});
                 $("body #content47").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
         /*===============================================================================*/  
-                scope.now_year = moment().format('jYYYY');
-                scope.base_url = base_url;
-                scope.follower = JSON.parse( localStorage.getItem("user_follower") ) ;
-                scope.checked = JSON.parse( localStorage.getItem("user_checked") ) ;
-                var user_data = scope.user_info;
+                
         /*===============================================================================*/  
                 $(".short_info").on("click",".single_4_img",function(){
                     var urll = $(this).attr("mhref");
@@ -120,7 +136,7 @@ angular.module('myapp')
                                 hide_anim();
                                 
                                 data = JSON.parse(datas);
-                                console.log(data);
+                                //console.log(data);
                                 if(data == null){return;}
                                 data.forEach(function(element,index){
                                     element.dates =  moment(element.p_date).calendar();
@@ -189,7 +205,7 @@ angular.module('myapp')
             
             localStorage.setItem('chat',JSON.stringify(scope.user_info)) ;
             $rootScope.chat = scope.user_info ;
-            console.log(scope.user_info);
+            //console.log(scope.user_info);
             window.location.hash = "#/msg_detail";
             
         });
@@ -205,20 +221,24 @@ angular.module('myapp')
                    if(photo_cv.hasClass("liked")){
                             /*you should unlinke*/
                        photo_cv.text((parseInt(photo_cv.text())-1).toString());
-                       $rootScope.portfolio.forEach(function(a){
-                           if( a.p_id == p_id){
-                                  a.l_count = parseInt(a.l_count)-1;
-                           }
+                       scope.$apply(function(){
+                           scope.portfolio_you.forEach(function(a){
+                               if( a.p_id == p_id){
+                                   a.l_count = parseInt(a.l_count)-1;
+                               }
+                           });
                        });
                        photo_cv.addClass("unliked").removeClass('liked');;
 
                    }else if(photo_cv.hasClass("unliked")){
                                   /*you should linke*/
                        photo_cv.text((parseInt(photo_cv.text())+1).toString());
-                       $rootScope.portfolio.forEach(function(a){
-                           if( a.p_id == p_id){
-                               a.l_count = parseInt(a.l_count)+1;
-                           }
+                       scope.$apply(function(){
+                           scope.portfolio_you.forEach(function(a){
+                               if( a.p_id == p_id){
+                                   a.l_count = parseInt(a.l_count)+1;
+                               }
+                           });
                        });
                        photo_cv.addClass("liked").removeClass('unliked');
                    }
@@ -241,17 +261,16 @@ angular.module('myapp')
         });
         /*===============================================================================*/ 
         /*===============================================================================*/ 
-                  $('.cv_list').on("click",".photo_cv",function(){
-                      var p_id = $(this).attr('p_id');
-                      var arr = $.grep(( $rootScope.portfolio_user),function(a){
-                            return a.p_id == p_id ;
-                      });
-                      $rootScope.p_detail = arr ;
-                      console.log($rootScope.p_detail);
-                      localStorage.setItem("p_detail",JSON.stringify($rootScope.p_detail));
-                      window.location.hash = "#/portfolio_detail/"+p_id;
-                  });
-                  
+          $('.cv_list').on("click",".photo_cv",function(){
+              var p_id = $(this).attr('p_id');
+              var arr = $.grep(( $rootScope.portfolio_user),function(a){
+                    return a.p_id == p_id ;
+              });
+              $rootScope.p_detail = arr ;
+              //console.log($rootScope.p_detail);
+              localStorage.setItem("p_detail",JSON.stringify($rootScope.p_detail));
+              window.location.hash = "#/portfolio_detail/"+p_id;
+          });
         /*=========================Spaming user===========================*/
         $(".contant_profile").on("click",".spam",function(){
             $('body .lpro').removeClass("none");
@@ -270,13 +289,37 @@ angular.module('myapp')
             // console.log(p_id);
             $.get(base_url+'/api_upload/portfolio_violation_report/UdsfdfPLo-0df98sdfUYH-oodffu/'+localStorage.getItem('user_id')+'/'+p_id,function(data){
                    $('body .lpro').addClass("none");
+                    scope.$apply(function(){
+                        scope.portfolio_you.forEach(function(a){
+                               if( a.p_id == p_id){
+                                   a.report = 1;
+                               }
+                           });
+                    });
             }).fail(function(){
                 $('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');
                 $('body .lpro').addClass("none");
             });
         });
         /*====================================================*/
-       
+       $(".cv_list").on("click",".portfolio_unviolation",function(){
+            $('body .lpro').removeClass("none");
+            var p_id = $(this).attr('p_id');
+            // console.log(p_id);
+            $.get(base_url+'/api_upload/portfolio_unviolation_report/UdsfsdfdfPLo-0df98sfsdfUYH-oodfdfsfu/'+localStorage.getItem('user_id')+'/'+p_id,function(data){
+                   $('body .lpro').addClass("none");
+                 scope.$apply(function(){
+                        scope.portfolio_you.forEach(function(a){
+                               if( a.p_id == p_id){
+                                   a.report = null;
+                               }
+                           });
+                    });
+            }).fail(function(){
+                $('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');
+                $('body .lpro').addClass("none");
+            });
+        });
 		/*====================================================*/
             }/* end */
 }})

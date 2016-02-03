@@ -8,58 +8,75 @@ angular.module('myapp')
 				$('body .lpro').addClass("none");
                 var files;
                 var timeout ;
+                var change_evenet ;
 				/*====================================================*/
 				$(document).ready(function(){
                     
                     if(!localStorage.getItem("user_info_temp")) { window.location.hash = "#/register_one";return false;}
                     var user_info = JSON.parse( localStorage.getItem("user_info_temp") );
                     if(typeof user_info.age === 'undefined'){ window.location.hash = "#/register_two";return false;}
+                    
                      /*insert json user_data to hidden input*/
+                    
                     $("#datas").val(localStorage.getItem("user_info_temp"));
                     clearTimeout(timeout);
-                    $('.select_image').on("click",function(){
+                    $('.register_form').on("click",'.select_image',function(){
                          /*select and show image to user before upload*/
-                        if($('#image_sel').val() ==""){
-                            $('#image_sel').click();
+                        if($('.takePictureField').val() ==""){
+                            $('.takePictureField').click();
                         }else{
                             src = "img/user.png";
                             $('#user_image_up').attr('src',src);
                             $('#user_image_up').removeClass("user_image_add");
                             $('.select_image img').removeClass("remove_image");
-                            $('#image_sel').val("");
+                            $('.takePictureField').val("");
                             return false;
                         }
                     });
                 /*====================================================*/
-                    $(".upload_image").click(function(){
-                         /* submit_form */
-                        $("#form_three").submit();
+                    $(".upload_image").click(function(event){
+                       if(change_evenet !== undefined){
+                           
+                            if (!isImage($('.takePictureField').val())) {
+                                alert('فرمت فایل انتخابی اشتباه است . مجدد تلاش نمایید ');
+                                return false;
+                            }else{
+                                 resize_image(change_evenet,"imageResized_firstprofile");
+
+                            }
+                       }else{
+                           $.event.trigger({type: 'imageResized_firstprofile' });
+                       }
+                        
                     });
                 /*====================================================*/
-                 $("#form_three").submit(function() {
+                    
+                     $('.takePictureField').on("change",function(event){
+                         change_evenet = event;
+                     });
+                    
+                /*====================================================*/
+                 $(document).on("imageResized_firstprofile", function (event) {
                      $('body .lpro').removeClass("none");
-                     if ($('.img_upload').val() != "" && !isImage($('.img_upload').val())) {
-                         alert('فرمت فایل انتخابی اشتباه است . مجدد تلاش نمایید ');
-                         return false;
-                         $('body .lpro').addClass("none");
+                     var data = new FormData($(".change_profile_img")[0]);
+                     if (event.blob){
+                         data.append('profile_pic', event.blob);
                      }
-                     
-                    var formData = new FormData($(this)[0]);
+                     data.append('user_data',$('.user_datas').val());
                      $.ajax({
+                         url: base_url+"api/user_register/Passwd123/",
+                         type: 'POST',
+                         data: data,
+                         async: true,
+                         cache: false,
+                         contentType: false,
+                         processData: false,
+                         timeout:60000,
                          
-                        url: base_url+"api/user_register/Passwd123/",
-                        type: 'POST',
-                        data: formData,
-                        async: true,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        timeout:60000,
-                         
-                    }).done(function(data) {
+                     }).done(function(data) {
                          /* chechk inset and login user into software */
                          var user_data = JSON.parse(data);
-                        
+                         
                          if(user_data.msg_code == "1")
                          {
                              user_info.member_id = user_data.member_id ;
@@ -71,6 +88,7 @@ angular.module('myapp')
                              var result_update = JSON.stringify(user_data_update);
                              localStorage.setItem("user_info",result_update);
                              localStorage.setItem("user_id",(user_data_update[0].member_id));
+                                  
                              $('body .lpro').addClass("none");
                              window.location.hash = "#/wall";
                          }
@@ -83,19 +101,20 @@ angular.module('myapp')
                          else if(user_data.msg_code == "1"){
                              $('body .lpro').addClass("none");
                          }
-                         
+
                      }).fail(function(){
-                        /*if user cant send data such as no internet access*/
+                         /*if user cant send data such as no internet access*/
                          $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none'); 
                          $('body .lpro').addClass("none");
                      });
-                    return false;
-
-                  });
-                /*====================================================*/
+                     
+                     return false;
+                     
+                 });
+                    /*====================================================*/
                 });
-				/*====================================================*/
-          }/* end */
+                /*====================================================*/
+            }/* end */
 }});
 function showimagepreview(input) 
     {

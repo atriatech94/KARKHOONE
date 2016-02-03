@@ -9,6 +9,15 @@ angular.module('myapp')
                 var snapper = new Snap({ element: document.getElementById('content13'), disable: 'left'});
                 $("body #content13").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
 				/*====================================================*/
+               // var baseUrl = window.location.href.split('#')[1];
+                //$location.path(prevUrl);
+               // 
+                if(now_h != "profile" ){
+                    $rootScope.profile_info_div = undefined;
+                    $rootScope.myfollower_ofset  = undefined;
+                    $rootScope.myfollower = undefined;
+                    $rootScope.profile_info_top = undefined;
+                }
                 /*=====================Varibales===============================*/
                 var is_active = 0;
                 var is_req = 0;
@@ -67,7 +76,7 @@ angular.module('myapp')
 
                     $.getJSON( base_url+"/api_userlist/get_myfollower/Ami3myfollowe-nKaORd7-9854KIHY/"+ofs+"/"+user_id , function(data) {
                         $(".follower").next('.loading_users').hide();
-                        console.log(data);
+                       // console.log(data);
                         if(data.length > 0 )
                         {
                             data.forEach(function(element,index){
@@ -113,7 +122,7 @@ angular.module('myapp')
                     var content = $('#content13 .of_list') ;
                     var ones = ( content.scrollTop() - content.height() ) + $(window).height();
                     var twoes =  $('#content13 .of_list').height() ;
-                    console.log(twoes - ones);
+                    //console.log(twoes - ones);
                     if((   twoes - ones ) < 700 && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
                 });
                 
@@ -131,7 +140,12 @@ angular.module('myapp')
                 var snapper = new Snap({ element: document.getElementById('content14'), disable: 'left'});
                 $("body #content14").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
 				/*====================================================*/
-                
+                if(now_h != "profile" ){
+                    $rootScope.myfollowing = undefined;
+                    $rootScope.myfollowing_ofset  = undefined;
+                    $rootScope.profile_info_div = undefined;
+                    $rootScope.profile_info_top = undefined;
+                }
                 
 				/*=====================Varibales===============================*/
                 var is_active = 0;
@@ -252,7 +266,12 @@ angular.module('myapp')
                 var snapper = new Snap({ element: document.getElementById('content15'), disable: 'left'});
                 $("body #content15").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
 				/*====================================================*/
-                
+                if(now_h != "profile" ){
+                    $rootScope.mychecked = undefined;
+                    $rootScope.myfollowing_ofset  = undefined;
+                    $rootScope.profile_info_div = undefined;
+                    $rootScope.profile_info_top = undefined;
+                }
                 
 				/*=====================Varibales===============================*/
                 var is_active = 0;

@@ -1,5 +1,5 @@
 angular.module('myapp')
-.controller('settingsController', function($scope) {
+.controller('settingsController', function($scope, $http) {
    
     $scope.user_info = JSON.parse(localStorage.getItem("user_info"));
     $scope.user_skill = JSON.parse(localStorage.getItem("user_skill"));
@@ -7,6 +7,19 @@ angular.module('myapp')
     $scope.now_year = moment().format('jYYYY');
     $scope.base_url = base_url;
     console.log($scope.user_info);
+
+    $http.get(base_url+"/api_upload/settings_prev/UPssdfdfLo-098UdfsdfYdfdsH-ooesdfdsfWu/" + localStorage.getItem("user_id"))
+    .success(function(data){
+        if(data.length > 0){
+            data.forEach(function(element,index){
+                if(element.perm_name == "mobile") $scope.perm_mobile = element;
+                else if(element.perm_name == "email") $scope.perm_email = element;
+                else if(element.perm_name == "cv") $scope.perm_cv = element;
+                else if(element.perm_name == "portfolio") $scope.perm_portfolio = element; 
+            });
+        // $scope.p_one_detail = data;
+       }
+    });
     
 })
 .directive('settingsDir' , function ($rootScope){
@@ -16,6 +29,8 @@ angular.module('myapp')
 				$(document).ready(function(){
                     var snapper = new Snap({ element: document.getElementById('content35'), disable: 'left'});
                     $("body #content35").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
+
+                    
                 });
 				/*====================================================*/
                 $('.setting_link').mousedown(function(event) {
@@ -45,7 +60,7 @@ angular.module('myapp')
                         url: base_url+"api/mobile_permission/UP61237wLo-05h98DssYH-oo234sesWu/"+localStorage.getItem("user_id"),
                         type: 'POST',
                         data: formData,
-                        async: false,
+                        async: true,
                         cache: false,
                         contentType: false,
                         processData: false,
@@ -60,7 +75,7 @@ angular.module('myapp')
                         url: base_url+"api/email_permission/UP61237wdf4Lo-05h98DssYH-oo234sesWu/"+localStorage.getItem("user_id"),
                         type: 'POST',
                         data: formData,
-                        async: false,
+                        async: true,
                         cache: false,
                         contentType: false,
                         processData: false,
@@ -75,7 +90,7 @@ angular.module('myapp')
                         url: base_url+"api/portfolio_permission/UP61237wmdf4Lo-05h98DssYH-oon9a234sesWu/"+localStorage.getItem("user_id"),
                         type: 'POST',
                         data: formData,
-                        async: false,
+                        async: true,
                         cache: false,
                         contentType: false,
                         processData: false,
@@ -90,7 +105,7 @@ angular.module('myapp')
                         url: base_url+"api/cv_permission/UP61237wdf4Lo-0o5h98DsYH-oo234sesWu/"+localStorage.getItem("user_id"),
                         type: 'POST',
                         data: formData,
-                        async: false,
+                        async: true,
                         cache: false,
                         contentType: false,
                         processData: false,

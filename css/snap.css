@@ -222,12 +222,12 @@ html, body {
 }
 
 .snap-drawers {
-  background: #082331;
+  background-color:transparent;
 }
 
 .snap-drawer {
-	background: #082331;
-	color: #eee;
+    background: #f8fbfd;
+	color:  #082331;
 }
 
 .snap-drawer h3 {
@@ -243,23 +243,30 @@ html, body {
 }
 
 .snap-drawer ul {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    border-top: 1px solid rgba(189, 189, 189, 0.5);
+    margin-top: 5px;
 }
 
 .snap-drawer li > a {
-  display: block;
-  border-bottom: 1px solid rgba(0,0,0, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 15px 0px;
-  font-weight: bold;
-  text-shadow: 0 1px 0 #000;
-  text-decoration: none;
-  color: #ccc;
-  text-indent: 20px;
-}
+    display: block;
+    border-bottom: 1px solid rgba(0,0,0, 0.1);
+    border-top: 1px solid rgba(67, 166, 195, 0.1);
+    padding: 12px 0px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #39728C;
+    text-indent: 5px;
 
+}
+.snap-drawer li > a i{
+    padding: 0 1px 0 12px;
+    color: #4c849f;
+    position: relative;
+    top: 2px;        
+}
 .snap-drawer p {
   opacity: 0.5;
   padding: 15px;
@@ -270,4 +277,41 @@ html, body {
     width: 80%;
     margin: 30px auto;
 }
-
+.user_menu_info{
+    width: 95%;
+    height: auto;
+    padding: 10px 10px;
+}
+.user_menu_info .img{
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 2px solid #D0D0D0;
+    border-radius: 50%;
+    margin: 10px auto;
+}
+.user_menu_info .name{
+    font-size: 20px;
+    padding:3px 0;
+    text-align: center;
+    color:#3a80a0;
+    display: block;
+    font-weight: bold;
+}
+.user_menu_info .exit_edit ,.about_contact {
+    display: table;
+    width: auto;
+    margin: 10px auto 0;
+    text-align: center;
+}
+.user_menu_info .exit_edit a ,.about_contact a{
+    display: inline-block;
+    color: #5a9bc4;
+    font-size: 14px;
+}
+.about_contact {
+    margin: 10px auto;
+}

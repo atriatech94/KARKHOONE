@@ -2,6 +2,8 @@ var swiper2;
 var is_use = 0;
 var user_one = 0;
 var tab_index ; 
+var drop_swipe = 0;
+var drop_swipe_on;
 angular.module('myapp')
 .directive('swSwipe', function ($rootScope){
 		return {
@@ -10,32 +12,48 @@ angular.module('myapp')
                     $('.snap-content').on("error","img",function() {
                         alert('Image does not exist !!');
                     });
-                    
+                  
                     /*===============================================================================*/  
                     if($rootScope.profile_info_tab_index === undefined){ tab_index = 0 ;}else{ tab_index = $rootScope.profile_info_tab_index ; console.log( $rootScope.profile_info_tab_index ); }
                     /*===============================================================================*/  
                     var snapper = new Snap({ element: document.getElementById('content6'), disable: 'left'});
                     $("body #content6").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
                     /*===============================================================================*/  
-                    swiper2 = new Swiper( '.swiper1' ,{scrollbar: '.swiper-scrollbar', scrollbarHide: false,grabCursor: true,initialSlide :tab_index });
+                   
+                    swiper2 = new Swiper( '.bg_fix .swiper1' ,{scrollbar: '.swiper-scrollbar', scrollbarHide: false,grabCursor: true,initialSlide :tab_index });
+                   if(drop_swipe == 0){
+                       drop_swipe_on = swiper2;
+                       drop_swipe = 1 ;
+                       
+                   }
+                    /*===============================================================================*/  
+                    if(typeof swiper2.on != "function")
+                    {
+                        swiper2 = undefined;
+                        swiper2 = drop_swipe_on ;
+                        console.log(swiper2);
+                    }
+                  
                     /*===============================================================================*/   
-                    swiper2.on('slideChangeEnd', function () {
+                    if(swiper2 !== undefined){
+                        swiper2.on('slideChangeEnd', function () {
 
-                        var active_class = $(".swiper-slide-active").attr('actives'); 
-                        var wbody = $("body").width();
-                        var rw = ($(active_class).outerWidth()-8)+"px";
-                        var rsw = 15 ;
-                        $('.links a').length;
-                        for( var i = 0 ; i < ( $('.links a').length ) ; i++ )
-                        {
-                            $this =  $('.links a:eq('+i+')');
-                            if( $this.attr("id") == active_class.replace("#",'')){break;}
-                            rsw += $this.outerWidth();
-                        }
-                        rsw = rsw - 5 ;
-                        //console.log($('.scroller_asmin').css({"transform":"translate3d(-"+rws+" , 0px, 0px) !important","width": rw+" !important"}));
-                        $('.scroller_asmin').attr("style","transform : translate3d(-"+rsw+"px , 0px, 0px) !important ;-webkit-transform : translate3d(-"+rsw+"px , 0px, 0px) !important ;");
-                    });
+                            var active_class = $(".swiper-slide-active").attr('actives'); 
+                            var wbody = $("body").width();
+                            var rw = ($(active_class).outerWidth()-8)+"px";
+                            var rsw = 15 ;
+                            $('.links a').length;
+                            for( var i = 0 ; i < ( $('.links a').length ) ; i++ )
+                            {
+                                $this =  $('.links a:eq('+i+')');
+                                if( $this.attr("id") == active_class.replace("#",'')){break;}
+                                rsw += $this.outerWidth();
+                            }
+                            rsw = rsw - 5 ;
+                            //console.log($('.scroller_asmin').css({"transform":"translate3d(-"+rws+" , 0px, 0px) !important","width": rw+" !important"}));
+                            $('.scroller_asmin').attr("style","transform : translate3d(-"+rsw+"px , 0px, 0px) !important ;-webkit-transform : translate3d(-"+rsw+"px , 0px, 0px) !important ;");
+                        });
+                    }
                     /*===============================================================================*/
                     get_count_mail();
                     get_count_notif();

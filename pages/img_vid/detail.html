@@ -25,7 +25,8 @@
                 <div class="extra bs">
                     <span class="text">{{element.p_text}}</span>
                     <ul class="count">
-                        <li ng-if="element.l_count" ng-class="{'liked':element.member_do_like != null ,'unliked':element.member_do_like == 'null' }" class="like do_like">{{element.l_count}}&zwnj;</li>
+                        <li ng-if="element.l_count && element.member_do_like" class="like do_like liked">{{element.l_count}}&zwnj;</li>
+                        <li ng-if="element.l_count && !element.member_do_like"  class="like do_like unliked">{{element.l_count}}&zwnj;</li>
                         <li ng-if="!element.l_count" class="like do_like unliked">0</li>
                         <li ng-if="element.c_count" class="comment">{{element.c_count}}&zwnj;</li>
                         <li ng-if="!element.c_count" class="comment">0</li>
@@ -34,9 +35,10 @@
                         <li ng-if="element.member_id == user_id" class="more">&zwnj;
                             <div class="porfolio_spam remove_portfolio" p_id="{{element.p_id}}"><span>حذف</span></div>
                         </li>
-                        <li ng-if="element.member_id != user_id" ng-if="element.member_do_like == null" class="more">&zwnj;
+                        <li ng-if="element.report ==null &&  element.member_id != user_id"  class="more">&zwnj;
                             <div class="porfolio_spam" p_id="{{element.p_id}}"><span>گزارش تخلف</span></div>
                         </li>
+                        <li ng-if="element.report != null &&  element.member_id != user_id " p_id="{{element.p_id}}" class="portfolio_drop portfolio_unviolation"><span></span></li>
                     </ul>
                 </div>
                 <div class="form_cm bs">
