@@ -18,7 +18,9 @@ angular.module('myapp')
                         $('.user_menu_info .img').css('background-image','url("img/user_women.jpg")');
                     }
                 }
-                console.log(window.location.hash);
+                var active = window.location.hash;
+                $('.menu_hamber li').removeClass('active')
+                $('.menu_hamber li a[href="'+active+'"]').parent('li').addClass('active');
                 //$('')
             },/* end */
             templateUrl:"pages/hamber_menu/index.html",

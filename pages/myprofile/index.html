@@ -36,10 +36,9 @@
 
                 <!--================end user_img=============-->
                 <div class="some_flowers bs">
-                    <h3>برخی از دنبال کنندگان</h3>
+                    <h3>شاید شما بشناسید</h3>
                     <ul>
                         <a ng-if="followers.length > 0" ng-repeat="follower in followers" href="#/profile/{{follower.member_id}}" style="background-image:url('{{base_url}}/uploads/user_img-small/{{follower.picname}}');"></a>
-                        <a href="#/follower/"><span>نمایش همه</span></a>
                     </ul>
                      <!--================end some_flowers=============-->
                     <div class="clear"></div>
@@ -134,6 +133,7 @@
             </div>
             <!--=================================-->
         </div>
+        <br><br><br><br><br>
         <!--===========end cv_list======================-->
     </div>
 </myprofile-dir>
