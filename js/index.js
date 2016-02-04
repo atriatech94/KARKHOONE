@@ -262,7 +262,10 @@ function amintest(){
 	}
     if(loc == "wall" || loc == "select")
     {
-       navigator.app.exitApp();
+        
+        if (confirm("آبا برای خروج اطمینان دارید") == true) {
+            navigator.app.exitApp();
+        }        
         return false;
     }
     else if(loc == "forget_pass" || loc == "register_one" || loc == "register_two" || loc == "register_three" || loc == "myprofile" || loc == "mycv" || 
@@ -276,7 +279,7 @@ function amintest(){
     }
     else
     {
-	    window.location.hash = "#/wall";
+	    //window.location.hash = "#/wall";
     }
     return false;
     
@@ -390,13 +393,13 @@ function resize_image(revent,vars){
                     }
                 canvas.width = width;
                 canvas.height = height;
+                
                 canvas.getContext('2d').drawImage(image, 0, 0, width, height);
                 var dataUrl = canvas.toDataURL('image/jpeg');
                 var resizedImage = dataURLToBlob(dataUrl);
                 $.event.trigger({
                     type: vars ,
                     blob: resizedImage ,
-                   // dem : 
                 });
             }
             image.src = readerEvent.target.result;

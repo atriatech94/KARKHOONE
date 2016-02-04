@@ -1,6 +1,7 @@
 var insert_chat = 0 ;
 angular.module('myapp')
 .controller('msgController', function($scope) {
+    $scope.datas =1;
     $scope.base_url = base_url;
     $scope.user_id = localStorage.getItem('user_id');
 })
@@ -61,7 +62,12 @@ angular.module('myapp')
                                 is_req = 0;
 
                             }
-                            else if(ofset == 0){$(".one_ids").next('.refresh_loading').show();}
+                            else if(ofset == 0){
+                                $(".one_ids").next('.refresh_loading').show();
+                                scope.$apply(function(){
+                                    scope.datas = undefined ;
+                                });             
+                              }
 
 
                         }).fail(function(){

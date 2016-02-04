@@ -1,7 +1,7 @@
 angular.module('myapp')
 .controller('myprofileController', function($scope) {
    
-    $scope.user_info = JSON.parse(localStorage.getItem("user_info"));
+    
     $scope.user_skill = JSON.parse(localStorage.getItem("user_skill"));
     $scope.count_s1 = 0;
     $scope.count_s2 = 0;
@@ -28,7 +28,8 @@ angular.module('myapp')
     $.get(base_url+"/api_upload/get_ffc/UPssdsdffdfLo-098UdfsdfYdsdffdsH-ooesdfdsfWu/"+localStorage.getItem("user_id"),function(datas){
            var havij = JSON.parse(datas);
            $scope.info = havij.info;  
-           $scope.followers = havij.followers;            
+           $scope.followers = havij.followers; 
+           $scope.user_info = havij.infos;          
     });
     
     
@@ -44,37 +45,31 @@ angular.module('myapp')
                     $("body #content7").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
                 });
 				/*====================================================*/
-                /*$('.setting_link').mousedown(function(event) {
-                    switch (event.which) {
-                        case 1:
-                            alert('Left Mouse button pressed.');
-                            break;
-                        case 2:
-                            alert('Middle Mouse button pressed.');
-                            break;
-                        case 3:
-                            alert('Right Mouse button pressed.');
-                            break;
-                        default:
-                            alert('You have a strange Mouse!');
-                    }
-                });
-                */
+               
 				/*========================fancy============================*/
-                
 				/*====================================================*/
-                $('.short_info').on("click",".user_img",function(){
-                    if(!$(this).hasClass("user_img_change")){
-                        $('.takePictureField').trigger("click");
-                        return false;
+                $('.contant_profile').delegate(".user_img","click",function(){
+                     if(!$(this).hasClass("user_img_change")){
+                        $('.contant_profile #amin .takePictureField').click();
                     }
                 });
                 $('.takePictureField').change(function(event) {
                     if (!isImage($('.takePictureField').val())) {
                         alert('فرمت فایل انتخابی اشتباه است . مجدد تلاش نمایید ');
-                        return false;
+                        
                     }else{
-                        resize_image(event,"imageResized_myprofile");
+                        
+                        document.addEventListener("deviceready", onDeviceReady, false);
+                        function onDeviceReady() 
+                        {
+                            var element = document.getElementById('deviceProperties');
+                            platform = device.platform;
+                            version = device.version;
+                            version = version.split('.');
+                            version = parseInt(version[0]+ version[1]);
+                            if(platform == "Android" && version < 43 ){$.event.trigger({ type: "imageResized_myprofile"});}
+                            else{resize_image(event,"imageResized_myprofile");}
+                        }
                     }
                 });
                 $(document).on("imageResized_myprofile", function (event) {
@@ -83,7 +78,10 @@ angular.module('myapp')
                     if (event.blob) 
                     {
                         data.append('profile_pic', event.blob);
-                        
+                    }//end if
+                    else{
+                        data = new FormData($(".image_preload")[0]);
+                    }
                         $.ajax({
                             url: base_url+"api/change_image/Passwd12-amin-APload3/"+localStorage.getItem("user_id"),
                             type: 'POST',
@@ -92,8 +90,10 @@ angular.module('myapp')
                             cache: false,
                             contentType: false,
                             processData: false,
+                            timeout:30000,
 
                         }).done(function(data) {
+
                              /* chechk inset and login user into software */
                              $('.short_info .user_img').removeClass("user_img_change");
                              var user_data = JSON.parse(data);
@@ -112,7 +112,7 @@ angular.module('myapp')
                              $('.short_info .user_img').removeClass("user_img_change");
                              $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
                          });
-                    }//end if
+                   
                     return false;
                 });
                  /*===================================================*/
@@ -204,6 +204,14 @@ angular.module('myapp')
                         $('body .lpro').addClass("none");
                     });
                 });
+                /*====================================================*/
+                /*========================share============================*/
+                $('.cv_list').on('click','.share_btn',function(){
+                    var url = $(this).attr('share_url');
+                    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null, base_url+'file/logo_share.png', url );
+                    return false;
+                });
+                /*====================================================*/
                 /*====================================================*/
                 
             }/* end */

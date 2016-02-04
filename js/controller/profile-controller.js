@@ -63,15 +63,14 @@ angular.module('myapp')
                 });
             }
         }
-        
-       /**/
+        /**/
         if(localStorage.getItem("user_follower") == null){
             localStorage.setItem("user_follower","[]");
         }
         if(localStorage.getItem("user_checked") == null){
             localStorage.setItem("user_checked","[]");
         }
-       /**/
+        /**/
         $scope.user_info = response.user_info ;
         $scope.user_skill = response.user_skill;
         $scope.user_spam = response.spam[0].count;
@@ -82,7 +81,6 @@ angular.module('myapp')
         $scope.base_url = base_url;
         $scope.follower = JSON.parse( localStorage.getItem("user_follower") ) ;
         $scope.checked = JSON.parse( localStorage.getItem("user_checked") ) ;
-        
         if($scope.user_skill != null &&$scope.user_skill.length > 0){
         $scope.user_skill.forEach(function(element,index){
             if(element[2] == "0")
@@ -158,12 +156,14 @@ angular.module('myapp')
             /*===============================================================================*/  
       
         /*=================================end click show user==============================================*/  
+                console.log($rootScope.myfollowing);
         $(".short_info").on("click",".circle_btn_like",function(){
            
            var my_id = localStorage.getItem("user_id");
            var your_id= $(this).attr("user_id");
-
+            
             if(!$(this).hasClass("active") ){
+                
                 $(this).addClass("active");
                 $.get(base_url+"/api_flow/like_user/LIKOO-HaREWin0B3-98FFGG858HY/"+my_id+"/"+your_id,function(){
                     scope.follower.push(your_id);
@@ -171,6 +171,12 @@ angular.module('myapp')
                 });
             }
             else{
+                if($rootScope.myfollowing !== undefined){
+                    var arr = $.grep($rootScope.myfollowing,function(element){
+                        return element.member_id !=your_id ;
+                    })
+                    $rootScope.myfollowing = arr;
+                }
                  $(this).removeClass("active");
                  $.get(base_url+"/api_flow/dislike_user/D11sLIKOO-HaREWin0B3-98FFGG858HY/"+my_id+"/"+your_id,function(){
                      var index = scope.follower.indexOf(your_id);
@@ -178,6 +184,7 @@ angular.module('myapp')
                      localStorage.setItem('user_follower',JSON.stringify(scope.follower));
                 });
             }
+            
         });
         /*===============================================================================*/ 
         $(".short_info").on("click",".circle_btn_view",function(){
@@ -192,11 +199,17 @@ angular.module('myapp')
                 });
             }
             else{
-                 $(this).removeClass("active");
-                 $.get(base_url+"/api_checked/dischecked_user/D11discheckedsLIKOO-HaREWin0B3-98FFGG858HY/"+my_id+"/"+your_id,function(){
-                   var index = scope.checked.indexOf(your_id);
-                   if (index > -1) {scope.checked.splice(index, 1); }
-                   localStorage.setItem('user_checked',JSON.stringify(scope.checked));
+                if($rootScope.mychecked !== undefined){
+                    var arr = $.grep($rootScope.mychecked,function(element){
+                        return element.member_id !=your_id ;
+                    })
+                    $rootScope.mychecked = arr;
+                }
+                $(this).removeClass("active");
+                $.get(base_url+"/api_checked/dischecked_user/D11discheckedsLIKOO-HaREWin0B3-98FFGG858HY/"+my_id+"/"+your_id,function(){
+                    var index = scope.checked.indexOf(your_id);
+                    if (index > -1) {scope.checked.splice(index, 1); }
+                    localStorage.setItem('user_checked',JSON.stringify(scope.checked));
                 });
             }
         });
@@ -209,6 +222,15 @@ angular.module('myapp')
             window.location.hash = "#/msg_detail";
             
         });
+        /*===============================================================================*/
+            $('.click_to_hide i').click(function(){
+                var fomr = $(this);
+                if($(this).hasClass('fa-angle-down')){
+                    $('.want_hide').slideDown(function(){fomr.removeClass('fa-angle-down').addClass('fa-angle-up');});
+                }else{
+                    $('.want_hide').slideUp(function(){fomr.removeClass('fa-angle-up').addClass('fa-angle-down');});
+                }
+            });
         /*===============================================================================*/
          var post_one = Array();
                 var ofset = 0;
@@ -320,6 +342,12 @@ angular.module('myapp')
                 $('body .lpro').addClass("none");
             });
         });
+		/*====================================================*/
+                $('.cv_list').on('click','.share_btn',function(){
+                    var url = $(this).attr('share_url');
+                    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null, base_url+'file/logo_share.png', url );
+                    return false;
+                });
 		/*====================================================*/
             }/* end */
 }})

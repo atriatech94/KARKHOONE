@@ -13,14 +13,12 @@
         <!--=================================-->
         <div class="mt_15 grid search_list">
             <form class="search_one" >
-                <h3>برای جستجوی کاربر میتوانید نام کاربر یا ایمیل یا شماره  همراه فرد را جست جو کنید .</h3>
+                <h3 class="h2">برای جستجوی کاربر میتوانید نام کاربر یا ایمیل یا شماره  همراه فرد را جست جو کنید .</h3>
                 <label><input type="text" name="search" placeholder="چیزی بنویسید ... "  ng-model="q" class="db inp_def mt_10"></label>
-                <input type="submit" class="btn_blue submit_register" value="جستجو" name="search_sample" >
-            
                 <input type="hidden" name="aa" name="search" value="{{q}}" >
                 <!--=================================-->
-                <div class="mt_30"></div><hr>
-                <h3 class="title_h">جستجوی پیشرفته</h3>
+                <div class="mt_30"></div>
+                <h3 class="title_h h3 search_pro"><i class="fa fa-search-plus"></i>جستجوی پیشرفته</h3>
                 <!--=================================-->
                 <div class="search_field mt_15">
                     <div class="block_r">
@@ -50,8 +48,6 @@
                         <div class="block_r"><label id="state"><select name="state" class="sel_def mt15"></select></label></div>
                         <div class="block_r"><label id="city"><select name="city"  class="sel_def mt15"><option value="null">شهر محل سکونت</option></select></label></div>  
                     </div>
-                    
-                    
                     
                 </div>
                 <!--==============end search_field===================-->

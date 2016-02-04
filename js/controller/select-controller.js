@@ -1,5 +1,5 @@
 angular.module('myapp')
-.controller('SelectController', function() {
+.controller('SelectController', function($rootScope) {
 
 
  //      if(localStorage.getItem("user_id")){
@@ -7,12 +7,16 @@ angular.module('myapp')
 
 	// }
 })
-.directive('selectDir' , function (){
+.directive('selectDir' , function ($rootScope){
 		return {
 			link: function() {
 				
-				
-				/*====================================================*/
+                for (var prop in $rootScope) {
+                    if (prop.substring(0,1) !== '$') {
+                        delete $rootScope[prop];
+                    }
+                }
+                /*====================================================*/
                 height();
 				/*====================================================*/
             }/* end */

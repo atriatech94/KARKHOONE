@@ -311,6 +311,7 @@ html, body {
     display: inline-block;
     color: #5a9bc4;
     font-size: 14px;
+    padding: 10px 0;
 }
 .about_contact {
     margin: 10px auto;

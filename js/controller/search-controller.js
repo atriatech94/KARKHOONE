@@ -45,6 +45,11 @@ angular.module('myapp')
                     });
                     /*====================================================*/               
                 });
+                /*=================================================*/
+                $('.search_pro').click(function(){
+                    $('.search_field').slideToggle(300)
+                });
+                /*=================================================*/
                 $(".check_btn").on("change",function(){
                     form = $(this);
                     if($(this).children('input').is(":checked")){

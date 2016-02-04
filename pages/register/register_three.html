@@ -15,11 +15,14 @@
                 
                 <label class="title_form"><span><img id="user_image_up" src="img/user.png" /></span><text><h1>یک عکس برای خود انتخاب کنید</h1></text></label>
                 <label class="title_form"><span class="bg-gray select_image"><img src="img/plus.png" /></span><text><h3>شخصات خود را تکمیل نمایید .</h3><p>پر کردن این موارد ضروری است .</p></text></label>
-                <input type="hidden" id="datas" class="user_datas" name="name" value="" >
-                <input name="imagefile23" style="display:none" type="file" class="image_sample" accept="image/*"  />
+               
+                <input name="imagefile23" class="hidden_f" type="file" class="image_sample" accept="image/*"  />
             </form>
-            <form id="amin" class="form_there" enctype="multipart/form-data"><input onchange="showimagepreview(this)" accept="image/*" name="imagefile[]" style="display:none" type="file" class="takePictureField" accept="image/*"  /></form>
-            <form id="amin2"  enctype="multipart/form-data"><input id="image_sel"  style="display:none;" type="file" class="img_upload" name="profile_pic" /></form>
+            <form id="amin" class="hidden_f android42_image" class="form_there" enctype="multipart/form-data"> 
+                <input type="hidden" id="datas" class="user_datas" name="user_data" value="" >
+                <input onchange="showimagepreview(this)" accept="image/*" name="profile_pic"type="file" class="takePictureField" accept="image/*"  />
+            </form>
+            <form id="change_profile_img"  enctype="multipart/form-data" class="hidden_f"><input id="image_sel"  type="file" class="img_upload" name="profile_pic" /></form>
 
         <!--=================end register_form============================-->
         </div>

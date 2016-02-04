@@ -20,7 +20,8 @@ angular.module('myapp')
                     
                     $("#datas").val(localStorage.getItem("user_info_temp"));
                     clearTimeout(timeout);
-                    $('.register_form').on("click",'.select_image',function(){
+
+                    $('.main').delegate('.select_image',"click",function(){
                          /*select and show image to user before upload*/
                         if($('.takePictureField').val() ==""){
                             $('.takePictureField').click();
@@ -34,14 +35,28 @@ angular.module('myapp')
                         }
                     });
                 /*====================================================*/
+                    var is_snd = 0;
                     $(".upload_image").click(function(event){
+                        
                        if(change_evenet !== undefined){
                            
                             if (!isImage($('.takePictureField').val())) {
                                 alert('فرمت فایل انتخابی اشتباه است . مجدد تلاش نمایید ');
                                 return false;
                             }else{
-                                 resize_image(change_evenet,"imageResized_firstprofile");
+                                document.addEventListener("deviceready", onDeviceReady, false);
+                                function onDeviceReady() 
+                                {
+                                    
+                                   var element = document.getElementById('deviceProperties');
+                                    platform = device.platform;
+                                    version = device.version;
+                                    version = version.split('.');
+                                    version = parseInt(version[0]+ version[1]);
+                                    if(platform == "Android" && version < 43 ){is_snd = 1;$.event.trigger({ type: "imageResized_firstprofile" });}
+                                    else{resize_image(change_evenet,"imageResized_firstprofile");}
+                                    
+                                }
 
                             }
                        }else{
@@ -57,12 +72,20 @@ angular.module('myapp')
                     
                 /*====================================================*/
                  $(document).on("imageResized_firstprofile", function (event) {
+                     
+                 
                      $('body .lpro').removeClass("none");
-                     var data = new FormData($(".change_profile_img")[0]);
+                          var data ;
                      if (event.blob){
+                         data = new FormData($(".change_profile_img")[0]);
                          data.append('profile_pic', event.blob);
+                         data.append('user_data',$('.user_datas').val());
                      }
-                     data.append('user_data',$('.user_datas').val());
+                     if(is_snd == 1)
+                     {
+                         data = new FormData($(".android42_image")[0]);
+                     }
+                    
                      $.ajax({
                          url: base_url+"api/user_register/Passwd123/",
                          type: 'POST',

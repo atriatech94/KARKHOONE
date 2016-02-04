@@ -17,8 +17,8 @@ angular.module('myapp')
 			link: function(scope) {
 				/*====================================================*/
 				$(document).ready(function(){
-                    var snapper = new Snap({ element: document.getElementById('content35'), disable: 'left'});
-                    $("body #content35").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
+                    var snapper = new Snap({ element: document.getElementById('content335'), disable: 'left'});
+                    $("body #content335").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
                 });
 				/*====================================================*/
                

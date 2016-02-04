@@ -13,10 +13,18 @@ angular.module('myapp')
             }/* end */
 }})
 .controller('ExitController', function($rootScope) {
-    for (var prop in $rootScope) {
-        if (prop.substring(0,1) !== '$') {
-            delete $rootScope[prop];
-        }
-    }
-    exit();
-});
+    
+})
+.directive('exitDir' , function (){
+		return {
+			link: function() {
+				/*====================================================*/
+
+                /*====================================================*/
+                localStorage.clear();
+                quit();
+                window.location.hash = "#/select";
+                /*====================================================*/
+                
+            }/* end */
+}})

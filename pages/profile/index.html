@@ -62,60 +62,66 @@
             </div>
             <!--============end short_info=================-->
         </div>
-        <div class="content_user bs">
-           <div class="short_skills">
-               <span ng-if="user_info[0].grade==0">دیپلم</span>
-               <span ng-if="user_info[0].grade==1">کاردانی</span>
-               <span ng-if="user_info[0].grade==2">کارشناسی</span>
-               <span ng-if="user_info[0].grade==3">کارشناسی ارشد</span>
-               <span ng-if="user_info[0].grade==4">دکترا</span>
-               <span ng-if="user_info[0].married==0">مجرد</span>
-               <span ng-if="user_info[0].married==1">متاحل</span>
-               <span ng-if="user_info[0].gender==0">مرد</span>
-               <span ng-if="user_info[0].gender==1">زن</span>
-               <span ng-if="user_info[0].status==0">آماده به کار</span>
-               <span ng-if="user_info[0].status==1">صاحب کار</span>
+    <div class="want_hide">
+            <div class="content_user bs">
+               <div class="short_skills">
+                   <span ng-if="user_info[0].grade==0">دیپلم</span>
+                   <span ng-if="user_info[0].grade==1">کاردانی</span>
+                   <span ng-if="user_info[0].grade==2">کارشناسی</span>
+                   <span ng-if="user_info[0].grade==3">کارشناسی ارشد</span>
+                   <span ng-if="user_info[0].grade==4">دکترا</span>
+                   <span ng-if="user_info[0].married==0">مجرد</span>
+                   <span ng-if="user_info[0].married==1">متاحل</span>
+                   <span ng-if="user_info[0].gender==0">مرد</span>
+                   <span ng-if="user_info[0].gender==1">زن</span>
+                   <span ng-if="user_info[0].status==0">آماده به کار</span>
+                   <span ng-if="user_info[0].status==1">صاحب کار</span>
+                </div>
             </div>
-        </div>
-        <!--======================end contant_profile====================-->
-        <div class="skills" ng-if="count_s1 != 0" >
-            <img src="img/edjucate.png">
-            <span ng-repeat="row in user_skill" ><p ng-if="row[2]==0">{{row[0]}}</p></span>
-        </div>
-        <!--======================end contant_profile====================-->
-        <div class="skills resume" ng-if="count_s2 != 0">
-            <img src="img/resume.png">
-            <span ng-repeat="row in user_skill" ><p ng-if="row[2]==1">{{row[0]}}</p></span>
-        </div>
-        <!--======================end contant_profile====================-->
-        <!--======================end contant_profile====================-->
-        <div ng-if="user_info[0].description" class="about_person">
-            <span class="info_about">در باره {{user_info[0].name}}</span>
-            <p>{{user_info[0].description}}</p>
-        </div>
-        <!--======================end contant_profile====================-->
-        <div   class="profile_about_us">
-            <div ng-if="user_info[0].email" class="email about_us_b">
-                <div class="img"><img src="img/message-64.png" ></div>
-                <span><a ng-href="mailto:{{user_info[0].email}}"></a> {{user_info[0].email}}</span>
+            <!--======================end contant_profile====================-->
+            <div class="skills" ng-if="count_s1 != 0" >
+                <img src="img/edjucate.png">
+                <span ng-repeat="row in user_skill" ><p ng-if="row[2]==0">{{row[0]}}</p></span>
             </div>
-            <div ng-if="user_info[0].mobile" class="tell about_us_b">
-                <div class="img"><img src="img/phone8-64.png" ></div>
-                <span> {{user_info[0].mobile}}</span>
+            <!--======================end contant_profile====================-->
+            <div class="skills resume" ng-if="count_s2 != 0">
+                <img src="img/resume.png">
+                <span ng-repeat="row in user_skill" ><p ng-if="row[2]==1">{{row[0]}}</p></span>
             </div>
-            <div ng-if="user_info[0].address" class="address about_us_b">
-                <div class="img"><img src="img/City-64.png" ></div>
-                <span> {{user_info[0].address}}</span>
+            <!--======================end contant_profile====================-->
+            <!--======================end contant_profile====================-->
+            <div ng-if="user_info[0].description" class="about_person">
+                <span class="info_about">در باره {{user_info[0].name}}</span>
+                <p>{{user_info[0].description}}</p>
             </div>
-        </div>
-        <!--======================end about_us====================-->
-      <!--==============Cv_list===================-->
+            <!--======================end contant_profile====================-->
+            <div   class="profile_about_us">
+                <div ng-if="user_info[0].email" class="email about_us_b">
+                    <div class="img"><img src="img/message-64.png" ></div>
+                    <span><a ng-href="mailto:{{user_info[0].email}}"></a> {{user_info[0].email}}</span>
+                </div>
+                <div ng-if="user_info[0].mobile" class="tell about_us_b">
+                    <div class="img"><img src="img/phone8-64.png" ></div>
+                    <span> {{user_info[0].mobile}}</span>
+                </div>
+                <div ng-if="user_info[0].address" class="address about_us_b">
+                    <div class="img"><img src="img/City-64.png" ></div>
+                    <span> {{user_info[0].address}}</span>
+                </div>
+            </div>
+            <!--======================end about_us====================-->
+      
+    </div>
+    <!--=======end want_hide=======Cv_list===================-->
+    <div class="click_to_hide"><i class="fa fa-angle-up"></i></div>
+    <!--=======end want_hide=======Cv_list===================-->
         <div class="cv_list">
             <!--===============cv_one==================-->
             <div class="cv_one"  ng-repeat="element in portfolio_you | orderBy:'-parseInt(p_id)' " p_id="{{element.p_id}}">
                 <div class="photo_cv" p_id="{{element.p_id}}">
                     <div class="img" ng-if="element.p_type == '0'" style="background-image:url('{{base_url}}/uploads/portfolio/images-small/{{element.p_name}}')"></div>
-                    <div class="img" ng-if="element.p_type == '1'" style="background-image:url('img/video-player.jpg')"></div><span class="date">{{element.dates}}</span>
+                    <div class="img" ng-if="element.p_type == '1'" style="background-image:url('img/video-player.jpg')"></div>
+                    <span class="date">{{element.dates}}<span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}"><i class="fa fa-share-alt"></i></span></span>
                     <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
                     <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
                 </div>

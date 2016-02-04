@@ -13,6 +13,7 @@
 <!--======================================================================-->
         <div class="mt_15 grid chat_view">
             <div class="of_list">
+                <div ng-if="!datas" class="msg_empty">پیامی  برای نمایش وجود ندارد </div>
                 <div class="user_list follower chat_lists">
                     <div ng-repeat="element in datas | orderBy:'-parseInt(msg_id)':true "   class="user_one chat_one" msg_chat_id="{{element.msg_chat_id}}" user_id="{{element.msg_id}}"  scope="search" >
                         <div ng-if="element.msg_me_id == user_id && element.picname == '' && element.gender == '0'" class="user_one_image"><span style="background-image:url(img/user_men.jpg)"></span></div>

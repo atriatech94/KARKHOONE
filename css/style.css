@@ -692,6 +692,7 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	width: 100% !important;
     position: relative;
     height: auto !important;
+    padding-top:10px;
 }
 .user_one {
 	width: 100%;
@@ -719,6 +720,13 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 }
 .chat_remove{
         padding: 10px;
+}
+.msg_empty{
+    width: 90%;
+    padding: 30px 0;
+    text-align: center;
+    font-size: 20px;
+    color: #1F4069;
 }
 .user_one .user_one_image {
 	display: block;
@@ -869,6 +877,7 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	float: right;
 	margin-top: 10px;
     position: relative;
+    z-index: 10;
 }
 .user_img_change:after{
     position: absolute;
@@ -883,6 +892,7 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
     top: 0;
     right: 0;    
 }
+
 .user_img span {
 	display: block;
 	width: 100%;
@@ -893,6 +903,7 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 .some_flowers {
 	float: right;
@@ -1037,7 +1048,10 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 .content_user {
 	width: 100%;
 	height: auto;
-	padding: 40px 0 20px;
+	padding: 0 0 20px;
+}
+.contant_profile{
+    margin-bottom: 40px;
 }
 .short_skills {
 	width: 100%;
@@ -1283,9 +1297,9 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     right: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../img/chat/chat_bg.png');
-    background-size: contain;
-    background-repeat: repeat;
+    background-image: url('../img/chat/chat_bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: center;
     overflow: hidden;
     
@@ -1571,6 +1585,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     background-color: rgba(0, 0, 0, 0.72);
     color:#fff;
     border-radius: 5px;
+    font-size: 18px;
 }
 .cv_one .photo_cv .type{
     position: absolute;
@@ -1582,6 +1597,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     color:#fff;
     border-radius: 5px;
     padding-left: 40px;
+    font-size: 18px;
 }
 .type.type-1{
     background-image: url('../img/video.png');
@@ -1607,6 +1623,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     padding-bottom: 20px;
     border-bottom: 3px solid #e3e3e3;
     display: block;
+    padding: 0 10px 10px;
     
 }
 .loading_text{
@@ -1910,12 +1927,81 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     font-size: 22px;
     padding: 20px 0;
 }
+.search_field{
+    display: none
+}
+.search_pro{
+    background-color: #2D7B14;
+    display: table;
+    width: 200px;
+    padding: 15px 0;
+    text-align: center;
+    margin-left: 0;
+    margin-right: auto;
+    color: #FFF !important;
+    font-weight: 100;
+    border-radius: 2px;
+}
+.search_pro i{
+    margin-left: 5px;
+}
 /*--================--   --===================--*/
+.hidden_f{
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
 /*--================--   --===================--*/
+.click_to_hide{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 40px; 
+    position: relative;
+}
+.click_to_hide i{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #117296;
+    color: #fff;
+    margin: 0 auto;
+    display:-webkit-box;
+	display:-ms-flexbox;
+	display:-webkit-flex;
+	display:flex;
+	-webkit-box-pack:center;
+	-ms-flex-pack:center;
+	-webkit-justify-content:center;
+	justify-content:center;
+	-webkit-box-align:center;
+	-ms-flex-align:center;
+	-webkit-align-items:center;
+	align-items:center;
+    font-size: 40px;
+    position: relative;
+    z-index: 2;
+    
+}
+.click_to_hide:before{
+    content: "";
+    width: 100%;
+    height: 8px;
+    background-color: #117296;
+    position: absolute;
+    top: 60%;
+    z-index: 1;
+}
+.click_to_hide i.fa-angle-up:before{
+    margin-top: -4px;
+}
+.share_btn{
+    padding: 0 5px;
+    position: relative;
+    z-index: 2;
+}
 /*--================--   --===================--*/
-/*--================--   --===================--*/
-/*--================--   --===================--*/
-/*--================--   --===================--*/
+
 @-webkit-keyframes gridItemAnimation{
     from{filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=0);opacity:0;-webkit-transform:translate3d(0,10px,0);transform:translate3d(0,10px,0)}
     to{filter:progid:DXImageTransform.Microsoft.Alpha(enabled=false);opacity:1;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
@@ -2084,7 +2170,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
         padding: 10px 20px;
     }
     .inp_def, select.sel_def {
-        padding: 20px 10px !important;
+        padding: 18px 10px  !important;
         font-size: 20px !important;
     }
     .now_register a {
@@ -2118,6 +2204,10 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     .logo_name {
         right: 100px;
     }
+    .snap-drawer li > a {
+        padding: 18px 0px !important;
+        text-indent: 15px !important;
+    }
 /*--=============--   --===================--*/
 }
 
@@ -2150,6 +2240,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     .chat_close{
         margin-top: 15px;
     }
+    .cv_one .photo_cv .date,.cv_one .photo_cv .type{font-size: 14px;}
 /*--=============--   --===================--*/
 }
 
@@ -2216,6 +2307,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     .chat_close {
         margin-top: 15px;
     }
+    .cv_one .photo_cv .date,.cv_one .photo_cv .type{font-size: 13px;}
 /*--=============--   --===================--*/
 }
 

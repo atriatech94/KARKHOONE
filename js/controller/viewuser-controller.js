@@ -30,6 +30,9 @@ angular.module('myapp')
                 if($rootScope.myfollower !== undefined){
                     
                     var data =  $rootScope.myfollower ;
+                    if(data.length == 0){
+                        $('#content13 .user_list').append('<div class="msg_empty"> کاربری برای نمایش موجود نیست </div>');
+                    }
                     data.forEach(function(element,index){
                         var result ='<div class="user_one" user_id="'+element.member_id+'" scope="myfollower" >';
                         if(element.picname == "")
@@ -113,7 +116,10 @@ angular.module('myapp')
                             $rootScope.myfollower_ofset = ofs_one;
     
                         }
-                        else if(ofs_one == 0){$(".follower").next('.refresh_loading').show();}
+                        else if(ofs_one == 0){
+                            $(".follower").next('.refresh_loading').show();
+                            $('#content13 .user_list').append('<div class="msg_empty"> کاربری برای نمایش موجود نیست </div>');
+                        }
                     }).
                     fail(function() {$(".follower").next('.refresh_loading').show();});
                 }
@@ -159,6 +165,9 @@ angular.module('myapp')
                 if($rootScope.myfollowing !== undefined){
                     
                     var data =  $rootScope.myfollowing ;
+                    if(data.length == 0){
+                        $('#content14 .user_list').append('<div class="msg_empty"> کاربری برای نمایش موجود نیست </div>');
+                    }
                     data.forEach(function(element,index){
                         var result ='<div class="user_one" user_id="'+element.member_id+'" scope="myfollowing" >';
                         if(element.picname == "")
@@ -243,7 +252,10 @@ angular.module('myapp')
                             $rootScope.myfollowing_ofset = ofs_one;
     
                         }
-                        else if(ofs_one == 0){$(".follower").next('.refresh_loading').show();}
+                        else if(ofs_one == 0){
+                            $(".follower").next('.refresh_loading').show(); 
+                            $('#content14 .user_list').append('<div class="msg_empty"> کاربری برای نمایش موجود نیست </div>');
+                        }
                     }).
                     fail(function() {$(".follower").next('.refresh_loading').show();});
                 }
@@ -285,6 +297,9 @@ angular.module('myapp')
                 if($rootScope.mychecked !== undefined){
                     
                     var data =  $rootScope.mychecked ;
+                    if(data.length == 0){
+                        $('#content15 .user_list').append('<div class="msg_empty"> کاربری برای نمایش موجود نیست </div>');
+                    }
                     data.forEach(function(element,index){
                         var result ='<div class="user_one" user_id="'+element.member_id+'" scope="mychecked" >';
                         if(element.picname == "")
