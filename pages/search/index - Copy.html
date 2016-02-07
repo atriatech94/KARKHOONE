@@ -1,0 +1,74 @@
+<hamber-dir></hamber-dir>
+<search-dir>
+    <div id="content18" class="snap-content contanet_profile">
+        <div id="toolbar">
+            <a href="" id="open-right"></a>
+            <p class="logo_name" >جستجوی کاربر</p>
+            <div class="icons">
+                <a href="" onclick="window.location.hash = '#/wall';" class="close"></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <!--=================================-->
+        <div class="mt_15 grid search_list">
+            <form class="search_one" >
+                <h3 class="h2">برای جستجوی کاربر میتوانید نام کاربر یا ایمیل یا شماره  همراه فرد را جست جو کنید .</h3>
+                <label><input type="text" name="search" placeholder="چیزی بنویسید ... "  ng-model="q" class="db inp_def mt_10"></label>
+                <input type="hidden" name="aa" name="search" value="{{q}}" >
+                <!--=================================-->
+                <div class="mt_30"></div>
+                <h3 class="title_h h3 search_pro"><i class="fa fa-search-plus"></i>جستجوی پیشرفته</h3>
+                <!--=================================-->
+                <div class="search_field mt_15">
+                    <div class="block_r">
+                        <h3>جنسیت : </h3>
+                        <label class="check_btn"><input type="checkbox" name="sex[]" value="0"><span><span></span>مرد</span></label>
+                        <label class="check_btn"><input type="checkbox" name="sex[]" value="1" ><span><span></span>زن</span></label>
+                    </div>
+                    
+                    <div class="block_r">
+                        <h3>مقطع : </h3>
+                        <label class="check_btn"><input type="checkbox" name="grade[]" value="0" ><span><span></span>دیپلم</span></label>
+                        <label class="check_btn"><input type="checkbox" name="grade[]" value="1" ><span><span></span>کاردان</span></label>
+                        <label class="check_btn"><input type="checkbox" name="grade[]" value="2" ><span><span></span>کارشناس</span></label>
+                        <label class="check_btn"><input type="checkbox" name="grade[]" value="3" ><span><span></span>کارشناس ارشد</span></label>
+                        <label class="check_btn"><input type="checkbox" name="grade[]" value="4" ><span><span></span>دکترا</span></label>
+                    </div>
+                    <div class="block_r">
+                        <h3> وضعیت تاهل : </h3>
+                        <label class="check_btn"><input type="checkbox" name="gender[]" value="0" ><span><span></span>مجرد</span></label>
+                        <label class="check_btn"><input type="checkbox" name="gender[]" value="1" ><span><span></span>متاهل</span></label>
+                    </div>
+                    <div class="block_r">
+                        <h3> رشته ی تحصیلی  : </h3>
+                        <label><input type="text" name="field" placeholder="چیزی بنویسید ... " class="db inp_def mt_10"></label>
+                    </div>
+                    <div class="block_r">
+                        <h3>شهر و استان : </h3>
+                        <div class="block_r"><label id="state"><select name="state" class="sel_def mt15"></select></label></div>
+                        <div class="block_r"><label id="city"><select name="city"  class="sel_def mt15"><option value="null">شهر محل سکونت</option></select></label></div>  
+                    </div>
+                    
+                </div>
+                <!--==============end search_field===================-->
+                <input type="submit" class="btn_blue submit_register" value="جستجو" name="search_sample" >
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <!--=================================-->
+    </div>
+    <!--=================================-->
+   <!-- 
+    <div class="block_r">
+        <h3>مدرک : </h3>
+        <label class="check_btn"><input type="checkbox" name="ch" ><span>تست</span></label>
+        <label class="check_btn"><input type="checkbox" name="ch" ><span>تست</span></label>
+        <label class="check_btn"><input type="checkbox" name="ch" ><span>تست</span></label>
+        <label class="check_btn"><input type="checkbox" name="ch" ><span>تست</span></label>
+    </div>
+    -->
+</search-dir>

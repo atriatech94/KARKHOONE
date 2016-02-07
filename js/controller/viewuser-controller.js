@@ -75,7 +75,7 @@ angular.module('myapp')
                 /*=========ofs = ofset ========Request===================================*/
                 function fetch_one(ofs){
                     $(".follower").next('.loading_users').show();
-                    $(".follower").next('.refresh_loading').hide();
+                    $(".of_list .refresh_loading").hide();
 
                     $.getJSON( base_url+"/api_userlist/get_myfollower/Ami3myfollowe-nKaORd7-9854KIHY/"+ofs+"/"+user_id , function(data) {
                         $(".follower").next('.loading_users').hide();
@@ -117,11 +117,11 @@ angular.module('myapp')
     
                         }
                         else if(ofs_one == 0){
-                            $(".follower").next('.refresh_loading').show();
+                            //$(".of_list .refresh_loading").show();
                             $('#content13 .user_list').append('<div class="msg_empty"> کاربری برای نمایش موجود نیست </div>');
                         }
                     }).
-                    fail(function() {$(".follower").next('.refresh_loading').show();});
+                    fail(function() {$(".of_list .refresh_loading").show();$(".follower").next('.loading_users').hide();$('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');});
                 }
                 /*=====================Scroll Page===============================*/
                 $('#content13 .of_list').on("scroll",function(){
@@ -211,7 +211,7 @@ angular.module('myapp')
                 /*=========ofs = ofset ========Request===================================*/
                 function fetch_one(ofs){
                     $(".follower").next('.loading_users').show();
-                    $(".follower").next('.refresh_loading').hide();
+                    $(".of_list .refresh_loading").hide();
 
                     $.getJSON( base_url+"/api_userlist/get_myfollowing/Ami3myfollowing-nKaORd7-9854KIHY/"+ofs+"/"+user_id , function(data) {
                         $(".follower").next('.loading_users').hide();
@@ -253,11 +253,11 @@ angular.module('myapp')
     
                         }
                         else if(ofs_one == 0){
-                            $(".follower").next('.refresh_loading').show(); 
+                            //$(".of_list .refresh_loading").show(); 
                             $('#content14 .user_list').append('<div class="msg_empty"> کاربری برای نمایش موجود نیست </div>');
                         }
                     }).
-                    fail(function() {$(".follower").next('.refresh_loading').show();});
+                    fail(function() {$(".of_list .refresh_loading").show();$(".follower").next('.loading_users').hide();$('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');});
                 }
                 /*=====================Scroll Page===============================*/
                 $('#content14 .of_list').on("scroll",function(){
@@ -343,7 +343,7 @@ angular.module('myapp')
                 /*=========ofs = ofset ========Request===================================*/
                 function fetch_one(ofs){
                     $(".follower").next('.loading_users').show();
-                    $(".follower").next('.refresh_loading').hide();
+                    $(".of_list .refresh_loading").hide();
 
                     $.getJSON( base_url+"/api_userlist/get_mychecked/Ami3mychecked-nKaORd7-9854KIHY/"+ofs+"/"+user_id , function(data) {
                         $(".follower").next('.loading_users').hide();
@@ -388,9 +388,12 @@ angular.module('myapp')
                             }
     
                         }
-                        else if(ofs_one == 0){$(".follower").next('.refresh_loading').show();}
+                        else if(ofs_one == 0){
+                           // $(".of_list .refresh_loading").show();
+                            $('#content14 .user_list').append('<div class="msg_empty"> کاربری برای نمایش موجود نیست </div>');
+                        }
                     }).
-                    fail(function() {$(".follower").next('.refresh_loading').show();});
+                    fail(function() {$(".of_list .refresh_loading").show();$(".follower").next('.loading_users').hide();$('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');});
                 }
                 /*=====================Scroll Page===============================*/
                 $('#content15 .of_list').on("scroll",function(){

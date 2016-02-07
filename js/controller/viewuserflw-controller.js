@@ -111,9 +111,9 @@ angular.module('myapp')
                             }
     
                         }
-                        else if(ofs_one == 0){$(".follower").next('.refresh_loading').show();}
+                        else if(ofs_one == 0){$(".of_list .refresh_loading").show();}
                     }).
-                    fail(function() {$(".follower").next('.refresh_loading').show();});
+                    fail(function() {$(".follower").next('.refresh_loading').show();$(".follower").next('.loading_users').hide();$('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');});
                 }
                 /*=====================Scroll Page===============================*/
                 $('#content13 .of_list').on("scroll",function(){

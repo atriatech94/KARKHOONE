@@ -5,15 +5,7 @@ angular.module('myapp')
     $scope.user_skill = JSON.parse(localStorage.getItem("user_skill"));
     $scope.count_s1 = 0;
     $scope.count_s2 = 0;
-    
-    /*
-    $http.get(base_url+"/api_inapp/get_user_info/Att6i3-HaREWin0B3-98FFGG858HY/"+localStorage.getItem("user_id"))
-    .success(function(response){
-    
-    })
-    .error(function(response){});
-    */
-        
+
     if($scope.user_skill != null &&$scope.user_skill.length > 0){
         $scope.user_skill.forEach(function(element,index){
             if(element[2] == "0")
@@ -23,13 +15,21 @@ angular.module('myapp')
         }); 
     }
     
+    $scope.user_info = JSON.parse(localStorage.getItem('user_info'));
     $scope.now_year = moment().format('jYYYY');
     $scope.base_url = base_url;
     $.get(base_url+"/api_upload/get_ffc/UPssdsdffdfLo-098UdfsdfYdsdffdsH-ooesdfdsfWu/"+localStorage.getItem("user_id"),function(datas){
-           var havij = JSON.parse(datas);
-           $scope.info = havij.info;  
-           $scope.followers = havij.followers; 
-           $scope.user_info = havij.infos;          
+        
+        var havij = JSON.parse(datas);
+        $scope.$apply(function(){
+            $scope.info = havij.info;  
+            $scope.followers = havij.followers; 
+            $scope.user_info = havij.infos;      
+            localStorage.setItem('user_info',JSON.stringify($scope.user_info));
+        });
+    }).error(function(){
+        hide_anim();
+        $('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');
     });
     
     
@@ -45,7 +45,7 @@ angular.module('myapp')
                     $("body #content7").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
                 });
 				/*====================================================*/
-               
+                var image_resize ;
 				/*========================fancy============================*/
 				/*====================================================*/
                 $('.contant_profile').delegate(".user_img","click",function(){
@@ -54,47 +54,25 @@ angular.module('myapp')
                     }
                 });
                 $('.takePictureField').change(function(event) {
+                    
                     if (!isImage($('.takePictureField').val())) {
                         alert('فرمت فایل انتخابی اشتباه است . مجدد تلاش نمایید ');
                         
                     }else{
-                        
-                        document.addEventListener("deviceready", onDeviceReady, false);
-                        function onDeviceReady() 
-                        {
-                            var element = document.getElementById('deviceProperties');
-                            platform = device.platform;
-                            version = device.version;
-                            version = version.split('.');
-                            version = parseInt(version[0]+ version[1]);
-                            if(platform == "Android" && version < 43 ){$.event.trigger({ type: "imageResized_myprofile"});}
-                            else{resize_image(event,"imageResized_myprofile");}
-                        }
+                        $('.short_info .user_img').addClass("user_img_change");
+                        resize_image(window.URL.createObjectURL(event.target.files[0]),function(dataUri){
+                            image_resize = dataUri;
+                            $.event.trigger({ type: "imageResized_myprofile"});
+                        });
+                       
                     }
                 });
                 $(document).on("imageResized_myprofile", function (event) {
                     $('.short_info .user_img').addClass("user_img_change");
-                    var data = new FormData($(".change_profile_img")[0]);
-                    if (event.blob) 
-                    {
-                        data.append('profile_pic', event.blob);
-                    }//end if
-                    else{
-                        data = new FormData($(".image_preload")[0]);
-                    }
-                        $.ajax({
-                            url: base_url+"api/change_image/Passwd12-amin-APload3/"+localStorage.getItem("user_id"),
-                            type: 'POST',
-                            data: data,
-                            async: true,
-                            cache: false,
-                            contentType: false,
-                            processData: false,
-                            timeout:30000,
-
-                        }).done(function(data) {
-
-                             /* chechk inset and login user into software */
+                                    
+                    $.post(base_url+"api/change_image/Passwd12-amin-APload3/"+localStorage.getItem("user_id"),{profile_pic : image_resize})
+                    .done(function(data) {
+                         /* chechk inset and login user into software */
                              $('.short_info .user_img').removeClass("user_img_change");
                              var user_data = JSON.parse(data);
                              scope.$apply(function(){
@@ -208,7 +186,7 @@ angular.module('myapp')
                 /*========================share============================*/
                 $('.cv_list').on('click','.share_btn',function(){
                     var url = $(this).attr('share_url');
-                    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  url, base_url+'file/logo_share.png' );
+                    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
                     return false;
                 });
                 /*====================================================*/

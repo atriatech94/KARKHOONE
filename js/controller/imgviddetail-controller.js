@@ -29,6 +29,8 @@ angular.module('myapp')
        hide_anim();
        $scope.commnet = response;
       //console.log($scope.commnet);
+   }).error(function(){
+       hide_anim();
    });
 })
 .directive('imgviddetailDir' , function ($timeout,$rootScope,$routeParams){
@@ -178,7 +180,7 @@ angular.module('myapp')
 		/*====================================================*/
                 $('.cv_list').on('click','.share_btn',function(){
                     var url = $(this).attr('share_url');
-                    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  url, base_url+'file/logo_share.png' );
+                    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
                     return false;
                 });
 		/*====================================================*/

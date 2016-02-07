@@ -33,7 +33,7 @@ angular.module('myapp')
                     
                 });
 				/*====================================================*/
-                $('.setting_link').mousedown(function(event) {
+                /*$('.setting_link').mousedown(function(event) {
                     switch (event.which) {
                         case 1:
                             alert('Left Mouse button pressed.');
@@ -48,15 +48,15 @@ angular.module('myapp')
                             alert('You have a strange Mouse!');
                     }
                 });
+                */
 				/*====================================================*/
-                   /*===============================================================================*/
+                /*===============================================================================*/
 
                 $(".settings_form").submit(function() {
                     $('body .lpro').removeClass("none");
                     
                     var formData = new FormData($(this)[0]);
                      $.ajax({
-                         
                         url: base_url+"api/mobile_permission/UP61237wLo-05h98DssYH-oo234sesWu/"+localStorage.getItem("user_id"),
                         type: 'POST',
                         data: formData,
@@ -65,13 +65,13 @@ angular.module('myapp')
                         contentType: false,
                         processData: false,
                          
-                     }).fail(function(){
-                        /*if user cant send data such as no internet access*/
-                        $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
+                     }).always(function(){
+                         /*if user cant send data such as no internet access*/
+                         $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');     
+                         $('body .lpro').addClass("none");
                      });
 
                      $.ajax({
-                         
                         url: base_url+"api/email_permission/UP61237wdf4Lo-05h98DssYH-oo234sesWu/"+localStorage.getItem("user_id"),
                         type: 'POST',
                         data: formData,
@@ -80,9 +80,10 @@ angular.module('myapp')
                         contentType: false,
                         processData: false,
                          
-                     }).fail(function(){
+                     }).always(function(){
                         /*if user cant send data such as no internet access*/
-                        $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
+                         $('body .lpro').addClass("none");
+                         $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
                      });
 
                      $.ajax({
@@ -95,9 +96,10 @@ angular.module('myapp')
                         contentType: false,
                         processData: false,
                          
-                     }).fail(function(){
+                     }).always(function(){
                         /*if user cant send data such as no internet access*/
-                        $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
+                         $('body .lpro').addClass("none");
+                         $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
                      });
 
                      $.ajax({
@@ -115,9 +117,10 @@ angular.module('myapp')
                         $('body .lpro').addClass("none");
                         window.location.hash = "#/settings";
                         return true;                        
-                     }).fail(function(){
+                     }).always(function(){
                         /*if user cant send data such as no internet access*/
-                        $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
+                         $('body .lpro').addClass("none");
+                         $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
                      });
                     return false;
 

@@ -257,15 +257,17 @@ html, body {
     padding: 12px 0px;
     font-weight: bold;
     text-decoration: none;
-    color: #39728C;
+    color: #585858;
     text-indent: 5px;
 
 }
 .snap-drawer li > a i{
     padding: 0 1px 0 12px;
-    color: #4c849f;
+    color: #585858;
     position: relative;
-    top: 2px;        
+    top:4px; 
+    font-size: 20px;
+    
 }
 .snap-drawer p {
   opacity: 0.5;
@@ -309,7 +311,7 @@ html, body {
 }
 .user_menu_info .exit_edit a ,.about_contact a{
     display: inline-block;
-    color: #5a9bc4;
+    color: #585858;
     font-size: 14px;
     padding: 10px 0;
 }

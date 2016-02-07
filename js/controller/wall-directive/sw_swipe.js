@@ -5,14 +5,13 @@ var tab_index ;
 var drop_swipe = 0;
 var drop_swipe_on;
 angular.module('myapp')
-.directive('swSwipe', function ($rootScope){
+.directive('swSwipe', function ($rootScope,$route,$location){
 		return {
-			link: function($scope) {
+			link: function(scope) {
                 $(document).ready(function () {
                     $('.snap-content').on("error","img",function() {
                         alert('Image does not exist !!');
                     });
-                  
                     /*===============================================================================*/  
                     if($rootScope.profile_info_tab_index === undefined){ tab_index = 0 ;}else{ tab_index = $rootScope.profile_info_tab_index ; console.log( $rootScope.profile_info_tab_index ); }
                     /*===============================================================================*/  
@@ -21,11 +20,11 @@ angular.module('myapp')
                     /*===============================================================================*/  
                    
                     swiper2 = new Swiper( '.bg_fix .swiper1' ,{scrollbar: '.swiper-scrollbar', scrollbarHide: false,grabCursor: true,initialSlide :tab_index });
-                   if(drop_swipe == 0){
-                       drop_swipe_on = swiper2;
-                       drop_swipe = 1 ;
+                    if(drop_swipe == 0){
+                        drop_swipe_on = swiper2;
+                        drop_swipe = 1 ;
                        
-                   }
+                    }
                     /*===============================================================================*/  
                     if(typeof swiper2.on != "function")
                     {
@@ -33,7 +32,6 @@ angular.module('myapp')
                         swiper2 = drop_swipe_on ;
                         console.log(swiper2);
                     }
-                  
                     /*===============================================================================*/   
                     if(swiper2 !== undefined){
                         swiper2.on('slideChangeEnd', function () {
@@ -67,6 +65,10 @@ angular.module('myapp')
                     $('.links a').click(function(){
                         slide = $(this).attr('slide');
                         swiper2.slideTo(slide);
+                    });
+                    /*===============================================================================*/
+                    $('.refresh_wall').click(function(){
+                        window.location.hash ="#/relaod"
                     });
                     /*===============================================================================*/
                 });	

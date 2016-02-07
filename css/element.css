@@ -19,13 +19,13 @@ p{
 .gradiant_orange{
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#e48545+0,edb791+98 */
     background: #e48545; /* Old browsers */
-    background: -moz-linear-gradient(left,  #e48545 0%, #edb791 98%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#e48545), color-stop(98%,#edb791)); /* Chrome,Safari4+ */
+    background: -moz-linear-gradient(left,  #e48545 0%, #edb791 98%) !important;  /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#e48545), color-stop(98%,#edb791)) !important;  /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(left,  #e48545 0%,#edb791 98%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(left,  #e48545 0%,#edb791 98%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(left,  #e48545 0%,#edb791 98%); /* IE10+ */
-    background: linear-gradient(to right,  #e48545 0%,#edb791 98%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e48545', endColorstr='#edb791',GradientType=1 ); /* IE6-9 */
+    background: -o-linear-gradient(left,  #e48545 0%,#edb791 98%) !important;  /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #e48545 0%,#edb791 98%) !important;  /* IE10+ */
+    background: linear-gradient(to right,  #e48545 0%,#edb791 98%) !important;  /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e48545', endColorstr='#edb791',GradientType=1 ) !important; /* IE6-9 */
 }
 .gradiant_blue{
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#184b68+0,184b68+1,040f15+100,1e50bc+100 */
@@ -40,8 +40,9 @@ p{
 }
 .blue_header{background-color:#174056 }
 /*--=============-- btn and form  --===================--*/
-.btn_blue{ background-color:#008CC9 ;color:#fff;padding: 10px 0;text-align: center;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px; }
-.btn_black{ background-color:#161616 ;color:#fff;padding: 10px 0;text-align: center;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px; }
+.btn_blue{ background-color:#008CC9 ;color:#fff;font-family:"b koodak" !important;padding: 10px 0;text-align: center;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px; }
+.btn_white{ background-color:#fff ;color:#4d4d4d;font-family:"b koodak" !important;padding: 10px 0;text-align: center;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px; }
+.btn_black{ background-color:#161616 ;color:#fff;font-family:"b koodak" !important;padding: 10px 0;text-align: center;border-radius: 5px;-moz-border-radius: 5px;-webkit-border-radius: 5px; }
 .bs{
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -270,7 +271,16 @@ select.sel_def option{
 input, textarea{
     font-family: "B Koodak";
 }
-
+.tool_bar_fix{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow-y: scroll;
+    top: 0px;
+    padding-top: 65px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
 /*--=============--   --===================--*/
 .start_animation {
     height: 15px;
@@ -321,6 +331,9 @@ input, textarea{
     }
     select.sel_def{
         height: 70px !important;
+    }
+    .tool_bar_fix{
+        padding-top: 100px;
     }
     /*--=============--   --===================--*/
     /*--=============--   --===================--*/

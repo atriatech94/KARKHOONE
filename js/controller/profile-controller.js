@@ -1,6 +1,25 @@
 angular.module('myapp')
 .controller('ProfileController', function($scope,$rootScope,$routeParams,$http) {
+    
+    if($routeParams.user_id == localStorage.getItem("user_id")){
+        window.location.href = "#/myprofile";
+    }
     show_anim();
+    $scope.user_info = [{ city: "------",
+            description: "------------------------------",
+            email: "------@------.--",
+            field: "------",
+            followers: "0",
+            gender: "0",
+            grade: "0",
+            married: "0",
+            mobile: "000000000",
+            name: "------ ------",
+            picname: "",
+            state: "------",
+            status: "0",
+            view: "6"
+                        }];
     $scope.portfolios = 0;
     $scope.count_s1 = 0;
     $scope.count_s2 = 0;
@@ -12,6 +31,7 @@ angular.module('myapp')
     .success(function(response){
         //console.log(response.user_info.portfolio,response);
         hide_anim();
+        console.log(response.user_info2);
         if(response.is_friend == '1'){
         /*user isn t my friend*/
             if(response.user_perms != null){
@@ -38,7 +58,7 @@ angular.module('myapp')
             }
         }else{
         /*user isn t my friend*/
-           // console.log("not my freid");
+            // console.log("not my freid");
             if(response.user_perms != null){
              //   console.log(response.user_perms);
                 response.user_perms.forEach(function(element,index){
@@ -70,8 +90,10 @@ angular.module('myapp')
         if(localStorage.getItem("user_checked") == null){
             localStorage.setItem("user_checked","[]");
         }
-        /**/
+
+        /*==============================================*/
         $scope.user_info = response.user_info ;
+        console.log(response.user_info2,response.user_info);
         $scope.user_skill = response.user_skill;
         $scope.user_spam = response.spam[0].count;
         $scope.portfolios = response.user_info.portfolio;
@@ -96,6 +118,9 @@ angular.module('myapp')
        }
         
         
+    }).error(function(){
+        hide_anim();
+        $('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');
     });
 })
 .directive('profileDir' , function ($rootScope,$routeParams){
@@ -345,7 +370,7 @@ angular.module('myapp')
 		/*====================================================*/
                 $('.cv_list').on('click','.share_btn',function(){
                     var url = $(this).attr('share_url');
-                    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  url, base_url+'file/logo_share.png' );
+                    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
                     return false;
                 });
 		/*====================================================*/

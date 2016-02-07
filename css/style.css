@@ -359,6 +359,9 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 	width: 99%;
 	height: 45px;
 }
+.register_form label .inp_def,.register_form label select.sel_def{
+    border: none;
+}
 .register_form label {
 	width: 99%;
 	height: 50px;
@@ -767,10 +770,13 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	margin-top: 2px;
 }
 .user_one .user_one_info h5 {
-	font-size: 13px;
-	color: #969696;
-	margin-top: 6px;
+    font-size: 13px;
+    color: #969696;
+    margin-top: 9px;
     line-height: 14px;
+    height: 15px;
+    position: relative;
+    top: 2px;
 }
 .user_one .user_one_info span {
 	display: inline-block;
@@ -821,8 +827,8 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	width: 100%;
 	height: auto;
 	background-image: url(../img/bg_profile.png);
-	background-position: center center;
-	background-size: 100%;
+	background-position: center 80%;
+	background-size:cover ;
 	background-repeat: no-repeat;
 	-webkit-box-shadow: 0px 10px 112px -20px rgba(20,51,67,1);
 	-moz-box-shadow: 0px 10px 112px -20px rgba(20,51,67,1);
@@ -919,25 +925,23 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	display: block;
 	width: 100%;
 	margin-top: 5px;
+    min-height: 20px;
 }
 .some_flowers ul a {
 	display: block;
+    background:url('../img/user.png');
 	width: 30px;
 	height: 30px;
 	overflow: hidden;
-	background-color: #fff;
+	background-color: #000;
 	float: right;
 	margin-left: 3px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
-.some_flowers ul a img {
-	display: block;
-	min-width: 100%;
-	width: 100%;
-	min-height: 100%;
-	height: auto;
+    position: relative;
+    
+   
 }
 .some_flowers ul a span {
 	padding: 10px 0;
@@ -1057,16 +1061,20 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	width: 100%;
 	text-align: center;
 	margin-top: 10px;
-	padding: 20px 0;
+	padding: 30px 0;
 	background-color: #fff;
 }
 .short_skills span {
 	padding: 10px 10px;
-	border: 3px dotted #e2e2e2;
-	color: #008DC2;
+    color: #247E84;;
 	display: inline-block;
 	margin: 0 5px;
-    background-color: #eee;
+}
+.short_skills span .fa{
+    display: block;
+    font-size: 5em;
+    margin: 10px 0;
+    font-size: 2em;
 }
 .skills {
 	margin: 10px 0;
@@ -1319,8 +1327,6 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 .msg_one{
     background-color: #FBFBFB;
     color:#5f5f5f;
-    border-radius: 5px;
-    box-shadow: 1px 1px 10px -1px #B9B9B9;
     width: 70%;
     padding: 10px;
     box-sizing: border-box;
@@ -1335,34 +1341,42 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     margin-top: 20px;
 }
 .msg_one:after{
-    content: "▲";
+    content: "";
     position: absolute;
     color: #fff;
-    transform: rotate(90deg);
-    top: 40%;
+    top: 0;
     right: -11px;
     z-index: 0;
-    text-shadow: 0 -3px 5px rgba(154, 154, 154, 0.28);;
+    text-shadow: 0 -3px 5px rgba(154, 154, 154, 0.28);
     font-size: 20px;
+    width: 0;
+    height: 0;
+    border-top: 12px solid #E1FFC7;
+    border-right: 12px solid transparent;
 }
 .msg_one.you{
-    float: left;
-    
+    margin-left: 0;
+    margin-right: auto;
 }
 .msg_one.me{
     background-color: #E1FFC7;
-    float: right;
-    box-shadow:-1px 1px 10px 1px rgba(154, 154, 154, 0.61);;
+    margin-right: 0;
+    margin-left: auto;
+  
 }
 .msg_one.me:after{
     color: #E1FFC7;
 }
 .msg_one.you:after{
     color: #FBFBFB;
-    transform: rotate(-90deg);
-    top: 35%;
+    transform: rotate(90deg);
+    top: 0;
     left: -11px;
     right: inherit;
+    border-top-color: #fff;
+}
+.msg_one.me:nth-of-type(1){
+    background-color: #eee !important;
 }
 .editor{
     position: fixed;
@@ -1564,11 +1578,13 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     height: 250px;
     margin: 0 auto;
     position: relative;
+    z-index: 1;
+    background-color: #999;
 }
 .cv_one .photo_cv .img{
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: relative;
     top: 0px;
     right: 0px;
     background-size: cover;
@@ -1581,11 +1597,65 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     z-index: 2;
     bottom: 10px;
     right: 10px;
-    padding: 10px 10px 7px;
+    padding: 7px 10px 10px;
     background-color: rgba(0, 0, 0, 0.72);
     color:#fff;
     border-radius: 5px;
     font-size: 18px;
+}
+.cv_one .photo_cv .video{
+    position: relative;
+    overflow: hidden;
+    display:-webkit-box;
+	display:-ms-flexbox;
+	display:-webkit-flex;
+	display:flex;
+	-webkit-box-pack:center;
+	-ms-flex-pack:center;
+	-webkit-justify-content:center;
+	justify-content:center;
+	-webkit-box-align:center;
+	-ms-flex-align:center;
+	-webkit-align-items:center;
+	align-items:center;
+}
+.cv_one .photo_cv .video:after{
+    content: "\f04b";
+    color: #FFF;
+    font-size: 30px;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    font-size: 25px;
+    width: 60px;
+    height: 60px;
+    padding: 13px 12px;
+    border-radius: 50%;
+    left: 45%;
+    top: 40%;
+    z-index: 2;
+    box-sizing: border-box;
+    border: 5px solid #FFF;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.63);
+    text-shadow: 0 0px 5px rgba(0, 0, 0, 0.63);
+    z-index: 3;
+}
+.cv_one .photo_cv .video:before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.50);
+    right: 0px;
+    top: 0px;
+}
+.cv_one .photo_cv .date .fa {
+    position: relative;
+    TOP: 2px;
 }
 .cv_one .photo_cv .type{
     position: absolute;
@@ -2004,6 +2074,38 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 .menu_hamber li.active,.menu_hamber li.active *{
     color:#ac0000;
 }
+.full_center{
+    display:-webkit-box;
+	display:-ms-flexbox;
+	display:-webkit-flex;
+	display:flex;
+	-webkit-box-pack:center;
+	-ms-flex-pack:center;
+	-webkit-justify-content:center;
+	justify-content:center;
+	-webkit-box-align:center;
+	-ms-flex-align:center;
+	-webkit-align-items:center;
+	align-items:center;
+}
+.full_center i{
+    font-size: 50px;
+    color:#fff;
+    display:-webkit-box;
+	display:-ms-flexbox;
+	display:-webkit-flex;
+	display:flex;
+	-webkit-box-pack:center;
+	-ms-flex-pack:center;
+	-webkit-justify-content:center;
+	justify-content:center;
+	-webkit-box-align:center;
+	-ms-flex-align:center;
+	-webkit-align-items:center;
+	align-items:center;
+    position: relative;
+    top:10px;
+}
 /*--================--   --===================--*/
 
 @-webkit-keyframes gridItemAnimation{
@@ -2137,8 +2239,8 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
         margin-left: 20px;
     }
     .icons a {
-        padding: 32px 2px;
-        margin-left: 20px;
+        padding: 32px 0px;
+        margin-left: 15px;
         
     }
     .close{
@@ -2289,9 +2391,9 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
         padding-top: 65px;
     }
     .user_img {
-        width: 80px;
-        height: 80px;
-        margin-top: 35px;
+        width: 100px;
+        height: 100px;
+        margin-top: 15px;
     }
     .some_flowers {
         padding-top: 10px;

@@ -105,7 +105,7 @@ angular.module('myapp')
                         }
                         else if(ofs_three == 0){$(".three_ids").next('.refresh_loading').show();}
                     }).
-                    fail(function(){ $(".three_ids").next('.refresh_loading').show(); });
+                    fail(function(){$("sliderthree-dir .refresh_loading").show();$(".three_ids").next('.loading_users').hide();$('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');});
                         
                    
                 }

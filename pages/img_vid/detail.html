@@ -17,7 +17,7 @@
             <div class="cv_one"  ng-repeat="element in p_one_detail | orderBy:'-parseInt(p_id)':true " >
                 <div class="photo_cv" p_id="{{element.p_id}}">
                     <div class="img pic_open_want" mhref="{{base_url}}/uploads/portfolio/images/{{element.p_name}}" ng-if="element.p_type == '0'" style="background-image:url('{{base_url}}/uploads/portfolio/images-small/{{element.p_name}}')"></div>
-                    <div class="img video_play" ng-if="element.p_type == '1'" video_address="{{base_url}}/uploads/portfolio/video/{{element.p_name}}" style="background-image:url('img/video-player.jpg')"></div>
+                    <div class="img video video_play" ng-if="element.p_type == '1'" video_address="{{base_url}}/uploads/portfolio/video/{{element.p_name}}" style="background-image:url('{{base_url}}/uploads/portfolio/video_image/{{element.p_name.split('.')[0]}}.jpg')"></div>
                     <span class="date">{{element.dates}}<span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}"><i class="fa fa-share-alt"></i></span></span>
                     <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
                     <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>

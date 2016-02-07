@@ -112,7 +112,7 @@ angular.module('myapp')
                         }
                         else if(ofs_two == 0){$(".two_ids").next('.refresh_loading').show();}
                     }).
-                    fail(function(){ $(".two_ids").next('.refresh_loading').show(); });
+                    fail(function(){$("slidertwo-dir .refresh_loading").show();$(".two_ids").next('.loading_users').hide();$('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');});
                         
                     
                     

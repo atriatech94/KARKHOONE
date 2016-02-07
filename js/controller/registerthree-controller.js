@@ -9,6 +9,7 @@ angular.module('myapp')
                 var files;
                 var timeout ;
                 var change_evenet ;
+                var image_resize;
 				/*====================================================*/
 				$(document).ready(function(){
                     
@@ -44,20 +45,12 @@ angular.module('myapp')
                                 alert('فرمت فایل انتخابی اشتباه است . مجدد تلاش نمایید ');
                                 return false;
                             }else{
-                                document.addEventListener("deviceready", onDeviceReady, false);
-                                function onDeviceReady() 
-                                {
-                                    
-                                   var element = document.getElementById('deviceProperties');
-                                    platform = device.platform;
-                                    version = device.version;
-                                    version = version.split('.');
-                                    version = parseInt(version[0]+ version[1]);
-                                    if(platform == "Android" && version < 43 ){is_snd = 1;$.event.trigger({ type: "imageResized_firstprofile" });}
-                                    else{resize_image(change_evenet,"imageResized_firstprofile");}
-                                    
-                                }
-
+                                $('.short_info .user_img').addClass("user_img_change");
+                                resize_image(window.URL.createObjectURL(change_evenet.target.files[0]),function(dataUri){
+                                    image_resize = dataUri;
+                                    $('.takePictureField2').val(image_resize);
+                                    $.event.trigger({ type: "imageResized_firstprofile"});
+                                });
                             }
                        }else{
                            $.event.trigger({type: 'imageResized_firstprofile' });
@@ -72,32 +65,10 @@ angular.module('myapp')
                     
                 /*====================================================*/
                  $(document).on("imageResized_firstprofile", function (event) {
-                     
-                 
+
                      $('body .lpro').removeClass("none");
-                          var data ;
-                     if (event.blob){
-                         data = new FormData($(".change_profile_img")[0]);
-                         data.append('profile_pic', event.blob);
-                         data.append('user_data',$('.user_datas').val());
-                     }
-                     if(is_snd == 1)
-                     {
-                         data = new FormData($(".android42_image")[0]);
-                     }
-                    
-                     $.ajax({
-                         url: base_url+"api/user_register/Passwd123/",
-                         type: 'POST',
-                         data: data,
-                         async: true,
-                         cache: false,
-                         contentType: false,
-                         processData: false,
-                         timeout:60000,
-                         
-                     }).done(function(data) {
-                         /* chechk inset and login user into software */
+                     $.post(base_url+"api/user_register/Passwd123/" ,$('.android42_image').serialize())
+                     .done(function(data) {
                          var user_data = JSON.parse(data);
                          
                          if(user_data.msg_code == "1")
@@ -155,4 +126,4 @@ function showimagepreview(input)
             filerdr.readAsDataURL(input.files[0]);
         }
                        
-    }
+}

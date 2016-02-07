@@ -113,6 +113,10 @@ angular.module('myapp')
             templateUrl: 'pages/exit/index.html',
             controller: 'ExitController',
         })
+        .when('/relaod', {
+            templateUrl: 'pages/reload/index.html',
+            controller: 'ReloadController',
+        })
 })
 .run(function($rootScope, $window){
     $rootScope.$on("$routeChangeStart", function(event, next, current){

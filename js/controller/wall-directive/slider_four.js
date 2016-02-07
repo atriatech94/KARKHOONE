@@ -103,7 +103,7 @@ angular.module('myapp')
                         }
                         else if(ofs_four == 0){$(".four_ids").next('.refresh_loading').show();}
                     }).
-                    fail(function(){ $(".four_ids").next('.refresh_loading').show(); });
+                    fail(function(){$("sliderfour-dir .refresh_loading").show();$(".four_ids").next('.loading_users').hide();$('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');});
 
                 }
                 /*=====================Scroll Page===============================*/

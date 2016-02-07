@@ -112,7 +112,7 @@ angular.module('myapp')
                         }
                         else if(ofs_one == 0){$(".one_ids").next('.refresh_loading').show();}
                     }).
-                    fail(function() {$(".one_ids").next('.refresh_loading').show();});
+                    fail(function(){$("sliderone-dir .refresh_loading").show();$(".one_ids").next('.loading_users').hide();$('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');});
                 }
                 /*=====================Scroll Page===============================*/
                 $('#one_ids').on("scroll",function(){

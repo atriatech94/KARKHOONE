@@ -33,7 +33,9 @@ angular.module('myapp')
                              $rootScope.portfolio_ofset = ofset;
                          }); 
 
-                     }); 
+                     }).always(function(){
+                        hide_anim();
+                     }) 
                 }else{
                     scope.portfolio = $rootScope.portfolio ;
                     ofset = $rootScope.portfolio_ofset ;
@@ -49,11 +51,15 @@ angular.module('myapp')
                            .replace( /</g, '&lt;' )
                            .replace( />/g, '&gt;' );
                 }
+                $('.full_center').click(function(){
+                    $('.tool_bar_fix .submit_register').click();
+                });
                 $(function(){
                     var btn = document.getElementById('uploadBtn'),
                         progressBar = document.getElementById('progressBar'),
                         progressOuter = document.getElementById('progressOuter'),
                         msgBox = document.getElementById('msgBox');
+                    
                     var uploader = new ss.SimpleUpload({
                         button: btn,
                         url: base_url+'api_upload/upload/UPLo-098UYH-oou/'+localStorage.getItem("user_id"),
@@ -64,9 +70,10 @@ angular.module('myapp')
                         data:{ text: $('.text_img_vid').val() },
                         crossDomain:true,
                         hoverClass: 'hover',
-                        allowedExtensions: ['gif', 'png', 'jpg', 'jpeg', 'mp4', 'avi', 'mkv', 'mpeg', '3gp', 'wmv', 'flv'],
+                        allowedExtensions: ['gif', 'png', 'jpg', 'jpeg', 'mp4', 'avi', 'mkv', 'mpeg', '3gp', 'wmv', 'flv' ,'ogg'],
                         focusClass: 'focus',
                         responseType: 'json',
+                        
                         onProgress : function( darsad ){
                             $('.mvd_img').hide();
                             $('.percent_upload,.loading_uploading').show(0);
@@ -74,10 +81,13 @@ angular.module('myapp')
                            
                         },
                         startXHR: function(filename, size) {
+                            
                             progressOuter.style.display = 'block'; // make progress bar visible
                             this.setProgressBar(progressBar);
                         },
                         onSubmit: function() {
+                           
+                            
                             
                             msgBox.innerHTML = ''; // empty the message box
                             btn.innerHTML = 'Uploading...'; // change button text to "Uploading..."
@@ -109,7 +119,7 @@ angular.module('myapp')
                                 if(response.type=="0")
                                 {res += '<div class="img" style="background-image:url('+base_url+'uploads/portfolio/images-small/'+response.name+')"></div>';}
                                 else
-                                {  res += '<div class="img" style="background-image:url(img/video-player.jpg)"></div>';}
+                                {  res += '<div class="img video" style="background-image:url('+base_url+'/uploads/portfolio/video_image/'+response.name.split('.')[0]+'.jpg)"></div>';}
                                 res += '<span class="date">'+moment(response.date).calendar()+'<span class="share_btn" share_url="'+base_url+'api_show_portfolio/'+response.p_id+'"><i class="fa fa-share-alt"></i></span></span>';
                                 res += '<span class="type type-'+response.type+' orimage"><span class="value">'+Math.round(parseInt(response.filesize)/10240)/100+'MB</span></span>';
                                 res += '</div>';
@@ -144,6 +154,8 @@ angular.module('myapp')
                             $('.loading_uploading').hide(0);
                         }
                     });
+                    
+                    
                 });
                 /*===============================================================================*/ 
                 $('.cv_list').on("click",".do_like",function(){
@@ -210,7 +222,7 @@ angular.module('myapp')
                 /*========================share============================*/
                 $('.cv_list').on('click','.share_btn',function(){
                    var url = $(this).attr('share_url');
-                    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  url, base_url+'file/logo_share.png' );
+                   window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
                 });
                 /*====================================================*/
                 

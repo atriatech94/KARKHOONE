@@ -28,3 +28,6 @@ angular.module('myapp')
                 
             }/* end */
 }})
+.controller('ReloadController', function($rootScope) {
+    window.history.back();
+})
