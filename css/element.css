@@ -158,12 +158,24 @@ label{
     width:90%;
     margin: 0 auto;
 }
+.color_white{
+    color:#fff;
+}
+.text-center{
+    text-align: center;
+}
 .db{
     display: block;
 }
 label.db{
     margin-top: 15px;
 }
+.hr_white{
+    border: none;
+    height: 1px;
+    background: #fff;
+}
+.medadi{background-color: #A8A8A8 !important;}
 .mt_10{margin-top:10px;}
 .mt_15{margin-top:15px;}
 .mt_20{margin-top:20px;}

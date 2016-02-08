@@ -22,8 +22,7 @@ angular.module('myapp')
                     console.log(user_info);
                     $("#name input").val(user_info.name);
                     $("#age input").val(user_info.age);
-                    $("#married select option[value="+user_info.married+"]").prop('selected', true);
-                    $("#grade select  option[value="+user_info.grade+"]").prop('selected', true);
+                    $("#field input").val(user_info.field);
                     $("#gender select  option[value="+user_info.gender+"]").prop('selected', true);
                     $("#field input").val(user_info.field);
 
@@ -80,14 +79,12 @@ angular.module('myapp')
 				/*=====================reg_two submit===============================*/
                 $('.reg_two_next').on("click",function(){
                     
-                    name = $("#name input").val();
-                    age = $("#age input").val();
-                    gender = $("#gender select").val();
-                    married = $("#married select").val();
-                    grade = $("#grade select").val();
-                    field = $("#field input").val();
-                    state = $("#state select").val();
-                    city = $("#city select").val();
+                    name = $("#name input").val().trim();
+                    age = $("#age input").val().trim();
+                    gender = $("#gender select").val().trim();
+                    field = $("#field input").val().trim();
+                    state = $("#state select").val().trim();
+                    city = $("#city select").val().trim();
                     
                     var errors_req = new Array();                        
                     $('#reg_two .req').each(function(index,element){
@@ -102,7 +99,18 @@ angular.module('myapp')
                         timeout = setTimeout(function(){ $('body .alert').addClass('none');},5000);
                         return false;
                     }
-
+                    if(name.length > 16)
+                    {
+                       $('body .alert .msg').text("نام شما حداکثر باید 16 کارکتر باشد").parent('.alert').removeClass('none');
+                        timeout = setTimeout(function(){ $('body .alert').addClass('none');},5000);
+                        return false;
+                    }
+                    if(field.length > 32)
+                    {
+                       $('body .alert .msg').text("رشته ی شما باید حداکثر 32 کارکتر باشد").parent('.alert').removeClass('none');
+                        timeout = setTimeout(function(){ $('body .alert').addClass('none');},5000);
+                        return false;
+                    }
                     my_age = parseInt(now_year) - parseInt(age);
                     if( my_age < 16  || my_age > 71 )
                     {
@@ -128,9 +136,7 @@ angular.module('myapp')
                     $('body .lpro').addClass("none");            
                     user_data.name = name ;
                     user_data.age = age ;
-                    user_data.married = married ;
                     user_data.gender = gender ;
-                    user_data.grade = grade ;
                     user_data.field = field ;
                     user_data.state_id = state;
                     user_data.state = $("#state select option:selected").text();

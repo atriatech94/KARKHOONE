@@ -6,8 +6,6 @@ angular.module('myapp')
 		return {
 			link: function(scope) {
                 /*====================================================*/
-             
-               
 				/*====================================================*/
                 var snapper = new Snap({ element: document.getElementById('content18'), disable: 'left'});
                 $("body #content18").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
@@ -32,6 +30,7 @@ angular.module('myapp')
                         if(vals[0]=="search"){ scope.q = decodeURIComponent( vals[1].replace(/\+/g, ' ') ) }
                     });
                     $(".search_one").deserialize($rootScope.search_data,function() {});
+                    $('label#state select option[value="null"]').attr('selected', true);
                 }
                 now_year = moment().format('jYYYY');
                 $(function(){

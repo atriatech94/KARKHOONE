@@ -1,15 +1,5 @@
 
 document.addEventListener("backbutton",amintest, false);
-/*window.addEventListener("hashchange", hashCheck, false);
-
-function hashCheck(){
-	if(location.hash === "#/select"){
-		if(localStorage.getItem("user_id")){
-                        window.location.hash = "#/wall";
-                        return false;
-                    }
-	}
-}*/
 //var moment = require('moment-jalaali');
 moment.loadPersian();
 var socket;
@@ -243,7 +233,7 @@ function fetch_msg(msg_scroll, data){
 }
 
 function amintest(){
-
+   
     var loc =   window.location.hash;
     loc = loc.replace("#/", "");
     
@@ -251,7 +241,7 @@ function amintest(){
     loc = loc[0] ;
 	
 	var socket;
-    if($('body .lpro').hasClass('none'))
+    if(!$('body .lpro').hasClass('none'))
     {
         return false;
     }
@@ -356,7 +346,7 @@ function hide_anim(){$('body .loader_css').removeClass('start_animation');}
 
 /*===============================================================*/
 $.ajaxSetup({
-    timeout: 15000,
+    timeout: 45000,
 });
 
 /*===============================================================*/

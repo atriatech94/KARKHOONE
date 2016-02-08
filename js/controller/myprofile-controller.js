@@ -82,9 +82,6 @@ angular.module('myapp')
                                  user_info_local[0].picname = user_data.picname;
                                  localStorage.setItem("user_info",JSON.stringify(user_info_local));
                              });
-
-
-
                          }).fail(function(){
                             /*if user cant send data such as no internet access*/
                              $('.short_info .user_img').removeClass("user_img_change");
@@ -211,9 +208,9 @@ angular.module('myapp')
                         var skills_now = JSON.parse(localStorage.getItem("user_skill"));
                         skills_now.forEach(function(element,index){
                             if( element[2]== "0" )
-                            {$('#skill_uni').next(".skill_list").prepend('<span><i skill_id="'+element[1]+'"></i>'+element[0]+'</span>');}
+                            {$('#skill_uni').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-graduation-cap"></i></span><text><h1>'+element[0]+'</h1><i class="fa fa-times remove_btn" skill_id="'+element[1]+'"></i></text></label>');}
                             if( element[2]== "1" )
-                            {$('#skill_job').next(".skill_list").prepend('<span><i skill_id="'+element[1]+'"></i>'+element[0]+'</span>');}
+                            {$('#skill_job').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-briefcase"></i></span><text><h1>'+element[0]+'</h1><i class="fa fa-times remove_btn" skill_id="'+element[1]+'"></i></text></label>');}
                         });
                     }
                     /*====================================================*/
@@ -224,13 +221,13 @@ angular.module('myapp')
                     $("#skill_uni").submit(function(){
                         
                         var skill =  $("#skill").val().trim();
-                        if(skill.length < 4 ){$('body .alert .msg').text("رشته تحصیلی وارد شده باید حداقل 4 کارکتر باشد .").parent('.alert').removeClass('none'); return false;}
+                        if(skill.length < 2 ){$('body .alert .msg').text("رشته تحصیلی وارد شده باید حداقل 2 کارکتر باشد .").parent('.alert').removeClass('none'); return false;}
                         $('body .lpro').removeClass("none");
                     
                         $.post(base_url+"/api_inapp/add_skill/AminKarKhuneh1222/",{member_id:user_id,skill:skill,type:"0"},function(data){
                             $('body .lpro').addClass("none");
                             var res = JSON.parse(data);
-                            $('#skill_uni').next(".skill_list").prepend('<span><i skill_id="'+res.insert_id+'"></i>'+skill+'</span>');
+                            $('#skill_uni').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-graduation-cap"></i></span><text><h1>'+skill+'</h1><i class="fa fa-times remove_btn" skill_id="'+res.insert_id+'"></i></text></label>');
                             if(localStorage.getItem("user_skill") === null )
                             {        
                                 var skills = [];
@@ -256,13 +253,13 @@ angular.module('myapp')
                     $("#skill_job").submit(function(){
                         
                         var skill =  $("#skill2").val().trim();
-                        if(skill.length < 4 ){$('body .alert .msg').text("مهارت یا شغل وارد شده باید حداقل 4 کارکتر باشد .").parent('.alert').removeClass('none'); return false;}
+                        if(skill.length < 2 ){$('body .alert .msg').text("مهارت یا شغل وارد شده باید حداقل 2 کارکتر باشد .").parent('.alert').removeClass('none'); return false;}
                         $('body .lpro').removeClass("none");
                     
                         $.post(base_url+"/api_inapp/add_skill/AminKarKhuneh1222/",{member_id:user_id,skill:skill,type:"1"},function(data){
                             $('body .lpro').addClass("none");
                             var res = JSON.parse(data);
-                            $('#skill_job').next(".skill_list").prepend('<span><i skill_id="'+res.insert_id+'"></i>'+skill+'</span>');
+                            $('#skill_job').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-briefcase"></i></span><text><h1>'+skill+'</h1><i class="fa fa-times remove_btn" skill_id="'+res.insert_id+'"></i></text></label>');
                             if(localStorage.getItem("user_skill") === null )
                             {        
                                 var skills = [];
@@ -287,7 +284,7 @@ angular.module('myapp')
 
                 });
                 /*====================================================*/
-                $(".skill_list").on("click","span i",function(){
+                $(".skill_list_new").on("click",".remove_btn",function(){
                     $('body .lpro').removeClass("none");
                     var id= $(this).attr("skill_id");
                     var skill_us = $(this);
@@ -303,7 +300,7 @@ angular.module('myapp')
 
                         localStorage.setItem("user_skill",JSON.stringify(skills));
                        
-                        skill_us.parent("span").fadeOut(300);
+                        skill_us.parents(".title_form").fadeOut(100);
                         
                     }).fail(function(){
                         $('body .lpro').addClass("none");

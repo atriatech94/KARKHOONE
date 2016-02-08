@@ -65,7 +65,7 @@ angular.module('myapp')
                         contentType: false,
                         processData: false,
                          
-                     }).always(function(){
+                     }).fail(function(){
                          /*if user cant send data such as no internet access*/
                          $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');     
                          $('body .lpro').addClass("none");
@@ -80,7 +80,7 @@ angular.module('myapp')
                         contentType: false,
                         processData: false,
                          
-                     }).always(function(){
+                     }).fail(function(){
                         /*if user cant send data such as no internet access*/
                          $('body .lpro').addClass("none");
                          $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
@@ -96,7 +96,7 @@ angular.module('myapp')
                         contentType: false,
                         processData: false,
                          
-                     }).always(function(){
+                     }).fail(function(){
                         /*if user cant send data such as no internet access*/
                          $('body .lpro').addClass("none");
                          $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
@@ -112,12 +112,11 @@ angular.module('myapp')
                         contentType: false,
                         processData: false,
 
-
                     }).success(function(){
                         $('body .lpro').addClass("none");
-                        window.location.hash = "#/settings";
+                         window.location.hash = "#/settings";
                         return true;                        
-                     }).always(function(){
+                     }).fail(function(){
                         /*if user cant send data such as no internet access*/
                          $('body .lpro').addClass("none");
                          $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   

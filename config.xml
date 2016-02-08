@@ -1,6 +1,6 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="ir.atriatech.karkhoone" version="1.0.0">
-  <name>Karkhoone</name>
-  <description>Karkhoone</description>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="ir.atriatech.kaarkhoone" version="1.0.0">
+  <name>Kaarkhoone</name>
+  <description>Kaarkhoone</description>
   <author href="http://atriatech.ir" email="info@atriatech.ir">ATRIATECH</author>
   <content src="index.html"/>
   <preference name="permissions" value="none"/>
@@ -43,8 +43,7 @@
   <icon src="res/icon/android/icon-96-xhdpi.png" gap:platform="android" gap:qualifier="xhdpi"/>
  
   <gap:plugin name="com.dawsonloudon.videoplayer" version="1.0.0" />
-  <gap:plugin name="cordova-plugin-whitelist" source="npm" />
-  <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
+  <plugin name="nl.x-services.plugins.socialsharing" spec="4.3.8" source="pgb" />
   <access origin="*"/>
     <allow-intent href="http://*/*"/>
     <allow-intent href="https://*/*"/>

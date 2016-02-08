@@ -16,7 +16,6 @@ angular.module('myapp')
                 {
                     var user_info = JSON.parse( localStorage.getItem("user_info_temp") );
                     console.log(user_info);
-                    $('#regform_one #name').val(user_info.name);
                     $('#regform_one #email').val(user_info.email);
                     $('#regform_one #passwd').val(user_info.passwd);
                     $('#regform_one #repasswd').val(user_info.passwd);
@@ -25,7 +24,6 @@ angular.module('myapp')
 				$(function(){
                     $('#regform_one').on("submit",function(){
                         
-                        name = $(this).find("#name").val().trim();
                         email = $(this).find("#email").val().trim();
                         mobile = $(this).find("#mobile").val().trim();
                         passwd = $(this).find("#passwd").val().trim();
@@ -81,7 +79,6 @@ angular.module('myapp')
                                 return false;
                             }else if(chech_user.msg_code == "1")
                             {
-                                user_info.name = name ;
                                 user_info.passwd = passwd;
                                 user_info.email = email ;
                                 user_info.mobile = mobile;

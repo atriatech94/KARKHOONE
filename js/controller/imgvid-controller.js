@@ -28,7 +28,6 @@ angular.module('myapp')
                          });
                          scope.$apply(function(){
                              scope.portfolio = post_one ;
-                           //  scope.portfolio[0].p_date = moment(scope.portfolio[0].p_date).calendar();
                              $rootScope.portfolio = post_one ;
                              $rootScope.portfolio_ofset = ofset;
                          }); 
@@ -120,7 +119,7 @@ angular.module('myapp')
                                 {res += '<div class="img" style="background-image:url('+base_url+'uploads/portfolio/images-small/'+response.name+')"></div>';}
                                 else
                                 {  res += '<div class="img video" style="background-image:url('+base_url+'/uploads/portfolio/video_image/'+response.name.split('.')[0]+'.jpg)"></div>';}
-                                res += '<span class="date">'+moment(response.date).calendar()+'<span class="share_btn" share_url="'+base_url+'api_show_portfolio/'+response.p_id+'"><i class="fa fa-share-alt"></i></span></span>';
+                                res += '<span class="date">'+moment(response.date).calendar()+'</span><span class="share_btn" share_url="'+base_url+'api_show_portfolio/'+response.p_id+'"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="'+base_url+'api_show_portfolio/'+response.p_id+'"><i class="fa fa-cloud-download"></i></span>';
                                 res += '<span class="type type-'+response.type+' orimage"><span class="value">'+Math.round(parseInt(response.filesize)/10240)/100+'MB</span></span>';
                                 res += '</div>';
                                 res += '<div class="extra bs">';

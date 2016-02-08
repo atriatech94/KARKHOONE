@@ -139,9 +139,13 @@ angular.module('myapp')
             }
         }else{
             if(!localStorage.getItem('user_id')){
-                
-                $window.location.assign("#/select");
-                $window.location.reload();
+                if((next.templateUrl === 'pages/forget_pass/index.html')){
+                    $window.location.assign("#/forget_pass");
+                }else{
+                    $window.location.assign("#/select");
+                    $window.location.reload();
+                }
+               
                 // $window.path("/wall");
             }
         }

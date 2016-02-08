@@ -11,60 +11,62 @@
         </div>
         <div class="clear"></div>
         <!--=================================-->
+        <div class="tool_bar_fix">
         <!--=================================-->
-        <div class="cv_list">
-            <!--===============cv_one==================-->
-            <div class="cv_one"  ng-repeat="element in p_one_detail | orderBy:'-parseInt(p_id)':true " >
-                <div class="photo_cv" p_id="{{element.p_id}}">
-                    <div class="img pic_open_want" mhref="{{base_url}}/uploads/portfolio/images/{{element.p_name}}" ng-if="element.p_type == '0'" style="background-image:url('{{base_url}}/uploads/portfolio/images-small/{{element.p_name}}')"></div>
-                    <div class="img video video_play" ng-if="element.p_type == '1'" video_address="{{base_url}}/uploads/portfolio/video/{{element.p_name}}" style="background-image:url('{{base_url}}/uploads/portfolio/video_image/{{element.p_name.split('.')[0]}}.jpg')"></div>
-                    <span class="date">{{element.dates}}<span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}"><i class="fa fa-share-alt"></i></span></span>
-                    <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
-                    <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
-                </div>
-                <div class="extra bs">
-                    <span class="text">{{element.p_text}}</span>
-                    <ul class="count">
-                        <li ng-if="element.l_count && element.member_do_like" class="like do_like liked">{{element.l_count}}&zwnj;</li>
-                        <li ng-if="element.l_count && !element.member_do_like"  class="like do_like unliked">{{element.l_count}}&zwnj;</li>
-                        <li ng-if="!element.l_count" class="like do_like unliked">0</li>
-                        <li ng-if="element.c_count" class="comment">{{element.c_count}}&zwnj;</li>
-                        <li ng-if="!element.c_count" class="comment">0</li>
-                        <li ng-if="element.v_count" class="view">{{element.v_count}}&zwnj;</li>
-                        <li ng-if="!element.v_count" class="view">0</li>
-                        <li ng-if="element.member_id == user_id" class="more">&zwnj;
-                            <div class="porfolio_spam remove_portfolio" p_id="{{element.p_id}}"><span>حذف</span></div>
-                        </li>
-                        <li ng-if="element.report ==null &&  element.member_id != user_id"  class="more">&zwnj;
-                            <div class="porfolio_spam" p_id="{{element.p_id}}"><span>گزارش تخلف</span></div>
-                        </li>
-                        <li ng-if="element.report != null &&  element.member_id != user_id " p_id="{{element.p_id}}" class="portfolio_drop portfolio_unviolation"><span></span></li>
-                    </ul>
-                </div>
-                <div class="form_cm bs">
-                    <form class="form_cm1">
-                        <textarea class="bs comment_text" type="text" name="comment" placeholder="نظر خود را بیان کنید ..."></textarea>
-                        <button class="send do_comment" type="submit"></button>
-                        <div class="loading_text none"><span>در حال ارسال ...</span></div>
-                    </form>
-                </div>
-                <div class="comment_post bs">
-                    <!--=================================-->
-                    <div class="commment"  ng-repeat="element in commnet | orderBy:'-parseInt(id)':true " >
-                        <div ng-if="element.picname" class="img" style="background-image:url({{base_url}}uploads/user_img-small/{{element.picname}});"></div>
-                        <div ng-if="!element.picname && element.gender == 0" class="img" style="background-image:url(img/user_men.jpg);"></div>
-                        <div ng-if="!element.picname && element.gender == 1" class="img" style="background-image:url(img/user_women.jpg);"></div>
-                        <div class="user_cm">
-                            
-							<span class="user_text"><a href="#/profile/{{element.member_id}}" class="user_name">{{element.name}}</a> {{element.comment}}</span>
-                            <span class="user_time">{{element.date | fromNow}}</span>
-                        </div>
+            <div class="cv_list">
+                <!--===============cv_one==================-->
+                <div class="cv_one"  ng-repeat="element in p_one_detail | orderBy:'-parseInt(p_id)':true " >
+                    <div class="photo_cv" p_id="{{element.p_id}}">
+                        <div class="img pic_open_want" mhref="{{base_url}}/uploads/portfolio/images/{{element.p_name}}" ng-if="element.p_type == '0'" style="background-image:url('{{base_url}}/uploads/portfolio/images-small/{{element.p_name}}')"></div>
+                        <div class="img video video_play" ng-if="element.p_type == '1'" video_address="{{base_url}}/uploads/portfolio/video/{{element.p_name}}" style="background-image:url('{{base_url}}/uploads/portfolio/video_image/{{element.p_name.split('.')[0]}}.jpg')"></div>
+                        <span class="date">{{element.dates}}</span><span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="{{base_url}}api_show/portfolio_dl/{{element.p_id}}"><i class="fa fa-cloud-download"></i></span>
+                        <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
+                        <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
                     </div>
-                    <!--=================================-->
+                    <div class="extra bs">
+                        <span class="text">{{element.p_text}}</span>
+                        <ul class="count">
+                            <li ng-if="element.l_count && element.member_do_like" class="like do_like liked">{{element.l_count}}&zwnj;</li>
+                            <li ng-if="element.l_count && !element.member_do_like"  class="like do_like unliked">{{element.l_count}}&zwnj;</li>
+                            <li ng-if="!element.l_count" class="like do_like unliked">0</li>
+                            <li ng-if="element.c_count" class="comment">{{element.c_count}}&zwnj;</li>
+                            <li ng-if="!element.c_count" class="comment">0</li>
+                            <li ng-if="element.v_count" class="view">{{element.v_count}}&zwnj;</li>
+                            <li ng-if="!element.v_count" class="view">0</li>
+                            <li ng-if="element.member_id == user_id" class="more">&zwnj;
+                                <div class="porfolio_spam remove_portfolio" p_id="{{element.p_id}}"><span>حذف</span></div>
+                            </li>
+                            <li ng-if="element.report ==null &&  element.member_id != user_id"  class="more">&zwnj;
+                                <div class="porfolio_spam" p_id="{{element.p_id}}"><span>گزارش تخلف</span></div>
+                            </li>
+                            <li ng-if="element.report != null &&  element.member_id != user_id " p_id="{{element.p_id}}" class="portfolio_drop portfolio_unviolation"><span></span></li>
+                        </ul>
+                    </div>
+                    <div class="form_cm bs">
+                        <form class="form_cm1">
+                            <textarea class="bs comment_text" type="text" name="comment" placeholder="نظر خود را بیان کنید ..."></textarea>
+                            <button class="send do_comment" type="submit"></button>
+                            <div class="loading_text none"><span>در حال ارسال ...</span></div>
+                        </form>
+                    </div>
+                    <div class="comment_post bs">
+                        <!--=================================-->
+                        <div class="commment"  ng-repeat="element in commnet | orderBy:'-parseInt(id)':true " >
+                            <div ng-if="element.picname" class="img" style="background-image:url({{base_url}}uploads/user_img-small/{{element.picname}});"></div>
+                            <div ng-if="!element.picname && element.gender == 0" class="img" style="background-image:url(img/user_men.jpg);"></div>
+                            <div ng-if="!element.picname && element.gender == 1" class="img" style="background-image:url(img/user_women.jpg);"></div>
+                            <div class="user_cm">
+
+                                <span class="user_text"><a href="#/profile/{{element.member_id}}" class="user_name">{{element.name}}</a> {{element.comment}}</span>
+                                <span class="user_time">{{element.date | fromNow}}</span>
+                            </div>
+                        </div>
+                        <!--=================================-->
+                    </div>
                 </div>
+                <!--=================================-->
             </div>
-            <!--=================================-->
-        </div>
+      </div>
         <!--=================================-->
     </div>
     <!--=================================-->

@@ -7,7 +7,7 @@ angular.module('myapp')
                 console.log(user_data);
                 $('.user_menu_info .name').text(user_data[0].name);
                 if(user_data[0].picname != ""){
-                    $('.user_menu_info .img').css('background-image','url("'+base_url+'uploads/user_img-medium/'+user_data[0].picname+'")');
+                    $('.user_menu_info .img').css('background-image','url("'+base_url+'uploads/user_img-small/'+user_data[0].picname+'")');
                 }
                 else
                 {

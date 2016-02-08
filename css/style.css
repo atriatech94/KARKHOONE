@@ -364,7 +364,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 .register_form label {
 	width: 99%;
-	height: 50px;
+	height: auto;
 	display: block;
 	margin: 0 auto;
 	background-color: #fff;
@@ -467,13 +467,16 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 	margin-top: 20px;
 }
 .title_form {
-	height: 70px !important;
+	min-height: 70px !important;
 }
 .title_form span {
 	height: 70px;
 	width: 70px;
+    position: absolute;
+    height: 100%;
 	background-color: #00ADEF;
 	display: block;
+    right: 0px;
 }
 .title_form span img {
 	width: 40px;
@@ -492,25 +495,30 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 }
 .title_form text {
 	display: inline-block;
-	margin-right: 15px;
-	direction: rtl;
-	text-align: right;
-	vertical-align: top;
+    direction: rtl;
+    text-align: right;
+    vertical-align: top;
+    width: 100%;
+    padding-right: 80px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 .title_form text h3 {
 	color: #000;
 	font-size: 16px;
-	margin-top: 20px;
+    line-height: 20px;
 }
 .title_form text h1 {
 	font-size: 17px;
 	color: #000;
-	margin-top: 28px;
 }
 .title_form text p {
 	font-size: 12px;
 	color: #7c7c7c;
 	margin-top: 5px;
+    line-height: 17px;
 }
 /*--=============-- header  --===================--*/
 .header {
@@ -621,6 +629,7 @@ html, body, .bg_fix, .pop, test-dir, .main {
 	padding-right: 10px;
 	position: relative;
 	top: -8px;
+    display: none;
 }
 .links a {
 	color: #fff;
@@ -648,6 +657,7 @@ html, body, .bg_fix, .pop, test-dir, .main {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	overflow: hidden;
+    display: none;
 }
 .swiper-scrollbar-drag {
 	background-color: #fff !important;
@@ -765,14 +775,14 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	padding-right: 70px;
 }
 .user_one .user_one_info h3 {
-	font-size: 16px;
+	font-size: 18px;
 	color: #000;
 	margin-top: 2px;
 }
 .user_one .user_one_info h5 {
     font-size: 13px;
-    color: #969696;
-    margin-top: 9px;
+    color: #7c7a7a;
+    margin-top: 5px;
     line-height: 14px;
     height: 15px;
     position: relative;
@@ -780,7 +790,7 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 }
 .user_one .user_one_info span {
 	display: inline-block;
-	color: #BDBDBD;
+	color: #a3a3a3;
 	font-size: 12px;
 	margin-top: 8px;
 }
@@ -821,7 +831,7 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 }
 /*--=============-- Profile  --===================--*/
 .contanet_profile {
-	background-color: #FAFAFA !important;
+	background-color: #A8A8A8 !important;
 }
 .short_info {
 	width: 100%;
@@ -858,14 +868,14 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	padding-top: 20px;
 }
 .profile_short_info h5 {
-	font-size: 15px;
-	color: rgba(255, 255, 255, 0.78);
+	font-size: 17px;
+	color:#fff;
 	padding-top: 10px;
 }
 .profile_short_info span {
 	display: inline-block;
-	color: rgba(255, 255, 255, 0.77);
-	font-size: 14px;
+	color: #fff;
+	font-size: 16px;
 	padding-top: 8px;
 	padding-bottom: 10px;
 }
@@ -881,9 +891,9 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	overflow: hidden;
 	margin-top: 15px;
 	float: right;
-	margin-top: 10px;
+	margin-top: 20px;
     position: relative;
-    z-index: 10;
+    z-index: 2;
 }
 .user_img_change:after{
     position: absolute;
@@ -918,13 +928,14 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 }
 .some_flowers h3 {
 	color: #fff;
-	font-size: 14px;
+	font-size: 16px;
 	margin-top: 5px;
+    text-indent: 12%;
 }
 .some_flowers ul {
 	display: block;
 	width: 100%;
-	margin-top: 5px;
+	margin-top: 10px;
     min-height: 20px;
 }
 .some_flowers ul a {
@@ -940,8 +951,9 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
-    
-   
+}
+.some_flowers ul a:first-child{
+    margin-right: 11%;
 }
 .some_flowers ul a span {
 	padding: 10px 0;
@@ -985,13 +997,13 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
     margin-left: 0px;
 }
 .btn_profile span.btn_profile_like {
-	background-image: url(../img/like.png);
+	background-image: url(../img/like-w.png);
 }
 .btn_profile span.btn_profile_msg {
-	background-image: url(../img/msg.png);
+	background-image: url(../img/msg-white.png);
 }
 .btn_profile span.btn_profile_view {
-	background-image: url(../img/view.png);
+	background-image: url(../img/view_w.png);
 }
 .circle_btn {
 	width: 60%;
@@ -1040,7 +1052,7 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
     background-image: url("../img/svg/flag_white.svg");
 }
 .circle_btn span.active {
-    background-color:  #0393D2;
+    background-color:#D22903;
 }
 .circle_btn span.active svg{
     fill:#fff !important;
@@ -1063,6 +1075,7 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	margin-top: 10px;
 	padding: 30px 0;
 	background-color: #fff;
+    display: none;
 }
 .short_skills span {
 	padding: 10px 10px;
@@ -1140,7 +1153,7 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	height: auto;
 }
 .about_us_b {
-	width: 80%;
+	width: 100%;
 	height: 40px;
 	margin: 10px auto;
 	box-sizing: border-box;
@@ -1255,7 +1268,6 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     background-repeat: no-repeat;
     background-size: 40px;
     background-position: 90% 50%;
-    margin-left:10px;
 }
 /*--=============-- of_list  --===================--*/
 .of_list{
@@ -1382,14 +1394,13 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     position: fixed;
     bottom: 0;
     right: 0px;
-    background-color: transparent;
+    background-color: #fff;
     width: 100%;
     height: 15%;
 }
 .editor form textarea{
     width: 70%;
     height: 80%;
-    box-shadow: inset 0 0 10px -1px #C7C7C7;
     display: block;
     position: absolute;
     box-sizing: border-box;
@@ -1410,16 +1421,15 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 
 } 
 .cirlce_b button{
-    background-image: url(../img/svg/circle.svg);
+    background-image: url(../img/send.png);
     background-repeat: no-repeat;
     background-size: contain;
+    background-size: 70%;
     position: absolute;
-    width:100%;
+    width: 100%;
     height: 100%;
-    background-position: center center;
-    display: block;
-    background-color:transparent;
-    
+    background-position: center 30%;
+    background-color: transparent;
 }
 
 .msg_one_plugin .time{
@@ -1809,15 +1819,15 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     text-align: justify;
     background-color: rgba(250,250,250,1);
 }
-.comment_post .commment:first-child .user_cm{
-    
+.comment_post .commment:nth-child(odd) .user_cm{
+    background-color: rgb(242, 242, 242);
 }
 .comment_post .commment .user_cm .user_name{
     font-size: 14px;
     font-weight: 800;
      color:#285c91;
     display: inline-block;
-    background-color: rgba(250,250,250,1);
+    background-color:transparent;
 }
 .comment_post .commment .user_cm .user_text{
     font-size: 13px;
@@ -1827,8 +1837,11 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 }
 .comment_post .commment .user_cm .user_time{
     clear: both;
-    display: block;
-    color:#a8a8a8;
+    display: inline-block;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: #a8a8a8;
     font-size: 13px;
     margin-top: 5px;
     font-size: 12px;
@@ -1855,7 +1868,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     display: block;
     width:40px;
     height: 40px;
-    background-image: url(../img/chat/send-icon.svg);
+    background-image: url(../img/send.png);
     background-size: 40px;
     background-position: center center;
     background-repeat: no-repeat;
@@ -2065,10 +2078,22 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 .click_to_hide i.fa-angle-up:before{
     margin-top: -4px;
 }
-.share_btn{
+.share_btn ,.dl_btn{
     padding: 0 5px;
-    position: relative;
+    position: absolute;
     z-index: 2;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.33);
+    padding: 10px;
+    color:#fff;
+}
+.dl_btn{
+    left:50px;
+}
+.share_btn .fa,.dl_btn fa{
+    font-size: 18px;
 }
 /*--================--   --===================--*/
 .menu_hamber li.active,.menu_hamber li.active *{
@@ -2106,6 +2131,29 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     position: relative;
     top:10px;
 }
+/*--================--   --===================--*/
+.title_form .remove_btn{
+    color: #a50505;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 25px;
+    height: 30px;
+    font-size: 25px;
+}
+.bg_white{
+    background-color: rgb(253, 253, 253) !important;
+}
+
+/*--================--   --===================--*/
+/*--================--   --===================--*/
+/*--================--   --===================--*/
+/*--================--   --===================--*/
+/*--================--   --===================--*/
+/*--================--   --===================--*/
+/*--================--   --===================--*/
+/*--================--   --===================--*/
+/*--================--   --===================--*/
 /*--================--   --===================--*/
 
 @-webkit-keyframes gridItemAnimation{
@@ -2165,9 +2213,10 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
         height: 180px;
     }
     .btn_profile span {
-        padding-left: 25px;
+        padding-left: 30px;
         padding-top: 7px;
-        background-size: 20px;
+        background-size: 25px;
+        padding-bottom: 5px;
         margin-left: 20px;
     }
     .circle_btn {
@@ -2180,7 +2229,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     }
     .skills {
         margin: 20px auto;
-        width: 80%;
+        width: 100%;
     }
     .skills p {
         padding: 0 10px;
@@ -2188,7 +2237,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
         font-size: 18px;
     }
     .about_us_b {
-        width: 80%;
+        width: 100%;
         height: 60px;
         margin: 15px auto;
     }
@@ -2283,7 +2332,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
         font-size: 20px;
     }
     .register_form label {
-        height: 70px;
+        min-height: 70px;
     }
     .register_form label input {
         height: 70px;
@@ -2313,6 +2362,9 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     .snap-drawer li > a {
         padding: 18px 0px !important;
         text-indent: 15px !important;
+    }
+    .btn_profile {
+        margin-top: 20px;
     }
 /*--=============--   --===================--*/
 }
@@ -2414,8 +2466,12 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
         margin-top: 15px;
     }
     .cv_one .photo_cv .date,.cv_one .photo_cv .type{font-size: 13px;}
+    .user_one .user_one_info h3 {font-size: 14px;}
+    .user_one .user_one_info h5 {font-size: 12px;}
+
 /*--=============--   --===================--*/
 }
+@media only screen and (max-width :340px) {#content6 .logo_name{display: none;}}
 
 /*--=============--   --===================--*/
 
@@ -2426,3 +2482,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 /*--=============--   --===================--*/
 
 /*--=============--   --===================--*/
+
+.grid_15 {
+    
+}

@@ -3,7 +3,7 @@
     <div id="content22" class="snap-content contanet_profile gradiant_orange">
         <div id="toolbar">
             <a href="" id="open-right"></a>
-            <p class="logo_name" >نمونه کار های من</p>
+            <p class="logo_name" >ویدیوهای من</p>
             <div class="icons">
                 <a href="" onclick="window.history.back();" class="close"></a>
             </div>
@@ -18,7 +18,7 @@
                 <form class="mvd_img" action="" method="post">
                     <label class="title_form">
                         <span class="full_center"><i class="fa fa-object-group"></i></span>
-                        <text><h3>آپلود نمونه کار</h3><p>آپلود تصویر یا ویدیو</p></text>
+                        <text><h3>در این قسمت می توانید ویدیو های خود را آپلود نمایید  </h3></text>
                     </label>
                     <label style="height: 150px;">
                         <textarea type="text"  class="db inp_def mt_10 req text_img_vid" id="text_img_vid" rows="5" name="text" placeholder="در چند کلمه نمونه کار را توضیح دهید"></textarea>
@@ -43,7 +43,7 @@
                     <div class="photo_cv" p_id="{{element.p_id}}">
                         <div class="img" ng-if="element.p_type == '0'" style="background-image:url('{{base_url}}/uploads/portfolio/images-small/{{element.p_name}}')"></div>
                         <div class="img video" ng-if="element.p_type == '1'" style="background-image:url('{{base_url}}/uploads/portfolio/video_image/{{element.p_name.split('.')[0]}}.jpg')"></div>
-                        <span class="date">{{element.dates}} <span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}"><i class="fa fa-share-alt"></i></span></span>
+                        <span class="date">{{element.dates}}</span><span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="{{base_url}}api_show/portfolio_dl/{{element.p_id}}"><i class="fa fa-cloud-download"></i></span>
                         <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
                         <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
                     </div>
