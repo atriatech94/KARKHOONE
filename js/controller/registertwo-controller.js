@@ -33,7 +33,11 @@ angular.module('myapp')
                     data = JSON.parse(data);
                     states = data.state ;
                     cities = data.city ;
-                   // <option value="null">شهر محل سکونت</option>
+                    localStorage.setItem("city",JSON.stringify(cities));
+                    localStorage.setItem("state",JSON.stringify(states));
+                    
+                    console.log(localStorage.getItem("city"),localStorage.getItem("state"));
+                    // <option value="null">شهر محل سکونت</option>
                     state_select = '<option value="0" selected>استان محل سکونت</option>';
                     states.forEach(function(element,index){
                         state_select += '<option value="'+element.state_id+'">'+element.state_name+'</option>';

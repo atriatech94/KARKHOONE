@@ -83,6 +83,12 @@ angular.module('myapp')
                              user_info.member_id = user_data.member_id ;
                              user_info.picname = user_data.picname ;
                              user_info.passwd = user_data.passwd ;
+                     
+                             
+                             localStorage.setItem("user_follower","[]");
+                             localStorage.setItem("user_checked","[]");
+                             localStorage.setItem("user_view","[]");
+                             
                              user_data_update = new Array();
                              user_data_update[0] = user_info;
                              init(user_info.member_id);

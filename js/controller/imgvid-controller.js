@@ -30,7 +30,10 @@ angular.module('myapp')
 
                          data = JSON.parse(datas);
                          console.log(data);
-                         
+                         if(data.length == 0){
+                             is_req = 1;
+                             return false;
+                         }
                          data.forEach(function(element,index){
                              element.p_id = parseInt(element.p_id);
                              element.dates =  moment(element.p_date).calendar();
@@ -167,26 +170,7 @@ angular.module('myapp')
                                 }
                                 //msgBox.innerHTML = '<strong>' + escapeTags( filename ) + '</strong>' + ' successfully uploaded.';
                                 console.log(response);
-                                /*
-                                var res = '<div class="cv_one">';
-                                res += '<div class="photo_cv" p_id="'+response.p_id+'">';
-                                if(response.type=="0")
-                                {res += '<div class="img" style="background-image:url('+base_url+'uploads/portfolio/images-small/'+response.name+')"></div>';}
-                                else
-                                {  res += '<div class="img video" style="background-image:url('+base_url+'/uploads/portfolio/video_image/'+response.name.split('.')[0]+'.jpg)"></div>';}
-                                res += '<span class="date">'+moment(response.date).calendar()+'</span><span class="share_btn" share_url="'+base_url+'api_show_portfolio/'+response.p_id+'"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="'+base_url+'api_show_portfolio/'+response.p_id+'"><i class="fa fa-cloud-download"></i></span>';
-                                res += '<span class="type type-'+response.type+' orimage"><span class="value">'+Math.round(parseInt(response.filesize)/10240)/100+'MB</span></span>';
-                                res += '</div>';
-                                res += '<div class="extra bs">';
-                                res += '<span class="text">'+text+'</span>';
-                                res += '<ul class="count">';
-                                res += '<li class="like">0</li>';
-                                res += '<li class="comment">0</li>';
-                                res += '<li class="view">0</li>';
-                                res += '<li class="more">&zwnj;<div class="porfolio_spam remove_portfolio" p_id="'+response.p_id+'"><span>حذف</span></div><li>';
-                                res += '</ul></div></div>';
-                                $(".cv_list").prepend(res);
-                                */
+                                
 
                             } else {
                                 if ( response.msg )  {

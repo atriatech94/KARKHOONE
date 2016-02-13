@@ -2132,7 +2132,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 .share_btn ,.dl_btn{
     padding: 0 5px;
     position: absolute;
-    z-index: 2;
+    z-index: 5;
     position: absolute;
     top: 10px;
     left: 10px;
