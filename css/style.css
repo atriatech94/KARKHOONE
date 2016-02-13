@@ -477,12 +477,25 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 	background-color: #00ADEF;
 	display: block;
     right: 0px;
+    display:-webkit-box !important;
+	display:-ms-flexbox !important;
+	display:-webkit-flex !important;
+	display:flex !important;
+    -ms-flex-pack:center !important;
+	-webkit-justify-content:center !important;
+	justify-content:center !important;
+	-webkit-box-align:center !important;
+	-ms-flex-align:center !important;
+	-webkit-align-items:center !important;
+	align-items:center !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 .title_form span img {
 	width: 40px;
 	margin: 0 auto;
-	padding-top: 15px;
 	display: block;
+    
 }
 .now_register a:first-child {
 	float: right;
@@ -549,7 +562,7 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 .icons a {
 	display: inline-block;
 	width: 40px;
-	padding: 16px 0 ;
+	padding: 17px 0 ;
 }
 .icons a img {
 	display: block;
@@ -1095,14 +1108,25 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	padding: 10px 0;
     position: relative;
 }
-.skills img {
+.skills i {
 	width: 40px;
+	display: inline-block;
+	vertical-align: top;
+    position: absolute;
+    right: 0px;
+    font-size: 35px;
+    margin-right: 5px;
+    color:#788F9B;
+}
+
+.skills img{
+    width: 40px;
 	display: inline-block;
 	vertical-align: top;
 	margin-right: 10px;
     position: absolute;
     right: 0px;
-}
+} 
 .skills p {
 	display: inline-block;
 	width: 80%;
@@ -1129,7 +1153,9 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
 	padding: 15px 10px;
-	background-color: #164154;
+    background-color: #164154;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 .about_person .info_about {
 	padding: 4px 10px;
@@ -1200,8 +1226,6 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	-webkit-transition: .3s ease all;
 }
 .remove_image {
-	padding-top: 12px !important;
-	padding-left: 12px;
 	display: block;
 	transform: rotatez(45deg);
 }
@@ -1377,18 +1401,15 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
   
 }
 .msg_one.me:after{
-    color: #E1FFC7;
+    border-top-color: #E1FFC7;
 }
 .msg_one.you:after{
-    color: #FBFBFB;
+   border-top-color: #eee;
     transform: rotate(90deg);
     top: 0;
     left: -11px;
     right: inherit;
     border-top-color: #fff;
-}
-.msg_one.me:nth-of-type(1){
-    background-color: #eee !important;
 }
 .editor{
     position: fixed;
@@ -1430,7 +1451,9 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     height: 100%;
     background-position: center 30%;
     background-color: transparent;
+    right: 0px;
 }
+
 
 .msg_one_plugin .time{
     text-align: left;
@@ -1479,12 +1502,12 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     background-image: url(../img/chat/refresh.svg);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: 40px;
+    background-size: 30px;
     width: 60px;
     height: 60px;
     position: absolute;
-    left: 20px;
-    top: -15px;
+    left: 50px;
+    top: -18px;
 }
 /*--================--   --===================--*/
 .mt_15 > h3{
@@ -1537,12 +1560,12 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 }
 /*--================--   --===================--*/
 .progress{
-    margin-top: 10px;
+    margin-top: 8px;
     width: 100%;
-    height:20px;
+    height:5px;
     border:1px solid #9d9d9d;
     position: relative;
-    border-radius: 3px;
+    border-radius: 1px;
    
 }
 #msgBox{
@@ -1974,18 +1997,46 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 /*--================--   --===================--*/
 .percent_upload{
     text-align: center;
-    font-size: 20px;
+    font-size: 14px;
     position: relative;
     z-index: 1;
     text-shadow: 0px 1px 10px #fff;
-    margin: 10px auto;
+    margin: 5px auto;
+}
+
+.static_home_ref{
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    bottom: 4%;
+    left: 10%;
+    border-radius: 50%;
+    box-shadow: -4px 4px 10px -3px #000;
+    background-color: #174056;
     display: none;
+    margin-bottom: 20px;
+    z-index: 10;
+    display:-webkit-box;
+	display:-ms-flexbox;
+	display:-webkit-flex;
+	display:flex;
+	-webkit-box-pack:center;
+	-ms-flex-pack:center;
+	-webkit-justify-content:center;
+	justify-content:center;
+	-webkit-box-align:center;
+	-ms-flex-align:center;
+	-webkit-align-items:center;
+	align-items:center;
+}
+.static_home_ref i{
+    color: #fff;
+    font-size: 24px;
 }
 .loading_uploading{
     width:100%;
     height: auto;
     padding: 20px 0;
-    display: none;
 }
 .loading_uploading span{
     display: block;
@@ -2129,7 +2180,6 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 	-webkit-align-items:center;
 	align-items:center;
     position: relative;
-    top:10px;
 }
 /*--================--   --===================--*/
 .title_form .remove_btn{
@@ -2142,11 +2192,28 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     font-size: 25px;
 }
 .bg_white{
-    background-color: rgb(253, 253, 253) !important;
+    background-color: rgb(245, 245, 245) !important;
 }
 
 /*--================--   --===================--*/
+#user_image_up{
+  position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    right: 0px;
+}
 /*--================--   --===================--*/
+.ui-state-disabled{
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px 0;
+    color:#bf0404;
+    font-size: 16px;
+    display: none;
+}
 /*--================--   --===================--*/
 /*--================--   --===================--*/
 /*--================--   --===================--*/
@@ -2176,7 +2243,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 @media only screen and (min-width : 481px) and (max-width :768px) {
 /*--=============--   --===================--*/
     .swiper-slide {
-        padding-top: 130px;
+        padding-top: 90px;
     }
     #toolbar {
         height: 100px !important;
@@ -2366,6 +2433,24 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     .btn_profile {
         margin-top: 20px;
     }
+    .static_home_ref{
+        width: 75px;
+        height: 75px;
+    }
+    .static_home_ref i{
+        font-size: 30px;
+    }
+    .refresh_msg {
+        background-image: url(../img/chat/refresh.svg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: 40px;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        left: 80px;
+        top: -14px;
+    }
 /*--=============--   --===================--*/
 }
 
@@ -2375,7 +2460,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
         transform: translate3d(-5px, 0px, 0px);
     }
     .swiper-slide {
-        padding-top: 85px;
+        padding-top: 65px;
     }
     .circle_btn span {
         width: 45px;

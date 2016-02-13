@@ -183,8 +183,7 @@ angular.module('myapp')
                 /*========================share============================*/
                 $('.cv_list').on('click','.share_btn',function(){
                     var url = $(this).attr('share_url');
-                    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
-                    return false;
+                    share_fn(url);
                 });
                 /*====================================================*/
                 /*====================================================*/

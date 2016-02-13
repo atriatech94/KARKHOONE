@@ -52,7 +52,7 @@
                     <div class="comment_post bs">
                         <!--=================================-->
                         <div class="commment"  ng-repeat="element in commnet | orderBy:'-parseInt(id)':true " >
-                            <div ng-if="element.picname" class="img" style="background-image:url({{base_url}}uploads/user_img-small/{{element.picname}});"></div>
+                            <a href="#/profile/{{element.member_id}}" class="user_name"><div ng-if="element.picname"  class="img" style="background-image:url({{base_url}}uploads/user_img-small/{{element.picname}});"></div></a>
                             <div ng-if="!element.picname && element.gender == 0" class="img" style="background-image:url(img/user_men.jpg);"></div>
                             <div ng-if="!element.picname && element.gender == 1" class="img" style="background-image:url(img/user_women.jpg);"></div>
                             <div class="user_cm">

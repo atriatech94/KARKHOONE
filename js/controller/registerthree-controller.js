@@ -25,19 +25,25 @@ angular.module('myapp')
                     $('.main').delegate('.select_image',"click",function(){
                          /*select and show image to user before upload*/
                         if($('.takePictureField').val() ==""){
+                            $('#user_image_up').addClass("user_image_add");
+                            $('.select_image img').addClass("remove_image");
                             $('.takePictureField').click();
+                            
                         }else{
                             src = "img/user.png";
-                            $('#user_image_up').attr('src',src);
+                            $('#user_image_up').css('background-image',"url('"+src+"')");
                             $('#user_image_up').removeClass("user_image_add");
                             $('.select_image img').removeClass("remove_image");
                             $('.takePictureField').val("");
+                            //$('.takePictureField').click();
                             return false;
                         }
                     });
+                    
+                     
                 /*====================================================*/
                     var is_snd = 0;
-                    $(".upload_image").click(function(event){
+                    $(".upload_image").on("click",function(event){
                         
                        if(change_evenet !== undefined){
                            
@@ -58,8 +64,9 @@ angular.module('myapp')
                         
                     });
                 /*====================================================*/
-                    
                      $('.takePictureField').on("change",function(event){
+                         var src = window.URL.createObjectURL(event.target.files[0]);
+                         $('#user_image_up').css('background-image',"url('"+src+"')");
                          change_evenet = event;
                      });
                     
@@ -110,20 +117,4 @@ angular.module('myapp')
                 /*====================================================*/
             }/* end */
 }});
-function showimagepreview(input) 
-    {
-        if (input.files && input.files[0]) 
-        {
-            var filerdr = new FileReader();
-            filerdr.onload = function(e) 
-            {
-                //document.getElementById('user_image_up').src = e.target.result;
-                $('#user_image_up').attr('src', e.target.result);
-                $('#user_image_up').addClass("user_image_add");
-                $('.select_image img').addClass("remove_image");
-            }
-                
-            filerdr.readAsDataURL(input.files[0]);
-        }
-                       
-}
+

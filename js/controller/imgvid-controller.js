@@ -3,43 +3,64 @@ angular.module('myapp')
     $scope.base_url = base_url ;
     $scope.member_id = localStorage.getItem('user_id') ;
 })
-.directive('imgvidDir' , function ($rootScope, $timeout){
+.directive('imgvidDir' , function ($rootScope, $timeout,$route){
 		return {
 			link: function(scope) {
                 var post_one = Array();
                 var ofset = 0;
+                var is_req = 0;
+                var time_one = 0;
 				/*===============================================================================*/  
                 var snapper = new Snap({ element: document.getElementById('content22'), disable: 'left'});
                 $("body #content22").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
                 /*===============================================================================*/
                 if($rootScope.portfolio === undefined)
                 {
-                    show_anim();
-                     $.get(base_url+"/api_upload/portfolio/UPLo-098UYH-ooeWu/"+localStorage.getItem("user_id")+"/20/"+ofset+"/"+localStorage.getItem("user_id"),function(datas){
-                         hide_anim();
-                         
-                         data = JSON.parse(datas);
-                         console.log(data);
-                         
-                         data.forEach(function(element,index){
-                             element.dates =  moment(element.p_date).calendar();
-                             element.cap = Math.round(parseInt(element.p_filesize)/1048576)/1024;
-                             post_one.push(element);
-                         });
-                         scope.$apply(function(){
-                             scope.portfolio = post_one ;
-                             $rootScope.portfolio = post_one ;
-                             $rootScope.portfolio_ofset = ofset;
-                         }); 
-
-                     }).always(function(){
-                        hide_anim();
-                     }) 
+                    load_p(ofset);
                 }else{
                     scope.portfolio = $rootScope.portfolio ;
                     ofset = $rootScope.portfolio_ofset ;
                 }
                 
+                /*===============================================================================*/  
+                 function load_p(){
+                     show_anim(); 
+                     $.get(base_url+"/api_upload/portfolio/UPLo-098UYH-ooeWu/"+localStorage.getItem("user_id")+"/20/"+ofset+"/"+localStorage.getItem("user_id"),function(datas){
+                         hide_anim();
+
+                         data = JSON.parse(datas);
+                         console.log(data);
+                         
+                         data.forEach(function(element,index){
+                             element.p_id = parseInt(element.p_id);
+                             element.dates =  moment(element.p_date).calendar();
+                             element.cap = Math.round(parseInt(element.p_filesize)/1048576)/1024;
+                             post_one.push(element);
+                         });
+                         scope.$apply(function(){
+                             if(scope.portfolio === undefined){
+                                 scope.portfolio = post_one ;
+                                 $rootScope.portfolio = post_one ;
+                                 $rootScope.portfolio_ofset = ofset;
+                             }
+                             
+                             ofset+=20;
+                             is_req = 0;
+                             
+                         }); 
+                     }).fail(function(){
+                         hide_anim();
+                     }) 
+                }
+                /*===============================================================================*/
+                $('.tool_bar_fix').on("scroll",function(){
+                    
+                    var content = $('.tool_bar_fix') ;
+                    var ones =  content.scrollTop()  + content.height();
+                    var twoes =  $('.user_list').height() ;
+                    console.log(ones , twoes );
+                    if((   twoes - ones ) < 700 && is_req==0 ){is_req = 1;load_p(ofset);}
+                });
                 /*===============================================================================*/  
                 var text ;
                 function escapeTags( str ) {
@@ -57,13 +78,18 @@ angular.module('myapp')
                     var btn = document.getElementById('uploadBtn'),
                         progressBar = document.getElementById('progressBar'),
                         progressOuter = document.getElementById('progressOuter'),
+                        form_upload = document.getElementById('mvd_img'),
                         msgBox = document.getElementById('msgBox');
                     
                     var uploader = new ss.SimpleUpload({
-                        button: btn,
+                        button : btn ,
+                        autoSubmit:false,
+                        
                         url: base_url+'api_upload/upload/UPLo-098UYH-oou/'+localStorage.getItem("user_id"),
+                        sessionProgressUrl:base_url+'progressurl/uploadProgress.php',
                         name: 'uploadfile',
                         multipart: true,
+                        form : form_upload ,
                         async:true,
                         maxSize: 102400,/*kb*/
                         data:{ text: $('.text_img_vid').val() },
@@ -73,48 +99,77 @@ angular.module('myapp')
                         focusClass: 'focus',
                         responseType: 'json',
                         
-                        onProgress : function( darsad ){
-                            $('.mvd_img').hide();
+                        onProgress : function(darsad){
+                           // $('.mvd_img').hide();
                             $('.percent_upload,.loading_uploading').show(0);
-                            $('.percent_upload span').text(darsad);
+                            $('.percent_upload i').text(darsad);
                            
                         },
                         startXHR: function(filename, size) {
                             
                             progressOuter.style.display = 'block'; // make progress bar visible
-                            this.setProgressBar(progressBar);
+                            
                         },
-                        onSubmit: function() {
+                        onSubmit: function(filename, extension) {
                            
-                            
-                            
-                            msgBox.innerHTML = ''; // empty the message box
-                            btn.innerHTML = 'Uploading...'; // change button text to "Uploading..."
+                            $('.ui-state-disabled').show();
+                            $('.submit_register,.text_img_vid').hide();
+                            this.setAbortBtn($('.ui-state-disabled'));
                             this.setData({ text: document.getElementById("text_img_vid").value });
+                            this.setProgressBar(progressBar);
                             text = $('.text_img_vid').val();
+                            $('.changable_text').text('در حال آپلود... لطفا شکیبا باشید . ');
+                            
                             
                         },
                         onComplete: function( filename, response ) {
                             
                             setTimeout(function(){
-                                $('.mvd_img').show();
-                                $('.percent_upload').hide(0);
-                                $('.loading_uploading').hide(0);
+                                $('.mvd_img,.text_img_vid,.submit_register').show();
+                                $('.percent_upload,.ui-state-disabled,.loading_uploading').hide(0);
                                 progressOuter.style.display = 'none';
-                            },400);
-                            btn.innerHTML = 'یک فایل دیگر انتخاب کنید';
-                             // hide progress bar when upload is completed
-                                
+                            },100);
+                            
+                            $('.changable_text').text('ذخیره با موفقیت انجام شد ، یک فایل دیگر انتخاب کنید');
+                                                             
                             if ( !response ) {
-                                msgBox.innerHTML = 'خطا در آپلود - لطفا دقایقی بعد مجدد تلاش نمایید';
+                                $('.changable_text').text('خطا در آپلود - لطفا دقایقی بعد مجدد تلاش نمایید');
                                 return;
                             }
-
+                            
                             if ( response.success === true ) {
+                                if($rootScope.portfolio !== undefined)
+                                {
+                                    var new_por = {
+                                        c_count: null,
+                                        cap: Math.round(parseInt(response.filesize)/10240)/100 ,
+                                        dates: moment(response.date).calendar(),
+                                        duration: "0",
+                                        l_count: null,
+                                        member_do_like: null,
+                                        member_id: localStorage.getItem("user_id"),
+                                        p_active: "1",
+                                        p_date: response.date,
+                                        p_filesize: response.filesize,
+                                        p_id: parseInt(response.p_id),
+                                        p_name: response.name,
+                                        p_text: text,
+                                        p_type: response.type,
+                                        v_count: "0",
+                                    }
+                                    console.log($rootScope.portfolio.length);
+                                    scope.$apply(function(){
+                                        $rootScope.portfolio.push(new_por);
+                                        scope.portfolio = $rootScope.portfolio;
+                                        console.log($rootScope.portfolio.length);
+                                    });
+                                    
+                                }
                                 //msgBox.innerHTML = '<strong>' + escapeTags( filename ) + '</strong>' + ' successfully uploaded.';
                                 console.log(response);
-                              var res = '<div class="cv_one">';
-                                res += '<div class="photo_cv">';
+                                /*
+                                var res = '<div class="cv_one">';
+                                res += '<div class="photo_cv" p_id="'+response.p_id+'">';
                                 if(response.type=="0")
                                 {res += '<div class="img" style="background-image:url('+base_url+'uploads/portfolio/images-small/'+response.name+')"></div>';}
                                 else
@@ -131,33 +186,42 @@ angular.module('myapp')
                                 res += '<li class="more">&zwnj;<div class="porfolio_spam remove_portfolio" p_id="'+response.p_id+'"><span>حذف</span></div><li>';
                                 res += '</ul></div></div>';
                                 $(".cv_list").prepend(res);
+                                */
 
                             } else {
                                 if ( response.msg )  {
                                     msgBox.innerHTML = escapeTags( response.msg );
                                     
                                 } else {
-                                    msgBox.innerHTML = 'خطایی در هنگام آپلود رخ داده است - لطفا دقایقی بعد مجدد تلاش نمایید';
+                                    $('.changable_text').text( 'خطایی در هنگام آپلود رخ داده است - لطفا دقایقی بعد مجدد تلاش نمایید' );
                                 }
                                 $('.mvd_img').show();
                                 $('.percent_upload').hide(0);
                                 $('.loading_uploading').hide(0);
                             }
+                        },onAbort:function(e){
+
+                            $('.changable_text').text('آپلود لغو شد - یک فایل دیگر انتخاب کنید .');
+                            $('.submit_register,.mvd_img,.text_img_vid,.submit_register').show();
+                            $('.percent_upload,.ui-state-disabled,.loading_uploading,#progressOuter').hide(0);
                         },
                         onError: function(e) {
                             console.log(e);
-                            progressOuter.style.display = 'none';
-                            msgBox.innerHTML = 'خطا در آپلود - لطفا دقایقی بعد مجدد تلاش نمایید';
+                            //progressOuter.style.display = 'none';
+                            $('.changable_text').text('خطا در آپلود - لطفا ssدقایقی بعد مجدد تلاش نمایید');
                             $('.mvd_img').show();
                             $('.percent_upload').hide(0);
                             $('.loading_uploading').hide(0);
                         }
                     });
                     
-                    
+                    $(".submit_register").click(function(){
+                        uploader.submit();
+                    });
                 });
                 /*===============================================================================*/ 
                 $('.cv_list').on("click",".do_like",function(){
+                    
                       var p_id = $(this).parents('.extra').prev(".photo_cv").attr('p_id');
                       var photo_cv = $(this);
                       //show_anim();
@@ -220,8 +284,8 @@ angular.module('myapp')
                 });
                 /*========================share============================*/
                 $('.cv_list').on('click','.share_btn',function(){
-                   var url = $(this).attr('share_url');
-                   window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
+                    var url = $(this).attr('share_url');
+                    share_fn(url);// dar index.js hast
                 });
                 /*====================================================*/
                 

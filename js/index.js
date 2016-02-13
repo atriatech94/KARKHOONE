@@ -355,7 +355,7 @@ function resize_image(url, callback){
     var image = new Image();
     image.onload = function () {
         var canvas = document.createElement('canvas');
-		max_size = 800,// TODO : pull max size from a site config
+		max_size = 400,// TODO : pull max size from a site config
         canvas.width = this.naturalWidth;
         canvas.height = this.naturalHeight;
                   //  var dems
@@ -372,8 +372,9 @@ function resize_image(url, callback){
                         }
                     }
         canvas.getContext('2d').drawImage(this, 0, 0,canvas.width,canvas.height);
+        resizedImage = canvas.toDataURL('image/jpeg');
         // Get raw image data
-        canvas.toDataURL('image/jpeg').replace(/^data:image\/(png|jpg);base64,/, '');
+        canvas.toDataURL('image/jpeg');
         // ... or get as Data URI
         callback(canvas.toDataURL('image/jpeg'));
     };
@@ -413,5 +414,9 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
         return reader.readAsDataURL;
     }
+}
+function share_fn(url){
+    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
+                   
 }
 
