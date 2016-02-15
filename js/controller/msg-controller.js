@@ -125,6 +125,17 @@ angular.module('myapp')
 
                 
           /*====================================================*/
+                var draggable = document.getElementById('home_btn_ref');
+                console.log(draggable);
+                draggable.addEventListener('touchmove', function(event) {
+                    var touch = event.targetTouches[0];
+                          
+                    // Place element where the finger is
+                    draggable.style.left = touch.pageX-25 + 'px';
+                    draggable.style.top = touch.pageY-25 + 'px';
+                    event.preventDefault();
+                }, false);
+          /*====================================================*/
             }/* end */
 }})
 .controller('msgdetailController', function($scope,$rootScope) {

@@ -442,6 +442,48 @@ angular.module('myapp')
                     
                     });
 				    /*====================================================*/
+                    $('.register_form').delegate(".select_image","click",function(){
+                         if(!$(this).hasClass("user_img_change")){
+                            $('.register_form #amin .takePictureField').click();
+                        }
+                    });
+                    $('.takePictureField').change(function(event) {
+
+                        if (!isImage($('.takePictureField').val())) {
+                            alert('فرمت فایل انتخابی اشتباه است . مجدد تلاش نمایید ');
+
+                        }else{
+                            $('.short_info .user_img').addClass("user_img_change");
+                            resize_image(window.URL.createObjectURL(event.target.files[0]),function(dataUri){
+                                image_resize = dataUri;
+                                $.event.trigger({ type: "imageResized_myprofiles"});
+                            });
+
+                        }
+                    });
+                    $(document).on("imageResized_myprofiles", function (event) {
+                        $('.register_form .select_image').addClass("user_img_change");
+
+                        $.post(base_url+"api/change_image/Passwd12-amin-APload3/"+localStorage.getItem("user_id"),{profile_pic : image_resize})
+                        .done(function(data) {
+                             /* chechk inset and login user into software */
+                                 $('.register_form .select_image').removeClass("user_img_change");
+                                 var user_data = JSON.parse(data);
+                                 
+                                     $('body .snap-drawers .user_menu_info .img').css('background-image','url("'+base_url+'/uploads/user_img-medium/'+user_data.picname+'")');
+                                     var user_info_local = JSON.parse(localStorage.getItem("user_info"));
+                                     user_info_local[0].picname = user_data.picname;
+                                     localStorage.setItem("user_info",JSON.stringify(user_info_local));
+
+                             }).fail(function(){
+                                /*if user cant send data such as no internet access*/
+                                 $('.register_form .select_image').removeClass("user_img_change");
+                                 $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');                   
+                             });
+
+                        return false;
+                    });
+                 /*===================================================*/
                     /*====================================================*/
                     /*====================================================*/
                     

@@ -136,8 +136,8 @@ html, body {
 /* Show the red "No Drag" box in the demo */
 .no-drag {
 	position: absolute;
-	right: 2.5%;
-	width: 95%;
+	right: 0%;
+	width: 100%;
     top:0px;
 	height: 100%;
     z-index: 1;

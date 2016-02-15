@@ -121,7 +121,7 @@ angular.module('myapp')
                             this.setData({ text: document.getElementById("text_img_vid").value });
                             this.setProgressBar(progressBar);
                             text = $('.text_img_vid').val();
-                            $('.changable_text').text('در حال آپلود... لطفا شکیبا باشید . ');
+                            $('.changable_text').text('در حال بارگذاری ... لطفا شکیبا باشید  ');
                             
                             
                         },

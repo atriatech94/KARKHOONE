@@ -419,4 +419,49 @@ function share_fn(url){
     window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
                    
 }
+$(function(){
+    $('body').on("click",".dl_btn",function(){
+        dl_link =  $(this).attr("share_url");
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onRequestFileSystemSuccess, null); 
+        downloadFile2(dl_link);
+    });
+});
+ function downloadFile2(dl_link)
+{       
+       
+        var fileTransfer = new FileTransfer();
+        var uri = encodeURI(dl_link);
+		var filename = dl_link.substring(dl_link.lastIndexOf('/')+1);
+        var filePath = "/mnt/sdcard/Kaarkhooneh/"+filename;
+        
+        fileTransfer.download(
+            uri,
+            filePath,
+            function(entry) {
+               alert("download complete: " + entry.fullPath);
+                
+            },
+            function(error) {
+                 alert("download error source " + error.source);
+                 alert("download error target " + error.target);
+                 alert("upload error code" + error.code);
+            },
+            true,
+            {
+            }
+        );
+}
+
+function onRequestFileSystemSuccess(fileSystem) { 
+        var entry=fileSystem.root; 
+        entry.getDirectory("Kaarkhooneh", {create: true, exclusive: false}, onGetDirectorySuccess, onGetDirectoryFail); 
+} 
+
+function onGetDirectorySuccess(dir) { 
+      //alert("Created dir "+dir.name); 
+} 
+
+function onGetDirectoryFail(error) { 
+    // alert("Error creating directory "+error.code); 
+} 
 

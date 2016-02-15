@@ -9,9 +9,7 @@ angular.module('myapp')
 		return {
 			link: function(scope) {
                 $(document).ready(function () {
-                    $('.snap-content').on("error","img",function() {
-                        alert('Image does not exist !!');
-                    });
+
                     /*===============================================================================*/  
                     if($rootScope.profile_info_tab_index === undefined){ tab_index = 0 ;}else{ tab_index = $rootScope.profile_info_tab_index ; console.log( $rootScope.profile_info_tab_index ); }
                     /*===============================================================================*/  
@@ -19,7 +17,7 @@ angular.module('myapp')
                     $("body #content6").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
                     /*===============================================================================*/  
                    
-                    swiper2 = new Swiper( '.bg_fix .swiper1' ,{scrollbar: '.swiper-scrollbar', scrollbarHide: false,grabCursor: true,initialSlide :tab_index });
+                    swiper2 = new Swiper( '.bg_fix .swiper1' ,{scrollbar: '.swiper-scrollbar', scrollbarHide: false,grabCursor: true,followFinger:false,initialSlide :tab_index });
                     if(drop_swipe == 0){
                         drop_swipe_on = swiper2;
                         drop_swipe = 1 ;
