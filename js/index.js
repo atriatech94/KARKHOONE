@@ -416,7 +416,8 @@ function readURL(input) {
     }
 }
 function share_fn(url){
-    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
+   // window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
+    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', 'اشتراک گزاری شده توسط اپلیکیشن کارخونه', base_url+'file/logo_share.png', url);
                    
 }
 $(function(){
@@ -424,6 +425,8 @@ $(function(){
         dl_link =  $(this).attr("share_url");
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onRequestFileSystemSuccess, null); 
         downloadFile2(dl_link);
+        $('body .alert .msg').text("در حال دانلود فایل ...").parent('.alert').removeClass('none');
+        timeout = setTimeout(function(){ $('body .alert').addClass('none');},3000);
     });
 });
  function downloadFile2(dl_link)
@@ -438,13 +441,11 @@ $(function(){
             uri,
             filePath,
             function(entry) {
-               alert("download complete: " + entry.fullPath);
+               $('body .alert .msg').text("فایل مورد نظر با موفقیت دانلود شد").parent('.alert').removeClass('none');
                 
             },
             function(error) {
-                 alert("download error source " + error.source);
-                 alert("download error target " + error.target);
-                 alert("upload error code" + error.code);
+                $('body .alert .msg').text("خطا در دانلود ..").parent('.alert').removeClass('none');
             },
             true,
             {

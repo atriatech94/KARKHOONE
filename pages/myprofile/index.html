@@ -31,7 +31,7 @@
                     <div ng-if="user_info[0].picname" class="user_img bs"><span style='background-image:url({{base_url}}uploads/user_img-medium/{{user_info[0].picname}});'></span></div>
                     <div ng-if="!user_info[0].picname && user_info[0].gender == 0 " class="user_img bs"><span style='background-image:url(img/user_men.jpg);'></span></div>
                     <div ng-if="!user_info[0].picname && user_info[0].gender == 1 " class="user_img bs"><span style='background-image:url(img/user_women.jpg);'></span></div>
-                    <form class="change_profile_img" enctype="multipart/form-data"><input type="file" name="profile_pic" class="profile_pic" accept="image/*" style="display:none" /></form>
+                    <form class="change_profile_img" style="display:none" enctype="multipart/form-data"><input type="file" name="profile_pic" class="profile_pic" accept="image/*"  /></form>
                     <form id="amin" class="image_preload"  enctype="multipart/form-data"><span class="hidden_f" style=""><input name="profile_pic" type="file" class="takePictureField" accept="image/*"  /></span></form>
 
 
