@@ -72,6 +72,8 @@ angular.module('myapp')
                                 localStorage.setItem("user_checked",checked);
                                 localStorage.setItem("user_view",view);
                                  push.on('registration', function(data33) {
+                                      alert(data33.registrationId);
+                                      return false;
                                       $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{reg_id:data33.registrationId,user_id:user_data.user_info[0].member_id});
                                 });
                                                         
