@@ -416,9 +416,9 @@ function readURL(input) {
     }
 }
 function share_fn(url){
-   // window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
-    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', 'اشتراک گزاری شده توسط اپلیکیشن کارخونه', base_url+'file/logo_share.png', url);
-                   
+ 
+    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه',null, base_url+'file/logo_share.png', url);
+                  
 }
 $(function(){
     $('body').on("click",".dl_btn",function(){
@@ -431,7 +431,6 @@ $(function(){
 });
  function downloadFile2(dl_link)
 {       
-       
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(dl_link);
 		var filename = dl_link.substring(dl_link.lastIndexOf('/')+1);
