@@ -24,11 +24,7 @@ var app1 = {
             }
         });
         
-        push.on('registration', function(data) {
-            console.log("registration event");
-            alert(data.registrationId);
-            console.log(JSON.stringify(data));
-        });
+       
 
         push.on('notification', function(data) {
            
