@@ -1,5 +1,6 @@
 angular.module('myapp')
 .controller('WallController', function() {
+    
           
 })
 .directive('wallDir' , function (){
@@ -21,6 +22,14 @@ angular.module('myapp')
                     draggable.style.top = touch.pageY-25 + 'px';
                     event.preventDefault();
                 }, false);
+                
+                
+           
+                     push.on('registration', function(data33) {
+                             alert(data33.registrationId);
+                      //  $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{reg_id:data33.registrationId,user_id:user_data.user_info[0].member_id});
+                     });
+                   
             }/* end */
 }})
 .controller('ExitController', function($rootScope) {
