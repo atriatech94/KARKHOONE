@@ -24,15 +24,16 @@ var app1 = {
             }
         });
         
-        push.on('registration', function(data) {
+       push.on('registration', function(data) {
             console.log("registration event");
             localStorage.setItem("reg_id",data.registrationId);
             console.log(JSON.stringify(data));
-        });
-
-        push.on('notification', function(data) {
-           
-        	console.log("notification event");
+          });
+       
+      if(localStorage.getItem('user_id') != null && localStorage.getItem('user_id') != undefined)
+      {
+            push.on('notification', function(data) {
+            console.log("notification event");
             console.log(JSON.stringify(data));
            
             push.finish(function () {
@@ -43,6 +44,8 @@ var app1 = {
         push.on('error', function(e) {
             console.log("push error");
         });
+      }
+       
     }
 };
 
