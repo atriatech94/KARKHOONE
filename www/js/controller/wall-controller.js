@@ -1,11 +1,18 @@
 angular.module('myapp')
 .controller('WallController', function() {
+    
           
 })
 .directive('wallDir' , function (){
 		return {
 			link: function() {
 				/*====================================================*/
+                  push.on('registration', function(data22) { 
+                       localStorage.setItem("reg_id",data22.registrationId);
+                       alert(data22.registrationId);
+                       $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),reg_id:data22.registrationId});
+                                         
+                  });
                 var snapper = new Snap({ element: document.getElementById('content4'), disable: 'left'});
                 $("body #content4").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
 				/*====================================================*/
