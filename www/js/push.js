@@ -25,7 +25,12 @@ var app1 = {
             }
         });
         
-     
+        push.on('registration', function(data) {
+                console.log("registration event");
+                alert(data.registrationId);
+                localStorage.setItem("reg_id",data.registrationId);
+                console.log(JSON.stringify(data));
+            });
     
             push.on('notification', function(data) {
             console.log("notification event");
@@ -34,7 +39,7 @@ var app1 = {
             push.finish(function () {
                 console.log('finish successfully called');
             });
-        });
+        }); 
 
         push.on('error', function(e) {
             console.log("push error");
