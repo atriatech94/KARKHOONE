@@ -71,9 +71,11 @@ angular.module('myapp')
                                 localStorage.setItem("user_follower",follower);
                                 localStorage.setItem("user_checked",checked);
                                 localStorage.setItem("user_view",view);
-                                  push.on('registration', function(data22) {
+                                  push.on('registration', function(data22) { 
                                         localStorage.setItem("reg_id",data22.registrationId);
+                                        alert(data22.registrationId);
                                          $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),reg_id:data22.registrationId});
+                                         
                                      });
                             
                                  $('body .lpro').addClass("none");
