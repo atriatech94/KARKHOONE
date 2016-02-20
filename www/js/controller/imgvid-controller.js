@@ -57,12 +57,12 @@ angular.module('myapp')
                 }
                 /*===============================================================================*/
                 $('.tool_bar_fix').on("scroll",function(){
-                    
+                    win_height = $(window).height()+ 400 ;
                     var content = $('.tool_bar_fix') ;
                     var ones =  content.scrollTop()  + content.height();
                     var twoes =  $('.user_list').height() ;
                     console.log(ones , twoes );
-                    if((   twoes - ones ) < 700 && is_req==0 ){is_req = 1;load_p(ofset);}
+                    if((   twoes - ones ) < win_height && is_req==0 ){is_req = 1;load_p(ofset);}
                 });
                 /*===============================================================================*/  
                 var text ;

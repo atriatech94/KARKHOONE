@@ -147,11 +147,12 @@ angular.module('myapp')
                 }//end function
                /*====================================================*/
                 $('#content19 .of_list').on("scroll",function(){
+                    win_height = $(window).height()+ 400 ;
                     var content = $('#content19 .of_list') ;
                     var ones = ( content.scrollTop() - content.height() ) + $(window).height();
                     var twoes =  $('#content19 .follower').height() ;
                     console.log(twoes - ones);
-                    if((  twoes - ones) < 500 && is_req==0 ){ is_req = 1; fetch_serche_one($rootScope.search_data,$rootScope.search_address); }
+                    if((  twoes - ones) < win_height && is_req==0 ){ is_req = 1; fetch_serche_one($rootScope.search_data,$rootScope.search_address); }
                 });
                /*====================================================*/
             }/* end */

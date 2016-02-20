@@ -52,13 +52,13 @@ function init(member_id, callback) {
 
             }else if(message.command == "new_message_result_callback"){
                 //feedbacks of sending message is passed to sender
-                var appends = '<div class="msg_one me" id="msg-'+message.sender_msg_id+'" >';
+                /*var appends = '<div class="msg_one me" id="msg-'+message.sender_msg_id+'" >';
                 appends += '<div class="msg_one_text">'+message.txt+'</div>';
                 appends += '<div class="msg_one_plugin"><span class="send see-'+message.is_read+'"></span><span class="time">'+moment(message.insert_date).calendar()+'</span></div></div>';
                 $('.msg_list_chat').append(appends);
-                $('.msg_list_chat').scrollTop($('.msg_list_chat')[0].scrollHeight);
-                $("#p-"+message.msg_id).removeClass("already").addClass("see-1");
-                $("#p-"+message.msg_id).next("span").text(moment(message.insert_date).calendar());
+                $('.msg_list_chat').scrollTop($('.msg_list_chat')[0].scrollHeight);*/
+                $("#msg-"+message.sender_msg_id + " .send").removeClass("already").addClass("see-1");
+                $("#msg-"+message.sender_msg_id+" .time").text(moment(message.insert_date).calendar());
             }else if(message.command == "all_past_messages"){
                 //returns all messages from database
                 fetch_msg(message.msg_scroll, message.datas);
@@ -106,6 +106,11 @@ function send(me_id, you_id, command, txt){
 		init(me_id, function(){
 			try { 
 				socket.send(msg); 
+                var appends = '<div class="msg_one me" id="msg-'+msg_id+'" >';
+                appends += '<div class="msg_one_text">'+txt+'</div>';
+                appends += '<div class="msg_one_plugin"><span class="send see-'+0+'"></span><span class="time"></span></div></div>';
+                $('.msg_list_chat').append(appends);
+                $('.msg_list_chat').scrollTop($('.msg_list_chat')[0].scrollHeight);
 				number_of_socket_creation_tries_send = null;
 			}catch(ex) { 
 				if(ex.name == "InvalidStateError"){
@@ -121,6 +126,11 @@ function send(me_id, you_id, command, txt){
 	}else{
 		try { 
 			socket.send(msg); 
+            var appends = '<div class="msg_one me" id="msg-'+msg_id+'" >';
+                appends += '<div class="msg_one_text">'+txt+'</div>';
+                appends += '<div class="msg_one_plugin"><span class="send see-'+0+'"></span><span class="time"></span></div></div>';
+                $('.msg_list_chat').append(appends);
+                $('.msg_list_chat').scrollTop($('.msg_list_chat')[0].scrollHeight);
 			console.log('Sent: '+txt);
 			number_of_socket_creation_tries_send = null; 
 		} catch(ex) { 
@@ -416,9 +426,7 @@ function readURL(input) {
     }
 }
 function share_fn(url){
-   // window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
-    window.plugins.socialsharing.share('کارخونه', null,null, url);
-                   
+  window.plugins.socialsharing.share('کارخونه', null,null, url);    
 }
 $(function(){
     $('body').on("click",".dl_btn",function(){

@@ -8,21 +8,21 @@ html, body {
 }
 
 .snap-content {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: auto;
-  height: auto;
-  z-index: 2;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  -webkit-transform: translate3d(0, 0, 0);
-     -moz-transform: translate3d(0, 0, 0);
-      -ms-transform: translate3d(0, 0, 0);
-       -o-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    z-index: 2;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 .snap-drawers {
@@ -318,6 +318,20 @@ html, body {
     font-size: 14px;
     padding: 10px 0;
     width: auto;
+    position: relative;
+}
+.user_menu_info .exit_edit a:first-child ,.about_contact a:first-child{
+    margin-left: 8px;
+}
+.user_menu_info .exit_edit a:first-child:after ,.about_contact a:first-child:after{
+    content: "";
+    width: 1px;
+    height: 60%;
+    top: 7px;
+    left: -4px;
+    background: #8E8E8E;
+    z-index: 2;
+    position: absolute;
 }
 .about_contact {
     margin: 10px auto;

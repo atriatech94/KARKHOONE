@@ -19,7 +19,7 @@
                 <div class="profile_short_info bs">
                     <h3 >{{user_info[0].name}}</h3>
                     <h5 ng-if="user_info[0].field">{{user_info[0].field}}</h5>
-                    <span class="vline">{{now_year}} ساله </span>
+                    <span class="vline">{{now_year - user_info[0].age}} ساله </span>
                     <span> {{user_info[0].state}} ، {{user_info[0].city}} </span>
                     <div class="fl_list">
                         <span ng-if="count_fllower" class="vline"><a href="#/user_follower/{{user_info[0].member_id}}">{{ count_fllower}} دنبال کننده </a></span>

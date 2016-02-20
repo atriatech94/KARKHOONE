@@ -123,11 +123,12 @@ angular.module('myapp')
                 }
                 /*=====================Scroll Page===============================*/
                 $('#content13 .of_list').on("scroll",function(){
+                    win_height = $(window).height()+ 400 ;
                     var content = $('#content13 .of_list') ;
                     var ones = ( content.scrollTop() - content.height() ) + $(window).height();
                     var twoes =  $('#content13 .of_list').height() ;
                     console.log(twoes - ones);
-                    if((   twoes - ones ) < 700 && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
+                    if((   twoes - ones ) < win_height && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
                 });
                 
                 /*====================================================*/
@@ -264,11 +265,12 @@ angular.module('myapp')
                 }
                 /*=====================Scroll Page===============================*/
                 $('#content334 .of_list').on("scroll",function(){
+                    win_height = $(window).height()+ 400 ;
                     var content = $('#content14 .of_list') ;
                     var ones = ( content.scrollTop() - content.height() ) + $(window).height();
                     var twoes =  $('#content14 .follower').height() ;
                     console.log(twoes - ones);
-                    if((   twoes - ones ) < 700 && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
+                    if((   twoes - ones ) < win_height && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
                 });
                 
                 

@@ -13,9 +13,9 @@
         <div class="tool_bar_fix">
         <!--=================================-->
             <div class="mt_15 grid register_form">
-                <form  class="skill_uni">
+                
                     <label class="title_form">
-                        <span class="full_center"><i class="fa fa-user"></i></span>
+                        <span class="full_center" style="background-image:url('{{base_url}}uploads/user_img-small/{{user_info[0].picname}}');"></span>
                         <text><h3>ویرایش اطلاعات شما </h3><p>اطلاعات اولیه خود را ویرایش کنید</p></text>
                     </label>
                     <label class="title_form">
@@ -24,7 +24,8 @@
                     </label>
                     <form  class="change_profile_img " enctype="multipart/form-data"><input type="file" name="profile_pic" class="profile_pic hidden_f" accept="image/*" /></form>
                     <form id="amin" class="image_preload"  enctype="multipart/form-data"><span  style=""><input name="profile_pic" type="file" class="takePictureField hidden_f" accept="image/*"  /></span></form>
-                    <label >
+                  <form  class="skill_uni"> 
+                      <label >
                         <input type="text" class="db inp_def req" name="name" id="name" placeholder="نام خود را وارد کنید ...">
                     </label>
                     <!--================================================================-->
@@ -84,7 +85,26 @@
                         <textarea type="text" class="db inp_def" name="description" id="description" placeholder="توضیح مختصری در مورد خودتان ..." rows="6"></textarea>
                     </label>
                     <!--================================================================-->
-                    <input type="submit" class="btn_white submit_register" value="ثبت و ذخیره اطلاعات">
+                    <input type="submit" name="submit" class="btn_white submit_register submit_form1" value="ثبت و ذخیره اطلاعات">
+                </form>
+                <form class="mt_15">
+                    <label class="title_form">
+                        <span class="full_center" ><i class="fa fa-lock"></i></span>
+                        <text><h3>تغییر کلمه ی عبور</h3><p>رمز ورود به کارخانه را تغییر دهید</p></text>
+                    </label>
+                    <label>
+                        <input type="password" dir="auto"  autocomplete="off" class="db bs inp_def req english_only pass_inp" name="passwd" id="passwd" placeholder="کلمه ی عبور فعلی">
+                        <span class="show_passwd"></span>
+                    </label>
+                    <label>
+                        <input type="password" dir="auto"  autocomplete="off" class="db bs inp_def req english_only pass_inp" name="new_pass" id="new_pass" placeholder="کلمه ی عبور جدید">
+                        <span class="show_passwd"></span>
+                    </label>
+                    <label>
+                        <input type="password" dir="auto" autocomplete="off" class="db bs inp_def req english_only pass_inp" name="re_new_pass" id="re_new_pass" placeholder="تکرار کلمه ی عبور جدید ">
+                        <span class="show_passwd"></span>
+                    </label>
+                     <input type="submit" name="submit" class="btn_white submit_register submit_form2" value="ثبت و ذخیره اطلاعات">
                 </form>
                 <!--=================================-->
                 <div class="skill_list"></div>
