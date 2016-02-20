@@ -7,6 +7,7 @@ angular.module('myapp')
 		return {
 			link: function() {
 				/*====================================================*/
+                   alert(123);
                   push.on('registration', function(data22) { 
                        localStorage.setItem("reg_id",data22.registrationId);
                        alert(data22.registrationId);
