@@ -71,9 +71,7 @@ angular.module('myapp')
                                 localStorage.setItem("user_follower",follower);
                                 localStorage.setItem("user_checked",checked);
                                 localStorage.setItem("user_view",view);
-                                alert(push);
-                            
-                                 $('body .lpro').addClass("none");
+                               $('body .lpro').addClass("none");
 
                                 init(user_data.user_info[0].member_id);
                                 

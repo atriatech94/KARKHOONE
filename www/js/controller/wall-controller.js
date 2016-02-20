@@ -3,9 +3,17 @@ angular.module('myapp')
     
           
 })
-.directive('wallDir' , function (){
+.directive('wallDir' , function ($timeout){
 		return {
 			link: function() {
+                  $timeout(function () {
+                            push.on('registration', function(data) {
+                            console.log("registration event");
+                            alert(data.registrationId);
+                            localStorage.setItem("reg_id",data.registrationId);
+                            console.log(JSON.stringify(data));
+                        });
+                  });
 				/*====================================================*/
                 var snapper = new Snap({ element: document.getElementById('content4'), disable: 'left'});
                 $("body #content4").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
