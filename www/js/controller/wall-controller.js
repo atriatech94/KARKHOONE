@@ -32,13 +32,14 @@ angular.module('myapp')
 				/*====================================================*/
 
                 /*====================================================*/
-               localStorage.clear();
+                var user_id = localStorage.getItem("user_id");
+                var reg_id = localStorage.getItem("reg_id");
                 push.unregister(function() {
-                    alert('123');
-                    console.log('success');
+                      $.post(base_url+"api/user_unregister/Attmi3-HasJ00B3-9854NEsIHY",{user_id:user_id,reg_id:reg_id});
                 }, function() {
-                    console.log('error');
+                   
                 });
+                localStorage.clear();
                 quit();
                 window.location.hash = "#/select";
                 /*====================================================*/
