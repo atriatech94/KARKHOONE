@@ -43,7 +43,9 @@ angular.module('myapp')
                 });
                 localStorage.clear();
                 quit();
+                app1.initialize();
                 window.location.hash = "#/select";
+                
                 /*====================================================*/
                 
             }/* end */
