@@ -71,10 +71,11 @@ angular.module('myapp')
                                 localStorage.setItem("user_follower",follower);
                                 localStorage.setItem("user_checked",checked);
                                 localStorage.setItem("user_view",view);
-                                if(localStorage.getItem("reg_id") != "")
+                                if(localStorage.getItem("reg_id") == "" || localStorage.getItem("reg_id") == undefined )
                                 {
-                                   $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),reg_id:localStorage.getItem("reg_id")});
+                                  app1.initialize();
                                 }
+                              
                                  $('body .lpro').addClass("none");
 
                                 init(user_data.user_info[0].member_id);
