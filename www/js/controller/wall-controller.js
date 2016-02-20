@@ -32,7 +32,8 @@ angular.module('myapp')
 				/*====================================================*/
 
                 /*====================================================*/
-                localStorage.clear();
+               localStorage.clear();
+               unregister();
                 quit();
                 window.location.hash = "#/select";
                 /*====================================================*/
@@ -41,4 +42,4 @@ angular.module('myapp')
 }})
 .controller('ReloadController', function($rootScope) {
     window.history.back();
-})
+});

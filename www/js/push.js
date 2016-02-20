@@ -26,12 +26,11 @@ var app1 = {
         
        push.on('registration', function(data) {
             console.log("registration event");
+            alert(data.registrationId);
             localStorage.setItem("reg_id",data.registrationId);
             console.log(JSON.stringify(data));
           });
-       
-      if(localStorage.getItem('user_id') != null && localStorage.getItem('user_id') != undefined)
-      {
+    
             push.on('notification', function(data) {
             console.log("notification event");
             console.log(JSON.stringify(data));
@@ -44,9 +43,16 @@ var app1 = {
         push.on('error', function(e) {
             console.log("push error");
         });
-      }
+      
        
     }
 };
 
 app1.initialize();
+function unregister (){
+     push.unregister(function() {
+                    console.log('success');
+                }, function() {
+                    console.log('error');
+                });
+}
