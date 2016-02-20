@@ -1,3 +1,4 @@
+var push;
 var app1 = {
     // Application Constructor
     initialize: function() {
@@ -16,7 +17,7 @@ var app1 = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         
-        var push = PushNotification.init({
+         push = PushNotification.init({
             "android": {
                 "senderID": "1092587381698",
                 "android.sound" : true,
