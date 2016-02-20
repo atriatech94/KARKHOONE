@@ -26,7 +26,7 @@ var app1 = {
         
         push.on('registration', function(data) {
             console.log("registration event");
-            localStorage.setItem("reg_id","data.registrationId");
+            localStorage.setItem("reg_id",data.registrationId);
             console.log(JSON.stringify(data));
         });
 
