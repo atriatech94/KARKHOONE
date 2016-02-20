@@ -25,7 +25,9 @@ var app1 = {
             }
         });
         
-       push.on('notification', function(data) {
+     
+    
+            push.on('notification', function(data) {
             console.log("notification event");
             console.log(JSON.stringify(data));
            

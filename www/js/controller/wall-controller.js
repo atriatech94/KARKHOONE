@@ -7,12 +7,12 @@ angular.module('myapp')
 		return {
 			link: function() {
 				/*====================================================*/
-                   alert(123);
-                  push.on('registration', function(data22) { 
-                       localStorage.setItem("reg_id",data22.registrationId);
-                       alert(data22.registrationId);
-                       $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),reg_id:data22.registrationId});
-                                         
+                   
+                   push.on('registration', function(data) {
+                        console.log("registration event");
+                        alert(data.registrationId);
+                        localStorage.setItem("reg_id",data.registrationId);
+                        console.log(JSON.stringify(data));
                   });
                 var snapper = new Snap({ element: document.getElementById('content4'), disable: 'left'});
                 $("body #content4").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
