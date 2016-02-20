@@ -7,7 +7,18 @@ angular.module('myapp')
 		return {
 			link: function() {
 				/*====================================================*/
-                
+               if(localStorage.getItem("reg_done") != "done" )
+               {
+                  setTimeout(function() {
+                    if(localStorage.getItem("reg_id"))
+                    {
+                       alert(123);
+                       $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),reg_id:localStorage.getItem("reg_id")});
+                       localStorage.setItem("reg_done","done");  
+                    }
+                   
+                }, 4000); 
+               } 
                 var snapper = new Snap({ element: document.getElementById('content4'), disable: 'left'});
                 $("body #content4").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
 				/*====================================================*/
@@ -32,17 +43,7 @@ angular.module('myapp')
 		return {
 			link: function() {
 				/*====================================================*/
-              
-                  setTimeout(function() {
-                    if(localStorage.getItem("reg_id") != "")
-                    {
-                       alert(123);
-                       $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),reg_id:localStorage.getItem("reg_id")});
-                       localStorage.setItem("reg_done","done");  
-                    }
-                   
-                }, 4000); 
-              
+            
               
                 /*====================================================*/
                 var user_id = localStorage.getItem("user_id");
