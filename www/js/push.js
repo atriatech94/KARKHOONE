@@ -49,10 +49,3 @@ var app1 = {
 };
 
 app1.initialize();
-function unregister (){
-     push.unregister(function() {
-                    console.log('success');
-                }, function() {
-                    console.log('error');
-                });
-}

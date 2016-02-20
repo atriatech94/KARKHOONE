@@ -33,7 +33,12 @@ angular.module('myapp')
 
                 /*====================================================*/
                localStorage.clear();
-               unregister();
+                push.unregister(function() {
+                    alert('123');
+                    console.log('success');
+                }, function() {
+                    console.log('error');
+                });
                 quit();
                 window.location.hash = "#/select";
                 /*====================================================*/
