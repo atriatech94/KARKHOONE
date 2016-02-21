@@ -47,7 +47,8 @@ var app1 = {
         window.plugins.imeiplugin.getImei(callback1);
 
         function callback1(imei) {
-            alert("My Android IMEI :" + imei);
+            alert("My Android IMEI :" + imei + "model" + device.model);
+            
         }
       
        
