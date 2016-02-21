@@ -43,6 +43,12 @@ var app1 = {
         push.on('error', function(e) {
             console.log("push error");
         });
+        
+        window.plugins.imeiplugin.getImei(callback1);
+
+        function callback1(imei) {
+            alert("My Android IMEI :" + imei);
+        }
       
        
     }

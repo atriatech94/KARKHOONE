@@ -36,6 +36,7 @@
     <gap:plugin name="org.apache.cordova.media" />
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
+    <plugin name="com.joandilee.imeiplugin" spec="0.1" source="pgb" />
   
     
     <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
