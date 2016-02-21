@@ -1,24 +1,33 @@
 angular.module('myapp')
 .controller('WallController', function() {
-    
           
 })
 .directive('wallDir' , function (){
 		return {
 			link: function() {
-				/*====================================================*/
-               if(localStorage.getItem("reg_done") != "done" )
+                
+             if(localStorage.getItem("reg_done") != "done" )
                {
                   setTimeout(function() {
-                    if(localStorage.getItem("reg_id"))
+                    if(localStorage.getItem("reg_id") != null && localStorage.getItem("reg_id") !== undefined)
                     {
-                       alert(123);
                        $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),reg_id:localStorage.getItem("reg_id")});
                        localStorage.setItem("reg_done","done");  
+                    }
+                    else
+                    {
+                        setTimeout(function() {
+                            if(localStorage.getItem("reg_id") != null && localStorage.getItem("reg_id") !== undefined)
+                            {
+                                $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),reg_id:localStorage.getItem("reg_id")});
+                                localStorage.setItem("reg_done","done");  
+                            }
+                        }, 5000); 
                     }
                    
                 }, 4000); 
                } 
+				/*====================================================*/
                 var snapper = new Snap({ element: document.getElementById('content4'), disable: 'left'});
                 $("body #content4").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
 				/*====================================================*/
@@ -43,8 +52,7 @@ angular.module('myapp')
 		return {
 			link: function() {
 				/*====================================================*/
-            
-              
+
                 /*====================================================*/
                 var user_id = localStorage.getItem("user_id");
                 var reg_id = localStorage.getItem("reg_id");
@@ -56,11 +64,10 @@ angular.module('myapp')
                 localStorage.clear();
                 quit();
                 window.location.hash = "#/select";
-                
                 /*====================================================*/
                 
             }/* end */
 }})
 .controller('ReloadController', function($rootScope) {
     window.history.back();
-});
+})

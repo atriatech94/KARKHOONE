@@ -64,19 +64,18 @@ angular.module('myapp')
                                 
                                 localStorage.setItem("user_info",user_info);
                                 localStorage.setItem("user_id",user_data.user_info[0].member_id);
-                                
+                                 if(localStorage.getItem("reg_id") == "" || localStorage.getItem("reg_id") === undefined )
+                                {
+                                  app1.initialize();
+                                }
                                 localStorage.setItem("city",city);
                                 localStorage.setItem("state",state);
                                 localStorage.setItem("user_skill",user_skill);
                                 localStorage.setItem("user_follower",follower);
                                 localStorage.setItem("user_checked",checked);
                                 localStorage.setItem("user_view",view);
-                                if(localStorage.getItem("reg_id") == "" || localStorage.getItem("reg_id") == undefined )
-                                {
-                                  app1.initialize();
-                                }
-                              
-                                 $('body .lpro').addClass("none");
+                                
+                                $('body .lpro').addClass("none");
 
                                 init(user_data.user_info[0].member_id);
                                 
@@ -84,6 +83,8 @@ angular.module('myapp')
                             }
                             
                         }).fail(function(){
+                            
+                            $('body .lpro').addClass("none");
                             $('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');
                             timeout = setTimeout(function(){$('body .alert').addClass('none');},5000);
                             return false;

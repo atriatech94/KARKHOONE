@@ -8,7 +8,6 @@
                 <a href="" onclick="window.history.back()" class="close"></a>
             </div>
             <div class="clear"></div>
-            
         </div>
     <div class="tool_bar_fix">
         <!--=================toolbar fix start================-->
@@ -20,8 +19,12 @@
                 <div class="profile_short_info bs">
                     <h3 >{{user_info[0].name}}</h3>
                     <h5 ng-if="user_info[0].field">{{user_info[0].field}}</h5>
-                    <span class="vline">{{now_year - user_info[0].age}} ساله </span>
+                    <span class="vline">{{now_year}} ساله </span>
                     <span> {{user_info[0].state}} ، {{user_info[0].city}} </span>
+                    <div class="fl_list">
+                        <span ng-if="count_fllower" class="vline"><a href="#/user_follower/{{user_info[0].member_id}}">{{ count_fllower}} دنبال کننده </a></span>
+                        <span ng-if="count_fllowing"><a href="#/user_following/{{user_info[0].member_id}}">{{count_fllowing}} دنبال شونده</a></span>
+                    </div>
                 </div>
                  <!--=============end profile_short_info================-->
                 <div ng-if="user_spam == '0'" class="setting_link bs"><img src="img/menu_setting.png"><div class="spam"><ul><li>گزارش تخلف کاربر</li></ul></div></div>
@@ -54,7 +57,7 @@
                     <div class="circle_btn">
                         <div ng-if="follower.indexOf(user_info[0].member_id) > -1"><span class="circle_btn_like active"  user_id="{{user_info[0].member_id}}" ></span></div>
                         <div ng-if="follower.indexOf(user_info[0].member_id) == -1"><span class="circle_btn_like"  user_id="{{user_info[0].member_id}}" ></span></div>
-                        <div><span class="circle_btn_msg"></span></div>
+                        <div><span class="circle_btn_msg" is_chat="{{is_chat}}"></span></div>
                         <div ng-if="checked.indexOf(user_info[0].member_id) !== -1" ><span class="circle_btn_view active" user_id="{{user_info[0].member_id}}" ></span></div>
                         <div ng-if="checked.indexOf(user_info[0].member_id) == -1" ><span class="circle_btn_view" user_id="{{user_info[0].member_id}}"  ></span></div>
                         <div class="clear"></div>

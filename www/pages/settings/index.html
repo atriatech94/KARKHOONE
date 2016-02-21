@@ -46,6 +46,20 @@
                         <option value="2" ng-selected="perm_cv && perm_cv.access_level=='2'">رزومه من را به همه نمایش بده</option>
                     </select>
                 </label>
+                <label>
+                    <select name="follower" id="follower">
+                        <option value="0" ng-selected="perm_follower && perm_follower.access_level=='0'">دنبال کننده های  من را به هیچ کس نمایش نده</option>
+                        <option value="1" ng-selected="perm_follower && perm_follower.access_level=='1'">دنبال کننده های من را فقط به دوستانم نمایش بده</option>
+                        <option value="2" ng-selected="perm_follower && perm_follower.access_level=='2'">دنبال کننده های من را به همه نمایش بده</option>
+                    </select>
+                </label>
+                <label>
+                    <select name="following" id="following">
+                        <option value="0" ng-selected="perm_following && perm_following.access_level=='0'">دنبال شونده های  من را به هیچ کس نمایش نده</option>
+                        <option value="1" ng-selected="perm_following && perm_following.access_level=='1'">دنبال شونده های من را فقط به دوستانم نمایش بده</option>
+                        <option value="2" ng-selected="perm_following && perm_following.access_level=='2'">دنبال شونده های من را به همه نمایش بده</option>
+                    </select>
+                </label>
                 <br>
                 <label class="submit mt_10"><input type="submit" class="btn_white submit_register" value="ثبت و ذخیره تنظیمات"></label>
             </form>

@@ -53,9 +53,13 @@ angular.module('myapp')
             templateUrl: 'pages/view_user/follower.html',
             controller: 'viewuserController',
 		})
-        .when('/follower/:user_id', {
+        .when('/user_follower/:user_id', {
             templateUrl: 'pages/view_user/user_follower.html',
             controller: 'viewuserflwController',
+		})
+        .when('/user_following/:user_id', {
+            templateUrl: 'pages/view_user/user_following.html',
+            controller: 'viewuserflwingController',
 		})
 		.when('/following', {
             templateUrl: 'pages/view_user/following.html',

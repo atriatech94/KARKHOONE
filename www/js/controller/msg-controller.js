@@ -197,7 +197,45 @@ angular.module('myapp')
                }); 
           
                 $('.msg_list_chat').on("scroll",function(){if($('.msg_list_chat').scrollTop() == 0  && is_req==0){is_req = 1;fetch_msg_websocket(scope.user_id, scope.user_info[0].member_id,  $('.msg_one:eq(0)').attr("id"));}});
-          
+                
+                /*=============================================================*/
+                $('.icons').on("click",".delete_chat",function(){
+                    var msg_chat_id = $(this).attr('msg_chat_id');
+                    var x;
+                    if (confirm("آیا برای حذف اطمینان دارید") == true) {
+                        $.get(base_url+"/api_upload/disable_all_msg/UPssdfo-098UdfsdfY-oosfWu/"+localStorage.getItem("user_id")+"/"+$(this).attr("your_id"),function(datas){});
+                        var pp_id = $.grep(scope.datas,function(element){
+                            return element.msg_chat_id != msg_chat_id;
+                        });
+                       
+                        scope.$apply(function(){
+                            $rootScope.msg = pp_id;
+                            scope.datas = pp_id;
+                        });
+                        window.location.hash ="#/msg";
+                        return false;     
+                    }               
+                });
+                /*=============================================================*/
+                $('.icons').on("click",".delete_block_chat",function(){
+                    var msg_chat_id = $(this).attr('msg_chat_id');
+                    var x;
+                    if (confirm("آیا برای حذف و بلاک این کاربر اطمینان دارید اطمینان دارید") == true) {
+                        $.get(base_url+"/api_upload/disable_remove_all_msg/UPssdfo-098sc33UdfsdfY-oosfWu/"+localStorage.getItem("user_id")+"/"+$(this).attr("your_id"),function(datas){});
+                        var pp_id = $.grep(scope.datas,function(element){
+                            return element.msg_chat_id != msg_chat_id;
+                        });
+                        
+                        scope.$apply(function(){
+                            
+                            $rootScope.msg = pp_id;
+                            scope.datas = pp_id;
+                        });
+                        window.location.hash ="#/msg";
+                        return false;     
+                    }               
+                });
+                /*=============================================================*/
               
           
             }

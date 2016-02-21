@@ -562,12 +562,12 @@ input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
 	float: left;
 	margin-left: 10px;
 }
-.icons a {
+.icons>a {
 	display: inline-block;
 	width: 40px;
 	padding: 17px 0 ;
 }
-.icons a img {
+.icons>a img {
 	display: block;
 	width: 25px;
 	margin: 0 auto;
@@ -811,6 +811,8 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	color: #a3a3a3;
 	font-size: 12px;
 	margin-top: 8px;
+    display: inline-table;
+    width: auto;
 }
 .user_one .user_one_info .vline {
 	padding: 0px 0px 0px 5px;
@@ -948,7 +950,7 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
 	color: #fff;
 	font-size: 16px;
 	margin-top: 5px;
-    text-indent: 12%;
+    text-indent: 11%;
 }
 .some_flowers ul {
 	display: block;
@@ -971,7 +973,7 @@ sliderone-dir, slidertwo-dir, sliderthree-dir, sliderfour-dir, wall-dir {
     position: relative;
 }
 .some_flowers ul a:first-child{
-    margin-right: 11%;
+    margin-right: 10%;
 }
 .some_flowers ul a span {
 	padding: 10px 0;
@@ -1302,11 +1304,11 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 .of_list{
     padding-top: 110px;
     position: absolute;
-    right: 2.5%;
+    right: 0%;
     top: 0px;
     overflow-y: auto;
     overflow-x: hidden;
-    width: 95%;
+    width: 100%;
     height: 100%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -2236,8 +2238,98 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     display: none;
 }
 /*--================--   --===================--*/
+.fl_list span{
+    padding-top:0px !important;
+    padding-bottom:0px !important;
+}
 /*--================--   --===================--*/
+.option_chat_icon{
+    top:17px;
+    left:70px;
+    width: 50px;
+    height: 0;
+    position: absolute;
+    background-image: url(../img/menu_setting.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.option_chat_icon:hover .option_chat{
+    display: block;
+}
+.option_chat{
+    display: none;
+    position: absolute;
+    left: 0px;
+    top: 40px;
+    background-color: #fff;
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px -1px #000;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.option_chat:before{
+    width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #fff;
+    position: absolute;
+    top:-9px;
+    left: 10px;
+    content: "";
+    
+}
+.option_chat span{
+    display: block;
+    width: 100%;
+    padding: 10px 10px;
+    background: none;
+    font-size: 15px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.option_chat span:first-child{
+    border-bottom: 1px solid #CECECE;
+}
+
 /*--================--   --===================--*/
+.alert_btn {
+    direction: rtl;
+}
+.alert_btn button{
+    display: block;
+    width: 50%;
+    float: right;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 16px;
+    border:2px solid #fff;
+    font-family: "b koodak";
+    margin-top: 10px;
+}
+.alert_btn p{
+    font-size: 18px;
+}
+.alert_btn button.unblock_user{
+    background-color: #46a54f;
+    color:#fff;
+}
+.alert_btn button.noting_else{
+    background-color: #3564a5;
+    color:#fff;
+}
+.fancybox-inner{
+    height: auto !important;
+    padding:0px;
+    font-family: "b koodak";
+}
 /*--================--   --===================--*/
 /*--================--   --===================--*/
 /*--================--   --===================--*/
@@ -2269,7 +2361,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     #toolbar {
         height: 100px !important;
     }
-    .icons a {
+    .icons>a {
         padding: 16px 7px;
     }
     .links a {
@@ -2375,7 +2467,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     .icons {
         margin-left: 20px;
     }
-    .icons a {
+    .icons>a {
         padding: 32px 0px;
         margin-left: 15px;
         
@@ -2391,7 +2483,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
         font-size: 16px;
         top: 22px;
     }
-    .icons a img {
+    .icons>a img {
         width: 35px;
     }
     .circle_btn span {
@@ -2504,6 +2596,10 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     .chat_close{
         margin-top: 15px;
     }
+    .option_chat_icon{
+        top: 28px !important;
+        left:50px !important;
+    }
     .cv_one .photo_cv .date,.cv_one .photo_cv .type{font-size: 14px;}
 /*--=============--   --===================--*/
 }
@@ -2511,7 +2607,12 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
 /*--=============--   --===================--*/
     
 @media only screen and (max-width :330px) {
+    
 /*--=============--   --===================--*/
+    .option_chat_icon{
+        top: 28px !important;
+        left:50px !important;
+    }
     .swiper-scrollbar-drag {
         transform: translate3d(-5px, 0px, 0px);
     }
@@ -2522,7 +2623,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
        
     }
     .btn_profile {
-        margin-top: 5px !important
+       margin-top: 15px !important;
     }
     .circle_btn span {
         width: 35px;
@@ -2551,7 +2652,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     .user_img {
         width: 100px;
         height: 100px;
-        margin-top: 15px;
+        margin-top: 33px;
     }
     .some_flowers {
         padding-top: 10px;

@@ -128,6 +128,24 @@ angular.module('myapp')
                  
             },
             templateUrl :  "pages/wall/show_user.html"
+}})
+.directive('showuser7Dir' ,  function ($rootScope,$http,$routeParams){
+    return {
+            link: function(scope) {
+                var dir  = "showuser7-dir" ;
+                var load_fun = show_user($rootScope,$http,scope,dir);
+                 
+            },
+            templateUrl :  "pages/wall/show_user.html"
+}})
+.directive('showuser8Dir' ,  function ($rootScope,$http,$routeParams){
+    return {
+            link: function(scope) {
+                var dir  = "showuser8-dir" ;
+                var load_fun = show_user($rootScope,$http,scope,dir);
+                 
+            },
+            templateUrl :  "pages/wall/show_user.html"
 }});
 /*===============================================================================*/  
 function show_user($rootScope,$http,scope,dir){
@@ -153,6 +171,8 @@ function show_user($rootScope,$http,scope,dir){
             else if(in_scope == "myfollower"){data = $rootScope.myfollower;}
             else if(in_scope == "follower"){data = $rootScope.follower;}
             else if(in_scope == "myfollowing"){data = $rootScope.myfollowing;}
+            else if(in_scope == "youfollowing"){data = $rootScope.youfollowing;}
+            else if(in_scope == "youfollower"){data = $rootScope.youfollower;}
             else if(in_scope == "mychecked"){data = $rootScope.mychecked;}
             else if(in_scope == "search"){data = $rootScope.search;}
 

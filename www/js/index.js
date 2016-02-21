@@ -11,7 +11,7 @@ var days3 = moment().subtract(24, 'hour').valueOf() ;
 
 
 function init(member_id, callback) {
-    var host = "ws://atriaweb.ir:9000/socket/chatServer.php"; // SET THIS TO YOUR SERVER
+    var host = "ws://kaarkhoone.ir:18000/kaarkhooneh/socket/chatServer.php"; // SET THIS TO YOUR SERVER
     try {
         socket = new WebSocket(host);
         console.log('WebSocket - status '+socket.readyState);
@@ -416,9 +416,9 @@ function readURL(input) {
     }
 }
 function share_fn(url){
- 
-    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه',null, base_url+'file/logo_share.png', url);
-                  
+   // window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
+    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', 'اشتراک گزاری شده توسط اپلیکیشن کارخونه', base_url+'file/logo_share.png', url);
+                   
 }
 $(function(){
     $('body').on("click",".dl_btn",function(){
@@ -431,6 +431,7 @@ $(function(){
 });
  function downloadFile2(dl_link)
 {       
+       
         var fileTransfer = new FileTransfer();
         var uri = encodeURI(dl_link);
 		var filename = dl_link.substring(dl_link.lastIndexOf('/')+1);

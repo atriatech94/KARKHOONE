@@ -1,9 +1,10 @@
 angular.module('myapp')
 .controller('ProfileController', function($scope,$rootScope,$routeParams,$http) {
     
-    if($routeParams.user_id == localStorage.getItem("user_id")){
+    /*if($routeParams.user_id == localStorage.getItem("user_id")){
         window.location.href = "#/myprofile";
     }
+    */
     show_anim();
     $scope.user_info = [{ city: "------",
             description: "------------------------------",
@@ -19,7 +20,8 @@ angular.module('myapp')
             state: "------",
             status: "0",
             view: "6"
-                        }];
+    }];
+    
     $scope.portfolios = 0;
     $scope.count_s1 = 0;
     $scope.count_s2 = 0;
@@ -27,6 +29,7 @@ angular.module('myapp')
      if($rootScope.profile_info !== undefined){
         $scope.user_info = $rootScope.profile_info;
     }
+    $scope.is_chat = "0";
     $http.get(base_url+"/api_inapp/get_user_info/Att6i3-HaREWin0B3-98FFGG858HY/"+$routeParams.user_id+"/"+localStorage.getItem("user_id") )
     .success(function(response){
         //console.log(response.user_info.portfolio,response);
@@ -50,6 +53,12 @@ angular.module('myapp')
                                 break;
                             case "portfolio":
                                 response.user_info.portfolio = undefined;
+                                break;
+                            case "follower":
+                                response.count_follower[0].count_follower = undefined;
+                                break;
+                            case "following":
+                                response.count_following[0].count_following = undefined;
                                 break;
                             default:
                         }//end sqwitch
@@ -76,6 +85,12 @@ angular.module('myapp')
                             case "portfolio":
                                  response.user_info.portfolio = undefined;
                                 break;
+                            case "follower":
+                                response.count_follower[0].count_follower = undefined;
+                                break;
+                            case "following":
+                                response.count_following[0].count_following = undefined;
+                                break;
                             default:
 
                         }//end sqwitch
@@ -90,15 +105,40 @@ angular.module('myapp')
         if(localStorage.getItem("user_checked") == null){
             localStorage.setItem("user_checked","[]");
         }
+        
+        console.log("inee",response.chat_block);
+        if(response.chat_block.length > 1 ){
+            $scope.is_chat = "4";
+        }
+        else if(response.chat_block.length == 1 && response.chat_block[0].user_blocked == localStorage.getItem('user_id')){
+            //this user block you
+            $scope.is_chat = "1";
+            
+        }else if(response.chat_block.length == 1 && response.chat_block[0].user_do_block == localStorage.getItem('user_id')){
+            $scope.is_chat = "2";
+            //your block this user
+        }else{
+            //notting
+            $scope.is_chat = "3";
+        }
 
         /*==============================================*/
         $scope.user_info = response.user_info ;
-        console.log(response.user_info2,response.user_info);
         $scope.user_skill = response.user_skill;
         $scope.user_spam = response.spam[0].count;
         $scope.portfolios = response.user_info.portfolio;
         $scope.info = response.info;
         $scope.followers = response.followers;
+        
+        if(response.count_follower[0].count_follower !== undefined)
+        {
+            $scope.count_fllower = response.count_follower[0].count_follower;
+        }
+        if(response.count_following[0].count_following !== undefined)
+        {
+            $scope.count_fllowing = response.count_following[0].count_following ;
+        }
+    
         $scope.now_year = moment().format('jYYYY');
         $scope.base_url = base_url;
         $scope.follower = JSON.parse( localStorage.getItem("user_follower") ) ;
@@ -239,14 +279,39 @@ angular.module('myapp')
             }
         });
         /*===============================================================================*/ 
-        $(".circle_btn_msg").on("click",function(){
+        $("#content47").on("click",".circle_btn_msg",function(){
             
-            localStorage.setItem('chat',JSON.stringify(scope.user_info)) ;
-            $rootScope.chat = scope.user_info ;
-            //console.log(scope.user_info);
-            window.location.hash = "#/msg_detail";
+            if($(this).attr('is_chat') == "3"){
+                localStorage.setItem('chat',JSON.stringify(scope.user_info)) ;
+                $rootScope.chat = scope.user_info ;
+                //console.log(scope.user_info);
+                window.location.hash = "#/msg_detail";
+            }else if($(this).attr('is_chat') == "2" ||  $(this).attr('is_chat') == "4"){
+                $.fancybox.open("<div class='alert_btn'><p>این کاربر توسط شما مسدود شده . </p><button class='unblock_user'>لغو مسدودی</button><button class='noting_else' onclick='$.fancybox.close()'>بستن پنجره</button></div>",{closeBtn: false});
+                // your are bloking this user
+            }else if($(this).attr('is_chat') == "1"){
+                // you are blocked from this user
+                $('body .alert .msg').text("شما امکان ارسال پیام به این کاربر را ندارید . ").parent('.alert').removeClass('none');
+            }
             
         });
+        /*=========================================unblock user======================================*/
+            $('body').on("click",".unblock_user",function(){
+                $('body .lpro').removeClass("none");
+                $.fancybox.close();
+                $.get(base_url+"/api_upload/unblock_chat_user/D11discheckeLIKOO-HascEWin0B3-98FFGG85asc8HY/"+(localStorage.getItem('user_id'))+"/"+($routeParams.user_id),function(data){
+                    if(scope.is_chat == "2"){
+                        scope.$apply(function(){scope.is_chat = "3";});
+                    }else if(scope.is_chat == "4"){
+                        scope.$apply(function(){scope.is_chat = "1";});
+                    }
+                    $('body .lpro').addClass("none");
+                    
+                }).fail(function(){
+                    $('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');
+                    $('body .lpro').addClass("none");
+                });
+            });
         /*===============================================================================*/
             $('.click_to_hide i').click(function(){
                 var fomr = $(this);
