@@ -9,16 +9,18 @@ angular.module('myapp')
              if(localStorage.getItem("reg_done") != "done" )
                {
                   setTimeout(function() {
-                    if(localStorage.getItem("reg_id") != null && localStorage.getItem("reg_id") !== undefined)
+                    if(localStorage.getItem("reg_id") != null)
                     {
+                       alert(localStorage.getItem("reg_id"))
                        $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),reg_id:localStorage.getItem("reg_id")});
                        localStorage.setItem("reg_done","done");  
                     }
                     else
                     {
                         setTimeout(function() {
-                            if(localStorage.getItem("reg_id") != null && localStorage.getItem("reg_id") !== undefined)
+                            if(localStorage.getItem("reg_id") != null)
                             {
+                                alert('1'+localStorage.getItem("reg_id"))
                                 $.post(base_url+"api/user_reg_id/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),reg_id:localStorage.getItem("reg_id")});
                                 localStorage.setItem("reg_done","done");  
                             }
