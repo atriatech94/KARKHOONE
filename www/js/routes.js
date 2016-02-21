@@ -113,6 +113,10 @@ angular.module('myapp')
             templateUrl: 'pages/notification/index.html',
             controller: 'notificationController',
         })
+        .when('/contact_us', {
+            templateUrl: 'pages/contact_us/index.html',
+            controller: 'contactusController',
+        })
         .when('/exit', {
             templateUrl: 'pages/exit/index.html',
             controller: 'ExitController',

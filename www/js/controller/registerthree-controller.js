@@ -95,7 +95,17 @@ angular.module('myapp')
                              var result_update = JSON.stringify(user_data_update);
                              localStorage.setItem("user_info",result_update);
                              localStorage.setItem("user_id",(user_data_update[0].member_id));
-                                  
+                              if(localStorage.getItem("reg_id") == "" || localStorage.getItem("reg_id") == null )
+                                {
+                                   app1.initialize();
+                                }
+                              window.plugins.imeiplugin.getImei(callback1);
+                                function callback1(imei) {
+                                     localStorage.setItem("model",device.model);
+                                     localStorage.setItem("IMEI",imei);
+                                     $.post(base_url+"api/user_imei/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),model:localStorage.getItem("model"),IMEI:localStorage.getItem("IMEI")});
+                                           
+                               }        
                              $('body .lpro').addClass("none");
                              window.location.hash = "#/wall";
                          }

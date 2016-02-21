@@ -16,7 +16,9 @@ html {
 
 @font-face {
 	font-family: 'B Koodak';
-	src: local('B Koodak'), local('BKoodak'), url('../fonts/BKoodakBold.woff2') format('woff2');
+	src: local('B Koodak'), local('BKoodak'), url('../fonts/BKoodakBold.woff2') format('woff2'),
+        url('../fonts/BKoodakBold.woff') format('woff'),
+        url('../fonts/BKoodakBold.ttf') format('truetype');
 }
 /*
 @font-face {
@@ -2331,6 +2333,55 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     font-family: "b koodak";
 }
 /*--================--   --===================--*/
+.logo_kh{
+    display: table;
+    width: auto;
+    margin:20px auto;
+}
+.version{
+    text-align: center;
+    font-size: 20px;
+    color:#fff;
+    border-bottom: 2px solid #fff;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    margin-left:auto; 
+    margin-right: auto; 
+    font-family: arial ;
+}
+.power_by p{
+    text-align: center;
+    color:#fff;
+    font-size: 16px;
+    font-family: arial;
+}
+.power_by{
+    border-left:4px solid #1198D8;
+    width: 88%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+.btn_about,.btn_danger{
+    width: 90%;
+    text-align: center;
+    padding: 12px 0;
+    color:#fff;
+    font-size: 16px;
+    background-color:#1198D8 ;
+    border-radius: 5px;
+    margin: 20px auto;
+    display: block;
+    font-family: "b koodak";
+}
+.btn_danger{
+    background-color:#EB2D19 ;
+}
+.request_btn{
+    position: absolute;
+    left: 10px;
+    top: 20px;
+}
 /*--================--   --===================--*/
 /*--================--   --===================--*/
 /*--================--   --===================--*/

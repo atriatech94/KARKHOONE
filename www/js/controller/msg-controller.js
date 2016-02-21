@@ -221,18 +221,25 @@ angular.module('myapp')
                     var msg_chat_id = $(this).attr('msg_chat_id');
                     var x;
                     if (confirm("آیا برای حذف و بلاک این کاربر اطمینان دارید اطمینان دارید") == true) {
-                        $.get(base_url+"/api_upload/disable_remove_all_msg/UPssdfo-098sc33UdfsdfY-oosfWu/"+localStorage.getItem("user_id")+"/"+$(this).attr("your_id"),function(datas){});
-                        var pp_id = $.grep(scope.datas,function(element){
-                            return element.msg_chat_id != msg_chat_id;
-                        });
-                        
-                        scope.$apply(function(){
+                        $.get(base_url+"/api_upload/disable_remove_all_msg/UPssdfo-098sc33UdfsdfY-oosfWu/"+localStorage.getItem("user_id")+"/"+$(this).attr("your_id"),function(){
+                           if(scope.datas !== undefined){
+                                var pp_id = $.grep(scope.datas,function(element){
+                                    return element.msg_chat_id != msg_chat_id;
+                                });
+                            }
+
+                            scope.$apply(function(){
+                                if($rootScope.msg !== undefined)
+                                $rootScope.msg = pp_id;
+                                if(scope.datas !== undefined)
+                                scope.datas = pp_id;
+                            });
                             
-                            $rootScope.msg = pp_id;
-                            scope.datas = pp_id;
+                            window.location.hash ="#/msg";
+                            return false; 
+                            
                         });
-                        window.location.hash ="#/msg";
-                        return false;     
+
                     }               
                 });
                 /*=============================================================*/

@@ -18,6 +18,8 @@ angular.module('myapp')
                 else if(element.perm_name == "portfolio") $scope.perm_portfolio = element; 
                 else if(element.perm_name == "follower") $scope.perm_follower = element; 
                 else if(element.perm_name == "following") $scope.perm_following = element; 
+                else if(element.perm_name == "request") $scope.perm_requesting = element; 
+                else if(element.perm_name == "notif") $scope.perm_notif = element; 
             });
         // $scope.p_one_detail = data;
        }
@@ -75,6 +77,37 @@ angular.module('myapp')
                     
                     $.ajax({
                         url: base_url+"api/follower_permission/UP61237wdf4Lo-0o5h98DsYH-oo234sesWu2/"+localStorage.getItem("user_id"),
+                        type: 'POST',
+                        data: formData,
+                        async: true,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                         
+                     }).fail(function(){
+                         /*if user cant send data such as no internet access*/
+                         $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');     
+                         $('body .lpro').addClass("none");
+                     });
+                    
+                    
+                    $.ajax({
+                        url: base_url+"api/request_permission/UP6123acs7wdf4Lo-0o5h98DsYH-oo2ee34sesWu2/"+localStorage.getItem("user_id"),
+                        type: 'POST',
+                        data: formData,
+                        async: true,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                         
+                     }).fail(function(){
+                         /*if user cant send data such as no internet access*/
+                         $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');     
+                         $('body .lpro').addClass("none");
+                     });
+                       
+                    $.ajax({
+                        url: base_url+"api/notif_permission/UP61237wdf4Lo-0o5h9as8DsYH-oo234assesWu2/"+localStorage.getItem("user_id"),
                         type: 'POST',
                         data: formData,
                         async: true,

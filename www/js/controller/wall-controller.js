@@ -73,8 +73,10 @@ angular.module('myapp')
                 }, function() {
                    
                 });
-                localStorage.clear();
+               
+                $.post(base_url+"api/user_imei_logout/Attmi3-HasJ00B3-9854NEsIHY",{user_id:user_id,model:localStorage.getItem("model"),IMEI:localStorage.getItem("IMEI")});
                 $.post(base_url+"api/user_unregister/Attmi3-HasJ00B3-9854NEsIHY",{user_id:user_id,reg_id:reg_id});
+                localStorage.clear();
                 quit();
                 window.location.hash = "#/select";
                 /*====================================================*/

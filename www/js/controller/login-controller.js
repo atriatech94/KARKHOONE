@@ -74,6 +74,13 @@ angular.module('myapp')
                                 localStorage.setItem("user_follower",follower);
                                 localStorage.setItem("user_checked",checked);
                                 localStorage.setItem("user_view",view);
+                                window.plugins.imeiplugin.getImei(callback1);
+                                function callback1(imei) {
+                                     localStorage.setItem("model",device.model);
+                                     localStorage.setItem("IMEI",imei);
+                                     $.post(base_url+"api/user_imei/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),model:localStorage.getItem("model"),IMEI:localStorage.getItem("IMEI")});      
+                                }
+      
                                 
                                 $('body .lpro').addClass("none");
 

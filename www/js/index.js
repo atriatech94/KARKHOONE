@@ -465,4 +465,14 @@ function onGetDirectorySuccess(dir) {
 function onGetDirectoryFail(error) { 
     // alert("Error creating directory "+error.code); 
 } 
+//https://github.com/zho/phonegap-imeiplugin/tree/c506fb6
+
+//window.plugins.imeiplugin.getImei(callback);
+var imei = 0 ;
+/*function callback(code) {
+   imei = code;
+    alert(imei)
+    console.log(imei);
+}
+*/
 

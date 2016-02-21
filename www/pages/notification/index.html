@@ -20,7 +20,7 @@
                         <div ng-if="request.picname == '' && request.gender == '1'" class="user_one_image"><span style="background-image:url(img/user_women.jpg)"></span></div>
                         <div ng-if="request.picname !='' " class="user_one_image"><span style="background-image:url({{base_url}}/uploads/user_img/{{request.picname}});"></span></div>
                         <div class="user_one_info">
-                            <h3  class="nm_ch" your_id="{{request.member_id}}"  user_image="{{request.picname}}">{{request.name}}</h3>
+                            <h3  class="nm_ch" your_id="{{request.member_id}}"  user_image="{{request.picname}}"><a href="#/profile/{{request.member_id}}">{{request.name}}</a></h3>
                             <span>{{request.dates}}</span>
                         </div>
                         <div class="request_btn"><button type="button" class="accept_freq" requested_id="{{request.member_id}}" >قبول</button>  <button requested_id="{{request.member_id}}"  type="button" class="reject_freq">رد</button></div>

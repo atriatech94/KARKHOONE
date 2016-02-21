@@ -140,8 +140,9 @@ angular.module('myapp')
                 }, false);
             /*====================================================*/
             $('.refresh_msg').click(function(){
-                show_anim();
-                fetch_serche_one();
+                window.location.hash ="#/relaod";
+                //show_anim();
+                //fetch_serche_one();
             });
             /*====================================================*/
         }/* end */
