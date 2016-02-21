@@ -6,8 +6,9 @@ angular.module('myapp')
 		return {
 			link: function() {
                 
-             if(localStorage.getItem("reg_done") != "done" )
+             if(localStorage.getItem("reg_done") == null )
                {
+                   alert(567)
                   setTimeout(function() {
                     if(localStorage.getItem("reg_id") != null)
                     {
@@ -59,11 +60,12 @@ angular.module('myapp')
                 var user_id = localStorage.getItem("user_id");
                 var reg_id = localStorage.getItem("reg_id");
                 push.unregister(function() {
-                      $.post(base_url+"api/user_unregister/Attmi3-HasJ00B3-9854NEsIHY",{user_id:user_id,reg_id:reg_id});
+                     
                 }, function() {
                    
                 });
                 localStorage.clear();
+                $.post(base_url+"api/user_unregister/Attmi3-HasJ00B3-9854NEsIHY",{user_id:user_id,reg_id:reg_id});
                 quit();
                 window.location.hash = "#/select";
                 /*====================================================*/

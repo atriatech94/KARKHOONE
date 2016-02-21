@@ -66,6 +66,7 @@ angular.module('myapp')
                                 localStorage.setItem("user_id",user_data.user_info[0].member_id);
                                  if(localStorage.getItem("reg_id") == "" || localStorage.getItem("reg_id") == null )
                                 {
+                                  alert(123);
                                   app1.initialize();
                                 }
                                 localStorage.setItem("city",city);
