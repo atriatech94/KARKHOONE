@@ -417,7 +417,7 @@ function readURL(input) {
 }
 function share_fn(url){
    // window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
-    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', 'اشتراک گزاری شده توسط اپلیکیشن کارخونه', base_url+'file/logo_share.png', url);
+     window.plugins.socialsharing.share('کارخونه', null,null, url);
                    
 }
 $(function(){
