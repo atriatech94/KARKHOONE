@@ -2355,7 +2355,7 @@ showuser5-dir,showuser4-dir,showuser3-dir,showuser2-dir,showuser1-dir{
     color:#fff;
 }
 .fancybox-inner{
-    height: auto !important;
+    height: auto;
     padding:0px;
     font-family: "b koodak";
 }

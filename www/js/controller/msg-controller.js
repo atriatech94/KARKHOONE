@@ -204,19 +204,16 @@ angular.module('myapp')
                     var x;
                     if (confirm("آیا برای حذف اطمینان دارید") == true) {
                         $.get(base_url+"/api_upload/disable_all_msg/UPssdfo-098UdfsdfY-oosfWu/"+localStorage.getItem("user_id")+"/"+$(this).attr("your_id"),function(datas){
-                            if(scope.datas !== undefined){
-                                var pp_id = $.grep(scope.datas,function(element){
+                            if($rootScope.msg !== undefined){
+                                var pp_id = $.grep($rootScope.msg,function(element){
                                     return element.msg_chat_id != msg_chat_id;
                                 });
-
-                                scope.$apply(function(){
-                                    if($rootScope.msg !== undefined)
-                                        $rootScope.msg = pp_id;
-                                    if(scope.datas !== undefined)
-                                        scope.datas = pp_id;
-                                });
+                               if(pp_id.length == 0)
+                                   $rootScope.msg = undefined;
+                                else
+                                    $rootScope.msg = pp_id;
+                                
                             }
-                            
                             window.location.hash ="#/msg";
                             return false;
                             
@@ -226,25 +223,25 @@ angular.module('myapp')
                 /*=============================================================*/
                 $('.icons').on("click",".delete_block_chat",function(){
                     var msg_chat_id = $(this).attr('msg_chat_id');
+                    console.log(msg_chat_id);
                     var x;
                     if (confirm("آیا برای حذف و بلاک این کاربر اطمینان دارید اطمینان دارید") == true) {
                         $.get(base_url+"/api_upload/disable_remove_all_msg/UPssdfo-098sc33UdfsdfY-oosfWu/"+localStorage.getItem("user_id")+"/"+$(this).attr("your_id"),function(){
-                           if(scope.datas !== undefined){
-                                var pp_id = $.grep(scope.datas,function(element){
+                           
+                            
+                            if($rootScope.msg !== undefined){
+                    
+                                var pp_id = $.grep($rootScope.msg,function(element){
                                     return element.msg_chat_id != msg_chat_id;
                                 });
+                               if(pp_id.length == 0)
+                                   $rootScope.msg = undefined;
+                                else
+                                    $rootScope.msg = pp_id;
+                               
                             }
-
-                            scope.$apply(function(){
-                                if($rootScope.msg !== undefined)
-                                $rootScope.msg = pp_id;
-                                if(scope.datas !== undefined)
-                                scope.datas = pp_id;
-                            });
-                            
                             window.location.hash ="#/msg";
-                            return false; 
-                            
+                            return false;
                         });
 
                     }               
