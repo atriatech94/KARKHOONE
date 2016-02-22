@@ -147,7 +147,7 @@ angular.module('myapp')
                                         c_count: null,
                                         cap: Math.round(parseInt(response.filesize)/10240)/100 ,
                                         dates: moment(response.date).calendar(),
-                                        duration: "0",
+                                        duration: response.duration,
                                         l_count: null,
                                         member_do_like: null,
                                         member_id: localStorage.getItem("user_id"),
