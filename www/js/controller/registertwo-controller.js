@@ -83,12 +83,12 @@ angular.module('myapp')
 				/*=====================reg_two submit===============================*/
                 $('.reg_two_next').on("click",function(){
                     
-                    name = $("#name input").val().trim();
-                    age = $("#age input").val().trim();
-                    gender = $("#gender select").val().trim();
-                    field = $("#field input").val().trim();
-                    state = $("#state select").val().trim();
-                    city = $("#city select").val().trim();
+                    name = $("#name input").val().trim().replace( /(<([^>]+)>)/ig , "" );
+                    age = $("#age input").val().trim().replace( /(<([^>]+)>)/ig , "" );
+                    gender = $("#gender select").val().trim().replace( /(<([^>]+)>)/ig , "" );
+                    field = $("#field input").val().trim().replace( /(<([^>]+)>)/ig , "" );
+                    state = $("#state select").val().trim().replace( /(<([^>]+)>)/ig , "" );
+                    city = $("#city select").val().trim().replace( /(<([^>]+)>)/ig , "" );
                     
                     var errors_req = new Array();                        
                     $('#reg_two .req').each(function(index,element){

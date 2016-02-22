@@ -313,10 +313,11 @@ html, body {
     text-align: center;
 }
 .user_menu_info .exit_edit a ,.about_contact a{
-    display: inline-block;
+    display: inline-table;
     color: #585858;
     font-size: 14px;
     padding: 10px 0;
+    width: auto;
 }
 .about_contact {
     margin: 10px auto;

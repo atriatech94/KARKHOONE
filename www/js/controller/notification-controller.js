@@ -21,6 +21,11 @@ angular.module('myapp')
                 var days3 = moment().subtract(24, 'hour').valueOf() ; 
                 console.log(days3);
 				/*====================================================*/
+                if(now_h == "relaod" ){
+                    $rootScope.friend_requests = undefined;
+                    $rootScope.notif  = undefined;
+                }
+                
                 if($rootScope.notif !== undefined){
                     scope.friend_requests = $rootScope.friend_requests;
                     scope.portfolio_likes = $rootScope.notif;

@@ -203,17 +203,24 @@ angular.module('myapp')
                     var msg_chat_id = $(this).attr('msg_chat_id');
                     var x;
                     if (confirm("آیا برای حذف اطمینان دارید") == true) {
-                        $.get(base_url+"/api_upload/disable_all_msg/UPssdfo-098UdfsdfY-oosfWu/"+localStorage.getItem("user_id")+"/"+$(this).attr("your_id"),function(datas){});
-                        var pp_id = $.grep(scope.datas,function(element){
-                            return element.msg_chat_id != msg_chat_id;
+                        $.get(base_url+"/api_upload/disable_all_msg/UPssdfo-098UdfsdfY-oosfWu/"+localStorage.getItem("user_id")+"/"+$(this).attr("your_id"),function(datas){
+                            if(scope.datas !== undefined){
+                                var pp_id = $.grep(scope.datas,function(element){
+                                    return element.msg_chat_id != msg_chat_id;
+                                });
+
+                                scope.$apply(function(){
+                                    if($rootScope.msg !== undefined)
+                                        $rootScope.msg = pp_id;
+                                    if(scope.datas !== undefined)
+                                        scope.datas = pp_id;
+                                });
+                            }
+                            
+                            window.location.hash ="#/msg";
+                            return false;
+                            
                         });
-                       
-                        scope.$apply(function(){
-                            $rootScope.msg = pp_id;
-                            scope.datas = pp_id;
-                        });
-                        window.location.hash ="#/msg";
-                        return false;     
                     }               
                 });
                 /*=============================================================*/
@@ -242,6 +249,23 @@ angular.module('myapp')
 
                     }               
                 });
+                /*=============================================================*/
+                $('.msg_text').on("focus",function(){
+                   $(window).resize(function(){
+                       $('.msg_list_chat').scrollTop($('.msg_list_chat')[0].scrollHeight);
+                       $('.editor').css("height","19%");
+                       $('.msg_list_chat').css("height","80%");
+                   });
+                    // setTimeout(function(){ $('.msg_list_chat').scrollTop($('.msg_list_chat')[0].scrollHeight);},1000);
+                });
+                 $('.msg_text').on("blur",function(){
+                     $(window).resize(function(){
+                         $('.editor').css("height","12%");
+                         $('.msg_list_chat').css("height","90%");
+                         $('.msg_list_chat').scrollTop($('.msg_list_chat')[0].scrollHeight);
+                     });
+                 });
+               
                 /*=============================================================*/
               
           

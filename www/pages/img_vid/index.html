@@ -30,8 +30,8 @@
                                 <div style="display:none" class="percent_upload"><i>0</i>درصد</div>
                              </text>
                         </label>
-                        <label style="height: 60px;" class="text_img_vid">
-                            <textarea type="text"  class="db inp_def req text_img_vid" id="text_img_vid" rows="4" name="text" placeholder="درباره ی این ویدیو یا تصویر بنویسید"></textarea>
+                        <label class="text_img_vid">
+                            <textarea type="text"  class="db inp_def req text_img_vid" id="text_img_vid" rows="5" name="text" placeholder="درباره ی این ویدیو یا تصویر بنویسید"></textarea>
                         </label>
                         <input type="button"  class="btn_white submit_register" value="ذخیره و ارسال">
                         <input type="button"  class="btn_white ui-state-disabled" value="لغو کردن این آپلود">
@@ -50,6 +50,7 @@
                             <span class="date">{{element.dates}}</span><span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="{{base_url}}api_show/portfolio_dl/{{element.p_name}}"><i class="fa fa-cloud-download"></i></span>
                             <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
                             <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
+                            <span ng-if="element.p_type== 1" class="video_duration"><span class="value">{{element.duration | timeing}}</span></span>
                         </div>
                         <div class="extra bs">
                             <span class="text">{{element.p_text}}</span>

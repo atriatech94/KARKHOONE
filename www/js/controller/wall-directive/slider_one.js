@@ -115,11 +115,14 @@ angular.module('myapp')
                     fail(function(){$("sliderone-dir .refresh_loading").show();$(".one_ids").next('.loading_users').hide();$('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');});
                 }
                 /*=====================Scroll Page===============================*/
+
                 $('#one_ids').on("scroll",function(){
+                    win_height = $(window).height()+ 400 ;
                     var content = $('#one_ids') ;
                     var ones = ( content.scrollTop() - content.height() ) + $(window).height();
                     var twoes =  $('#one_ids .user_list').height() ;
-                    if((   twoes - ones ) < 700 && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
+                    console.log((twoes - ones),win_height)
+                    if((   twoes - ones ) < parseInt(win_height) && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
                 });
                 
                 /*====================================================*/

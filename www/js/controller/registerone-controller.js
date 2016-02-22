@@ -24,10 +24,10 @@ angular.module('myapp')
 				$(function(){
                     $('#regform_one').on("submit",function(){
                         
-                        email = $(this).find("#email").val().trim();
-                        mobile = $(this).find("#mobile").val().trim();
-                        passwd = $(this).find("#passwd").val().trim();
-                        repasswd = $(this).find("#repasswd").val().trim();
+                        email = $(this).find("#email").val().trim().replace( /(<([^>]+)>)/ig , "" );
+                        mobile = $(this).find("#mobile").val().trim().replace( /(<([^>]+)>)/ig , "" );
+                        passwd = $(this).find("#passwd").val().trim().replace( /(<([^>]+)>)/ig , "" );
+                        repasswd = $(this).find("#repasswd").val().trim().replace( /(<([^>]+)>)/ig , "" );
                         
                         clearTimeout(timeout);
                         var errors_req = new Array();                        

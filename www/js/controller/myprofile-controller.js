@@ -219,7 +219,7 @@ angular.module('myapp')
                     
                     $("#skill_uni").submit(function(){
                         
-                        var skill =  $("#skill").val().trim();
+                        var skill =  $("#skill").val().trim().replace( /(<([^>]+)>)/ig , "" );
                         if(skill.length < 2 ){$('body .alert .msg').text("رشته تحصیلی وارد شده باید حداقل 2 کارکتر باشد .").parent('.alert').removeClass('none'); return false;}
                         $('body .lpro').removeClass("none");
                     
@@ -251,7 +251,7 @@ angular.module('myapp')
                     /*====================================================*/
                     $("#skill_job").submit(function(){
                         
-                        var skill =  $("#skill2").val().trim();
+                        var skill =  $("#skill2").val().trim().replace( /(<([^>]+)>)/ig , "" );
                         if(skill.length < 2 ){$('body .alert .msg').text("مهارت یا شغل وارد شده باید حداقل 2 کارکتر باشد .").parent('.alert').removeClass('none'); return false;}
                         $('body .lpro').removeClass("none");
                     
@@ -309,6 +309,7 @@ angular.module('myapp')
                     
                 });
                 /*====================================================*/
+                
             }/* end */
 }})
 .controller('EditinfoController', function($scope) {
@@ -365,16 +366,16 @@ angular.module('myapp')
                     usr_data = new Object();
                     $('.skill_uni').submit(function(){
                      
-                        name = $("#name").val();
-                        age = $("#age").val();
-                        gender = $("#gender").val();
-                        married = $("#married").val();
-                        grade = $("#grade").val();
-                        field = $("#field").val();
-                        state = $("#state select").val();
-                        city = $("#city select").val();
-                        description = $("#description").val();
-                        status = $("#status").val();
+                        name = $("#name").val().replace( /(<([^>]+)>)/ig , "" );
+                        age = $("#age").val().replace( /(<([^>]+)>)/ig , "" );
+                        gender = $("#gender").val().replace( /(<([^>]+)>)/ig , "" );
+                        married = $("#married").val().replace( /(<([^>]+)>)/ig , "" );
+                        grade = $("#grade").val().replace( /(<([^>]+)>)/ig , "" );
+                        field = $("#field").val().replace( /(<([^>]+)>)/ig , "" );
+                        state = $("#state select").val().replace( /(<([^>]+)>)/ig , "" );
+                        city = $("#city select").val().replace( /(<([^>]+)>)/ig , "" );
+                        description = $("#description").val().replace( /(<([^>]+)>)/ig , "" );
+                        status = $("#status").val().replace( /(<([^>]+)>)/ig , "" );
 
                         var errors_req = new Array();                        
                         $('.skill_uni .req').each(function(index,element){

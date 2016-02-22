@@ -295,7 +295,7 @@ angular.module('myapp')
                 var time_one = 0;
                 /*====================================================*/
                 if($rootScope.mychecked !== undefined){
-                    alert(123);
+                   
                     var data =  $rootScope.mychecked ;
                     if(data.length == 0){
                         $('#content15 .user_list').append('<div class="msg_empty"> کاربری برای نمایش موجود نیست </div>');

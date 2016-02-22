@@ -1,7 +1,7 @@
 angular.module('myapp')
 .controller('contactusController', function($scope, $sce) {
   $scope.user_id = localStorage.getItem('user_id');
-  $scope.imei = imei;
+  $scope.imei = localStorage.getItem('IMEI');
     
 })
 .directive('contactDir' , function ($rootScope){

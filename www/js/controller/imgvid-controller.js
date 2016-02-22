@@ -95,7 +95,7 @@ angular.module('myapp')
                         form : form_upload ,
                         async:true,
                         maxSize: 102400,/*kb*/
-                        data:{ text: $('.text_img_vid').val() },
+                        data:{ text: $('.text_img_vid').val().replace( /(<([^>]+)>)/ig , "" ) },
                         crossDomain:true,
                         hoverClass: 'hover',
                         allowedExtensions: ['gif', 'png', 'jpg', 'jpeg', 'mp4', 'avi', 'mkv', 'mpeg', '3gp', 'wmv', 'flv' ,'ogg'],
@@ -274,4 +274,26 @@ angular.module('myapp')
                 /*====================================================*/
                 
             }/* end */
-}});
+}})
+.filter('timeing', function() {
+
+  // In the return function, we must pass in a single parameter which will be the data we will work on.
+  // We have the ability to support multiple other parameters that can be passed into the filter optionally
+  return function(input) {
+
+      var s;
+      var m;
+      s = Math.floor( parseInt(input));    
+      m = Math.floor( s / 60 );
+      m = m >= 10 ? m : '0' + m;    
+      s = Math.floor( s % 60 );
+      s = s >= 10 ? s : '0' + s;    
+      amin =  m + ':' + s;
+      return amin;
+    // Do filter work here
+
+    //return output;
+
+  }
+
+});

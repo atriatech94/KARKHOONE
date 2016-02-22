@@ -117,6 +117,9 @@ angular.module('myapp')
                                 result +='<span>'+element.state+'، '+element.city+' </span>';
                                 result +='</div>';
                                 result +='<div class="user_one_options">';
+                                result +='<span class="user_cm">'+element.msg+'</span>';
+                                result +='<span class="user_like">'+element.followers+'</span>';
+                                result +='<span class="user_view">'+element.view+'</span>';
                                 result +='</div>';
                                 result +='<div class="clear"></div>';
                                 result +='</div>';
@@ -124,11 +127,9 @@ angular.module('myapp')
                                 post_one.push(element);
                             });
                            
-                            $rootScope.search = post_one ;
-                            $rootScope.search_ofset = ofset;
                             ofset += 20 ;
                             is_req = 0;
-                          
+                          alert
                              
                         }
                         else if(ofset == 0){
@@ -139,6 +140,7 @@ angular.module('myapp')
 
 
                     }).fail(function(){
+                        $('body .lpro').addClass("none");
                         $(".one_ids").next('.refresh_loading').show();
                     });
                     return false;
@@ -149,7 +151,7 @@ angular.module('myapp')
                     var ones = ( content.scrollTop() - content.height() ) + $(window).height();
                     var twoes =  $('#content19 .follower').height() ;
                     console.log(twoes - ones);
-                    if((  twoes - ones) < 600 && is_req==0 ){ is_req = 1; fetch_serche_one($rootScope.search_data,$rootScope.search_address); }
+                    if((  twoes - ones) < 500 && is_req==0 ){ is_req = 1; fetch_serche_one($rootScope.search_data,$rootScope.search_address); }
                 });
                /*====================================================*/
             }/* end */

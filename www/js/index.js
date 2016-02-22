@@ -194,9 +194,6 @@ function fetch_msg(msg_scroll, data){
     //var data = JSON.parse(datas);
         if(data.length > 0 )
         {
-
-        	
-
             data.forEach(function(element, index){
             	if(element){
 
@@ -259,9 +256,12 @@ function amintest(){
         return false;
     }
     else if(loc == "forget_pass" || loc == "profile" || loc == "register_one" || loc == "register_two" || loc == "register_three" || loc == "myprofile" || loc == "mycv" || 
-           loc == "edit_info" || loc == "follower" || loc == "following" || loc == "search_result" || loc == "mycv" ||  loc == "msg" || loc == "msg_detail"   )
+           loc == "edit_info" || loc == "follower" || loc == "following" || loc == "search_result" || loc == "mycv"  || loc == "msg_detail"   )
     {
          window.history.back() ;
+    }
+    else if(loc == "msg"){
+        return false;
     }
     else if(loc == "login")
     {
@@ -417,7 +417,7 @@ function readURL(input) {
 }
 function share_fn(url){
    // window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', null,  base_url+'file/logo_share.png' , url);
-     window.plugins.socialsharing.share('کارخونه', null,null, url);
+    window.plugins.socialsharing.share('اشتراک گزاری شده توسط اپلیکیشن کارخونه', 'اشتراک گزاری شده توسط اپلیکیشن کارخونه', base_url+'file/logo_share.png', url);
                    
 }
 $(function(){
@@ -427,6 +427,7 @@ $(function(){
         downloadFile2(dl_link);
         $('body .alert .msg').text("در حال دانلود فایل ...").parent('.alert').removeClass('none');
         timeout = setTimeout(function(){ $('body .alert').addClass('none');},3000);
+        return false;
     });
 });
  function downloadFile2(dl_link)
@@ -469,10 +470,14 @@ function onGetDirectoryFail(error) {
 
 //window.plugins.imeiplugin.getImei(callback);
 var imei = 0 ;
-/*function callback(code) {
-   imei = code;
-    alert(imei)
-    console.log(imei);
-}
-*/
+
+/*====================on foucs=============*/
+$('body').on("focus",'input[type="text"],input[type="password"],input[type="email"],textarea',function(){
+    samin =$(this) ;
+    $(window).resize(function(){
+    });
+});
+/*=================================*/
+
+/*=================================*/
 
