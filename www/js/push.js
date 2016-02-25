@@ -27,8 +27,9 @@ var app1 = {
             var msg = JSON.stringify({'command':command, 'member_id':member_id});
 	   						  
             socket.send(msg);
-            alert(socket);
+           
         };
+         alert(socket);
          push = PushNotification.init({
             "android": {
                 "senderID": "1092587381698",
