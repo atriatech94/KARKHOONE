@@ -16,16 +16,14 @@ var days3 = moment().subtract(24, 'hour').valueOf() ;
 
 */
 /*======================================*/
-if (!window.WebSocket && window.MozWebSocket) {
-    window.WebSocket = window.MozWebSocket;
-    alert('MozWebSocket');
-}
-else if (!window.WebSocket) {
-    alert("WebSocket not supported by this browser");
-}
-else{
-    alert('wtf!? '+window.WebSocket);
-}
+document.addEventListener('deviceready', function () {
+      var host = "ws://kaarkhoone.ir:18000/kaarkhooneh/socket/chatServer.php"; 
+    var ws = new WebSocket('host');
+
+    ws.onopen = function () {
+        alert('open');
+        this.send('hello');         // transmit "hello" after connecting
+    };
 
 function init(member_id, callback) {
     var host = "ws://kaarkhoone.ir:18000/kaarkhooneh/socket/chatServer.php"; // SET THIS TO YOUR SERVER
