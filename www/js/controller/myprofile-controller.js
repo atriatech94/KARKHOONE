@@ -207,9 +207,9 @@ angular.module('myapp')
                         var skills_now = JSON.parse(localStorage.getItem("user_skill"));
                         skills_now.forEach(function(element,index){
                             if( element[2]== "0" )
-                            {$('#skill_uni').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-graduation-cap"></i></span><text><h1>'+element[0]+'</h1><i class="fa fa-times remove_btn" skill_id="'+element[1]+'"></i></text></label>');}
+                            {$('#skill_uni').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-graduation-cap"></i></span><text class="m25"><h1>'+element[0]+'</h1><i class="fa fa-times remove_btn" skill_id="'+element[1]+'"></i></text></label>');}
                             if( element[2]== "1" )
-                            {$('#skill_job').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-briefcase"></i></span><text><h1>'+element[0]+'</h1><i class="fa fa-times remove_btn" skill_id="'+element[1]+'"></i></text></label>');}
+                            {$('#skill_job').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-briefcase"></i></span><text class="m25"><h1>'+element[0]+'</h1><i class="fa fa-times remove_btn" skill_id="'+element[1]+'"></i></text></label>');}
                         });
                     }
                     /*====================================================*/
@@ -226,7 +226,7 @@ angular.module('myapp')
                         $.post(base_url+"/api_inapp/add_skill/AminKarKhuneh1222/",{member_id:user_id,skill:skill,type:"0"},function(data){
                             $('body .lpro').addClass("none");
                             var res = JSON.parse(data);
-                            $('#skill_uni').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-graduation-cap"></i></span><text><h1>'+skill+'</h1><i class="fa fa-times remove_btn" skill_id="'+res.insert_id+'"></i></text></label>');
+                            $('#skill_uni').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-graduation-cap"></i></span><text class="m25"><h1>'+skill+'</h1><i class="fa fa-times remove_btn" skill_id="'+res.insert_id+'"></i></text></label>');
                             if(localStorage.getItem("user_skill") === null )
                             {        
                                 var skills = [];
@@ -258,7 +258,7 @@ angular.module('myapp')
                         $.post(base_url+"/api_inapp/add_skill/AminKarKhuneh1222/",{member_id:user_id,skill:skill,type:"1"},function(data){
                             $('body .lpro').addClass("none");
                             var res = JSON.parse(data);
-                            $('#skill_job').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-briefcase"></i></span><text><h1>'+skill+'</h1><i class="fa fa-times remove_btn" skill_id="'+res.insert_id+'"></i></text></label>');
+                            $('#skill_job').next(".skill_list_new").prepend('<label class="title_form"><span class="full_center"><i class="fa fa-briefcase"></i></span><text class="m25"><h1>'+skill+'</h1><i class="fa fa-times remove_btn" skill_id="'+res.insert_id+'"></i></text></label>');
                             if(localStorage.getItem("user_skill") === null )
                             {        
                                 var skills = [];
@@ -313,7 +313,8 @@ angular.module('myapp')
             }/* end */
 }})
 .controller('EditinfoController', function($scope) {
-
+    $scope.user_info = JSON.parse(localStorage.getItem("user_info"));
+    $scope.base_url = base_url;
 })
 .directive('editinfoDir' , function (){
 		return {
@@ -364,8 +365,9 @@ angular.module('myapp')
                     now_year = moment().format('jYYYY');
                     var submited = 0;
                     usr_data = new Object();
-                    $('.skill_uni').submit(function(){
-                     
+
+                    $('.submit_form1').on("click",function(){
+                        
                         name = $("#name").val().replace( /(<([^>]+)>)/ig , "" );
                         age = $("#age").val().replace( /(<([^>]+)>)/ig , "" );
                         gender = $("#gender").val().replace( /(<([^>]+)>)/ig , "" );
@@ -406,7 +408,8 @@ angular.module('myapp')
                             return false;
                         }
                         $('body .lpro').removeClass("none");
-
+                        
+                        user_info = JSON.parse(localStorage.getItem("user_info"));
                         usr_data.member_id = user_id ;
                         usr_data.email = user_info[0].email ;
                         usr_data.mobile = user_info[0].mobile ;
@@ -418,7 +421,7 @@ angular.module('myapp')
                         usr_data.field = field ;
                         usr_data.description = description ;
                         usr_data.status = status ;
-                        
+                        usr_data.picname = user_info[0].picname;
                         usr_data.state_id = state;
                         usr_data.state = $("#state select option:selected").text();
                         usr_data.city_id = city ;
@@ -434,6 +437,7 @@ angular.module('myapp')
                             localStorage.setItem( "user_info" , result_update );
                             $('body .lpro').addClass("none");
                             $('body .alert .msg').text("اطلاعات کاربری شما با موفقیت به روز رسانی گردید").parent('.alert').removeClass('none');  
+                            window.location.hash = "/relaod";
                         }).fail(function(){
                             $('body .lpro').addClass("none");
                             $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');  
@@ -467,15 +471,16 @@ angular.module('myapp')
 
                         $.post(base_url+"api/change_image/Passwd12-amin-APload3/"+localStorage.getItem("user_id"),{profile_pic : image_resize})
                         .done(function(data) {
-                             /* chechk inset and login user into software */
-                                 $('.register_form .select_image').removeClass("user_img_change");
-                                 var user_data = JSON.parse(data);
-                                 
-                                     $('body .snap-drawers .user_menu_info .img').css('background-image','url("'+base_url+'/uploads/user_img-medium/'+user_data.picname+'")');
-                                     var user_info_local = JSON.parse(localStorage.getItem("user_info"));
-                                     user_info_local[0].picname = user_data.picname;
-                                     localStorage.setItem("user_info",JSON.stringify(user_info_local));
-
+                            /* chechk inset and login user into software */
+                            $('.register_form .select_image').removeClass("user_img_change");
+                            var user_data = JSON.parse(data);
+                                    
+                            $('body .snap-drawers .user_menu_info .img').css('background-image','url("'+base_url+'/uploads/user_img-medium/'+user_data.picname+'")');
+                            var user_info_local = JSON.parse(localStorage.getItem("user_info"));
+                            user_info_local[0].picname = user_data.picname;
+                            localStorage.setItem("user_info",JSON.stringify(user_info_local));
+                            $('.title_form .full_center').css("background-image","url("+base_url+"uploads/user_img-small/"+user_data.picname+")");
+                            
                              }).fail(function(){
                                 /*if user cant send data such as no internet access*/
                                  $('.register_form .select_image').removeClass("user_img_change");
@@ -485,7 +490,50 @@ angular.module('myapp')
                         return false;
                     });
                  /*===================================================*/
+                    $('.submit_form2').on("click",function(){
+                        
+                        old_pass = $("#passwd").val().replace( /(<([^>]+)>)/ig , "" );
+                        new_pass = $("#new_pass").val().replace( /(<([^>]+)>)/ig , "" );
+                        renew_pass = $("#re_new_pass").val().replace( /(<([^>]+)>)/ig , "" );
+                        
+                        if(old_pass == "" || new_pass =="" || renew_pass=="")
+                        {
+                            $('body .alert .msg').text("یک یا چند فیلد خالی است").parent('.alert').removeClass('none');
+                            return false;
+                        }
+                        if(new_pass != renew_pass)
+                        {
+                            $('body .alert .msg').text("رمز عبور جدید و تکرار آن با هم برابر نیستند").parent('.alert').removeClass('none');
+                            return false;
+                        }
+                        if(new_pass.length < 5)
+                        {
+                            $('body .alert .msg').text("رمز عبور باید حداقل 5 کارکتر باشد").parent('.alert').removeClass('none');
+                            return false;
+                        }
+                        $('body .lpro').removeClass("none");
+                        $.post(base_url+"api/change_pass/asdkfjgad-poiuEPEPEP-oo0o098/"+localStorage.getItem("user_id"),{old_pass:old_pass,new_pass:new_pass},function(data){
+                            datas = JSON.parse(data);
+                             $('body .alert .msg').text(datas.msg).parent('.alert').removeClass('none');
+                             $('body .lpro').addClass("none");
+                           
+                        }).fail(function(){
+                            $('body .alert .msg').text("خطا در برقراری اتصال - مجدد تلاش نمایید").parent('.alert').removeClass('none');   
+                            $('body .lpro').addClass("none");
+                        });
+                        return false;
+                    });
                     /*====================================================*/
+                    $( ".show_passwd" ).click(function() {
+                    
+                    if($(this).prev('input').attr("type") == "password"){
+                        $(this).prev('input').attr("type","text");
+                        $(this).addClass('hide_passwd');
+                    }else{
+                        $(this).prev('input').attr("type","password");
+                        $(this).removeClass('hide_passwd');
+                    }
+                });
                     /*====================================================*/
                     
                 });

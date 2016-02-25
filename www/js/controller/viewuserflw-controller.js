@@ -28,7 +28,7 @@ angular.module('myapp')
                     
                     var data =  $rootScope.youfollower ;
                     data.forEach(function(element,index){
-                        var result ='<div class="user_one" user_id="'+element.member_id+'" scope="follower" >';
+                        var result ='<div onclick="go_member('+element.member_id+')" class="user_one" user_id="'+element.member_id+'" scope="follower" >';
                         if(element.picname == "")
                         {
                             if(element.gender == "0")
@@ -39,7 +39,7 @@ angular.module('myapp')
                         else
                         { result += '<div class="user_one_image"><span style="background-image:url('+base_url+'uploads/user_img-small/'+element.picname+');"></span></div>'; }
                         result +='<div class="user_one_info">';
-                        result +='<h3>'+element.name+'</h3>';
+                        result +='<h3><a href="#/profile/'+element.member_id+'">'+element.name+'</a></h3>';
                         result +='<h5>'+element.field+'</h5>';
                         result +='<span class="vline">'+(now_year - parseInt(element.age) ) +' ساله </span>';
                         result +='<span>'+element.state+'، '+element.city+' </span>';
@@ -83,7 +83,7 @@ angular.module('myapp')
                                 $('#content33 .user_list').append(result);
                             }else{
                                 data.forEach(function(element,index){
-                                  var result ='<div class="user_one" user_id="'+element.member_id+'" scope="follower" >';
+                                  var result ='<div onclick="go_member('+element.member_id+')" class="user_one" user_id="'+element.member_id+'" scope="follower" >';
                                     if(element.picname == "")
                                     {
                                         if(element.gender == "0")
@@ -94,7 +94,7 @@ angular.module('myapp')
                                     else
                                     { result += '<div class="user_one_image"><span style="background-image:url('+base_url+'uploads/user_img-small/'+element.picname+');"></span></div>'; }
                                       result +='<div class="user_one_info">';
-                                      result +='<h3>'+element.name+'</h3>';
+                                      result +='<h3><a href="#/profile/'+element.member_id+'">'+element.name+'</a></h3>';
                                       result +='<h5>'+element.field+'</h5>';
                                       result +='<span class="vline">'+(now_year - parseInt(element.age) ) +' ساله </span>';
                                       result +='<span>'+element.state+'، '+element.city+' </span>';
@@ -123,11 +123,12 @@ angular.module('myapp')
                 }
                 /*=====================Scroll Page===============================*/
                 $('#content13 .of_list').on("scroll",function(){
+                    win_height = $(window).height()+ 400 ;
                     var content = $('#content13 .of_list') ;
                     var ones = ( content.scrollTop() - content.height() ) + $(window).height();
                     var twoes =  $('#content13 .of_list').height() ;
                     console.log(twoes - ones);
-                    if((   twoes - ones ) < 700 && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
+                    if((   twoes - ones ) < win_height && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
                 });
                 
                 /*====================================================*/
@@ -170,7 +171,7 @@ angular.module('myapp')
                         $('#content334 .user_list').append('<div class="msg_empty"> کاربری برای نمایش موجود نیست </div>');
                     }
                     data.forEach(function(element,index){
-                        var result ='<div class="user_one" user_id="'+element.member_id+'" scope="myfollowing" >';
+                        var result ='<div onclick="go_member('+element.member_id+')" class="user_one" user_id="'+element.member_id+'" scope="myfollowing" >';
                         if(element.picname == "")
                         {
                             if(element.gender == "0")
@@ -181,7 +182,7 @@ angular.module('myapp')
                         else
                         { result += '<div class="user_one_image"><span style="background-image:url('+base_url+'uploads/user_img-small/'+element.picname+');"></span></div>'; }
                         result +='<div class="user_one_info">';
-                        result +='<h3>'+element.name+'</h3>';
+                        result +='<h3><a href="#/profile/'+element.member_id+'">'+element.name+'</a></h3>';
                         result +='<h5>'+element.field+'</h5>';
                         result +='<span class="vline">'+(now_year - parseInt(element.age) ) +' ساله </span>';
                         result +='<span>'+element.state+'، '+element.city+' </span>';
@@ -221,7 +222,7 @@ angular.module('myapp')
                         if(data.length > 0 )
                         {
                             data.forEach(function(element,index){
-                              var result ='<div class="user_one" user_id="'+element.member_id+'" scope="myfollowing" >';
+                              var result ='<div onclick="go_member('+element.member_id+')" class="user_one" user_id="'+element.member_id+'" scope="myfollowing" >';
                                 if(element.picname == "")
                                 {
                                     if(element.gender == "0")
@@ -232,7 +233,7 @@ angular.module('myapp')
                                 else
                                 { result += '<div class="user_one_image"><span style="background-image:url('+base_url+'uploads/user_img-small/'+element.picname+');"></span></div>'; }
                                   result +='<div class="user_one_info">';
-                                  result +='<h3>'+element.name+'</h3>';
+                                  result +='<h3><a href="#/profile/'+element.member_id+'">'+element.name+'</a></h3>';
                                   result +='<h5>'+element.field+'</h5>';
                                   result +='<span class="vline">'+(now_year - parseInt(element.age) ) +' ساله </span>';
                                   result +='<span>'+element.state+'، '+element.city+' </span>';
@@ -264,15 +265,19 @@ angular.module('myapp')
                 }
                 /*=====================Scroll Page===============================*/
                 $('#content334 .of_list').on("scroll",function(){
+                    win_height = $(window).height()+ 400 ;
                     var content = $('#content14 .of_list') ;
                     var ones = ( content.scrollTop() - content.height() ) + $(window).height();
                     var twoes =  $('#content14 .follower').height() ;
                     console.log(twoes - ones);
-                    if((   twoes - ones ) < 700 && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
+                    if((   twoes - ones ) < win_height && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
                 });
                 
                 
 				/*====================================================*/
 				
             }/* end */
-}})
+}});
+function go_member(id){
+    window.location.hash = "#/profile/"+id;
+}

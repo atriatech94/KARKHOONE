@@ -57,12 +57,12 @@ angular.module('myapp')
                 }
                 /*===============================================================================*/
                 $('.tool_bar_fix').on("scroll",function(){
-                    
+                    win_height = $(window).height()+ 400 ;
                     var content = $('.tool_bar_fix') ;
                     var ones =  content.scrollTop()  + content.height();
                     var twoes =  $('.user_list').height() ;
                     console.log(ones , twoes );
-                    if((   twoes - ones ) < 700 && is_req==0 ){is_req = 1;load_p(ofset);}
+                    if((   twoes - ones ) < win_height && is_req==0 ){is_req = 1;load_p(ofset);}
                 });
                 /*===============================================================================*/  
                 var text ;
@@ -294,6 +294,19 @@ angular.module('myapp')
 
     //return output;
 
+  }
+
+})
+.filter('create_link', function() {
+
+  // In the return function, we must pass in a single parameter which will be the data we will work on.
+  // We have the ability to support multiple other parameters that can be passed into the filter optionally
+  return function(input) {
+     
+      var d = new Date(input);
+      var n = d.getTime();
+     return n;
+      
   }
 
 });

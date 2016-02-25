@@ -19,7 +19,7 @@
                 <div class="profile_short_info bs">
                     <h3 >{{user_info[0].name}}</h3>
                     <h5 ng-if="user_info[0].field">{{user_info[0].field}}</h5>
-                    <span class="vline">{{now_year}} ساله </span>
+                    <span class="vline">{{now_year - user_info[0].age}} ساله </span>
                     <span> {{user_info[0].state}} ، {{user_info[0].city}} </span>
                     <div class="fl_list">
                         <span ng-if="count_fllower" class="vline"><a href="#/user_follower/{{user_info[0].member_id}}">{{ count_fllower}} دنبال کننده </a></span>
@@ -86,12 +86,12 @@
             </div>
             <!--======================end contant_profile====================-->
             <div class="skills" ng-if="count_s1 != 0" >
-                <img src="img/edjucate.png">
+                <i class="fa fa-graduation-cap"></i>
                 <span ng-repeat="row in user_skill" ><p ng-if="row[2]==0">{{row[0]}}</p></span>
             </div>
             <!--======================end contant_profile====================-->
             <div class="skills resume" ng-if="count_s2 != 0">
-                <img src="img/resume.png">
+                <i class="fa fa-briefcase"></i>
                 <span ng-repeat="row in user_skill" ><p ng-if="row[2]==1">{{row[0]}}</p></span>
             </div>
             <!--======================end contant_profile====================-->
@@ -127,9 +127,9 @@
                 <div class="photo_cv" p_id="{{element.p_id}}">
                     <div class="img" ng-if="element.p_type == '0'" style="background-image:url('{{base_url}}/uploads/portfolio/images-small/{{element.p_name}}')"></div>
                     <div class="img video" ng-if="element.p_type == '1'" style="background-image:url('{{base_url}}/uploads/portfolio/video_image/{{element.p_name.split('.')[0]}}.jpg')"></div>
-                    <span class="date">{{element.dates}}</span><span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="{{base_url}}api_show/portfolio_dl/{{element.p_name}}"><i class="fa fa-cloud-download"></i></span>
-                    <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
-                    <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
+                    <span class="date">{{element.dates}}</span><span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}-{{element.member_id}}-{{element.p_date | create_link}}"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="{{base_url}}api_show/portfolio_dl/{{element.p_name}}-{{element.member_id}}-{{element.p_date | create_link}}"><i class="fa fa-cloud-download"></i></span>
+                    <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}}</span></span>
+                    <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}}</span></span>
                     <span ng-if="element.p_type== 1" class="video_duration"><span class="value">{{element.duration | timeing}}</span></span>
                 </div>
                 <div class="extra bs">

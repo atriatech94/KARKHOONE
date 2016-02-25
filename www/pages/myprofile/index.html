@@ -4,7 +4,7 @@
     <div id="content7" class="snap-content contanet_profile">
         <div id="toolbar">
             <a href="" id="open-right"></a>
-            <p class="logo_name logo_name_2"></p>
+            <p class="logo_name" >کارخونه</p>
             <div class="icons">
                 <a class="notif" href="#/notification"><img src="img/svg/notif.svg" ><i></i></a>
                 <a class="msg" href="#msg"><img src="img/mail-24-128.png" ><i>99</i></a>
@@ -80,7 +80,7 @@
             </div>
             <!--======================end contant_profile====================-->
             <div ng-if="count_s2 != 0" class="skills resume">
-                <img src="img/resume.png">
+                <i class="fa fa-briefcase"></i>
                 <span ng-repeat="row in user_skill" ><p ng-if="row[2]==1">{{row[0]}}</p></span>
             </div>
             <!--======================end contant_profile====================-->
@@ -112,9 +112,9 @@
                     <div class="photo_cv" p_id="{{element.p_id}}">
                         <div class="img" ng-if="element.p_type == '0'" style="background-image:url('{{base_url}}/uploads/portfolio/images-small/{{element.p_name}}')"></div>
                         <div class="img video" ng-if="element.p_type == '1'" style="background-image:url('{{base_url}}/uploads/portfolio/video_image/{{element.p_name.split('.')[0]}}.jpg')"></div>
-                        <span class="date">{{element.dates}}</span><span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="{{base_url}}api_show/portfolio_dl/{{element.p_name}}"><i class="fa fa-cloud-download"></i></span>
-                        <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
-                        <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
+                        <span class="date">{{element.dates}}</span><span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}-{{element.member_id}}-{{element.p_date | create_link}}"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="{{base_url}}api_show/portfolio_dl/{{element.p_name}}-{{element.member_id}}-{{element.p_date | create_link}}"><i class="fa fa-cloud-download"></i></span>
+                        <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}}</span></span>
+                        <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}}</span></span>
                         <span ng-if="element.p_type== 1" class="video_duration"><span class="value">{{element.duration | timeing}}</span></span>
                     </div>
                     <div class="extra bs">

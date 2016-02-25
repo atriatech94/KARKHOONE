@@ -16,11 +16,11 @@
                 <!--=================================-->
                 <div class="mt_15 grid register_form">
                     <form class="mvd_img" id="mvd_img" action="" method="post">
-                        <label class="title_form">
+                        <label class="title_form center_all">
                             <span class="full_center"><i class="fa fa-instagram"></i></span>
                             <text><h3>در این قسمت می توانید ویدیو ها و تصاویر خود را آپلود نمایید  </h3></text>
                         </label>
-                         <label class="title_form">
+                         <label class="title_form center_all">
                             <span id="uploadBtn" class="full_center bg-gray"><i class="fa fa-plus-circle"></i></span>
                             <text><h3 class="changable_text"> بارگذاری ویدیو یا تصویر  جدید </h3>
 
@@ -47,9 +47,9 @@
                         <div class="photo_cv" p_id="{{element.p_id}}">
                             <div class="img" ng-if="element.p_type == '0'" style="background-image:url('{{base_url}}/uploads/portfolio/images-small/{{element.p_name}}')"></div>
                             <div class="img video" ng-if="element.p_type == '1'" style="background-image:url('{{base_url}}/uploads/portfolio/video_image/{{element.p_name.split('.')[0]}}.jpg')"></div>
-                            <span class="date">{{element.dates}}</span><span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="{{base_url}}api_show/portfolio_dl/{{element.p_name}}"><i class="fa fa-cloud-download"></i></span>
-                            <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
-                            <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}} MB</span></span>
+                            <span class="date">{{element.dates}}</span><span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}-{{element.member_id}}-{{element.p_date | create_link}}"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="{{base_url}}api_show/portfolio_dl/{{element.p_name}}-{{element.member_id}}-{{element.p_date | create_link}}"><i class="fa fa-cloud-download"></i></span>
+                            <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}}</span></span>
+                            <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}}</span></span>
                             <span ng-if="element.p_type== 1" class="video_duration"><span class="value">{{element.duration | timeing}}</span></span>
                         </div>
                         <div class="extra bs">

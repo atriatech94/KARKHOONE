@@ -191,8 +191,11 @@ label.db{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     font-family: "B Koodak";
+    line-height: 20px;
 }
-
+.register_form select{
+    line-height:28px;
+}
 select.sel_def {
     height: 55px !important;
 }
@@ -201,6 +204,8 @@ select.sel_def option{
 }
 .inp_def::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     padding-top: 0px;
+    line-height: 20px;
+    padding-right: 10px;
 }
 .btn_100{
     width: 100%;

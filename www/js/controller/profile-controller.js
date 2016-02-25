@@ -1,10 +1,10 @@
 angular.module('myapp')
 .controller('ProfileController', function($scope,$rootScope,$routeParams,$http) {
     
-    /*if($routeParams.user_id == localStorage.getItem("user_id")){
+    if($routeParams.user_id == localStorage.getItem("user_id")){
         window.location.href = "#/myprofile";
     }
-    */
+    
     show_anim();
     $scope.user_info = [{ city: "------",
             description: "------------------------------",
@@ -19,7 +19,8 @@ angular.module('myapp')
             picname: "",
             state: "------",
             status: "0",
-            view: "6"
+            view: "6",
+            age: moment().format('jYYYY')
     }];
     
     $scope.portfolios = 0;
