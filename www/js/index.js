@@ -2,7 +2,7 @@
 document.addEventListener("backbutton",amintest, false);
 //var moment = require('moment-jalaali');
 moment.loadPersian();
-//var socket;
+var socket;
 var ofset_msg;
 var is_req;
 var msg_id = 0;
