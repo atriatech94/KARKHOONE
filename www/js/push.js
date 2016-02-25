@@ -17,6 +17,13 @@ var app1 = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         
+          var host = "ws://kaarkhoone.ir:18000/kaarkhooneh/socket/chatServer.php"; 
+         var ws = new WebSocket('host');
+    alert(123);
+    ws.onopen = function () {
+        alert('open');
+        this.send('hello');      
+    }  
          push = PushNotification.init({
             "android": {
                 "senderID": "1092587381698",

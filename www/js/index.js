@@ -16,14 +16,7 @@ var days3 = moment().subtract(24, 'hour').valueOf() ;
 
 */
 /*======================================*/
-document.addEventListener('deviceready', function () {
-    var host = "ws://kaarkhoone.ir:18000/kaarkhooneh/socket/chatServer.php"; 
-    var ws = new WebSocket('host');
-  alert(123);
-    ws.onopen = function () {
-        alert('open');
-        this.send('hello');         // transmit "hello" after connecting
-    };
+
 
 function init(member_id, callback) {
     var host = "ws://kaarkhoone.ir:18000/kaarkhooneh/socket/chatServer.php"; // SET THIS TO YOUR SERVER
