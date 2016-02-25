@@ -16,14 +16,17 @@ var app1 = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        var socket = new Socket();
+        socket.open(
+        "kaarkhoone.ir",
+        18000,
+        function() {
+            alert(Socket);
+        },
+        function(errorMessage) {
+           alert('unsuc');
+        });
         
-          var host = "ws://kaarkhoone.ir:18000/kaarkhooneh/socket/chatServer.php"; 
-         var ws = new WebSocket('host');
-    alert(123);
-    ws.onopen = function () {
-        alert('open');
-        this.send('hello');      
-    }  
          push = PushNotification.init({
             "android": {
                 "senderID": "1092587381698",

@@ -2,7 +2,7 @@
 document.addEventListener("backbutton",amintest, false);
 //var moment = require('moment-jalaali');
 moment.loadPersian();
-var socket;
+//var socket;
 var ofset_msg;
 var is_req;
 var msg_id = 0;
@@ -16,7 +16,6 @@ var days3 = moment().subtract(24, 'hour').valueOf() ;
 
 */
 /*======================================*/
-
 
 function init(member_id, callback) {
     var host = "ws://kaarkhoone.ir:18000/kaarkhooneh/socket/chatServer.php"; // SET THIS TO YOUR SERVER
