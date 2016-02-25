@@ -191,7 +191,11 @@ label.db{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     font-family: "B Koodak";
+<<<<<<< HEAD
     line-height: 20px;
+=======
+    line-height: 30px;
+>>>>>>> origin/master
 }
 .register_form select{
     line-height:28px;
