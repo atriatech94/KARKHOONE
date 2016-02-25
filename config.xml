@@ -36,6 +36,8 @@
     <gap:plugin name="org.apache.cordova.media" />
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
+    <plugin name="es.abrego.plugins.socketclient" spec="2.0" source="pgb" />
+ 
   
   
    
