@@ -1,0 +1,65 @@
+<hamber-dir></hamber-dir>
+<settings-dir>
+    <div id="content35" class="snap-content contanet_profile">
+        <div id="toolbar">
+            <a href="" id="open-right"></a>
+            <p class="logo_name" >تنظیمات</p>
+            <div class="icons">
+                <a href="" onclick="window.history.back();" class="close"></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <!--=================================-->
+        <div class="mt_15 grid">
+            <form  class="settings_form" >
+                
+                <!--================================================================-->
+               
+                <!--================================================================-->
+                <label class="db">
+                    <span class="db">وضعیت نمایش ایمیل</span>
+                    <select class="sel_def mt_10" name="email" id="email">
+                        <option value="0" ng-selected="perm_email && perm_email.access_level=='0'">غیر قابل نمایش</option>
+                        <option value="1" ng-selected="perm_email && perm_email.access_level=='1'">قابل رویت برای دوستان</option>
+                        <option value="2" ng-selected="perm_email && perm_email.access_level=='2'">قابل رویت برای همه</option>
+                    </select>
+                </label>
+
+                <label class="db">
+                    <span class="db">وضعیت نمایش موبایل</span>
+                    <select  class="sel_def mt_10" name="mobile" id="mobile">
+                        <option value="0" ng-selected="perm_mobile && perm_mobile.access_level=='0'">غیر قابل نمایش</option>
+                        <option value="1" ng-selected="perm_mobile && perm_mobile.access_level=='1'">قابل رویت برای دوستان</option>
+                        <option value="2" ng-selected="perm_mobile && perm_mobile.access_level=='2'">قابل رویت برای همه</option>
+                    </select>
+                </label>
+
+                <label class="db">
+                    <span class="db">وضعیت نمایش نمونه کار</span>
+                    <select class="sel_def mt_10" name="portfolio" id="portfolio">
+                        <option value="0" ng-selected="perm_portfolio && perm_portfolio.access_level=='0'">غیر قابل نمایش</option>
+                        <option value="1" ng-selected="perm_portfolio && perm_portfolio.access_level=='1'">قابل رویت برای دوستان</option>
+                        <option value="2" ng-selected="perm_portfolio && perm_portfolio.access_level=='2'">قابل رویت برای همه</option>
+                    </select>
+                </label>
+
+                <label class="db">
+                    <span class="db">وضعیت نمایش رزمه</span>
+                    <select class="sel_def mt_10" name="resume" id="resume">
+                        <option value="0" ng-selected="perm_cv && perm_cv.access_level=='0'">غیر قابل نمایش</option>
+                        <option value="1" ng-selected="perm_cv && perm_cv.access_level=='1'">قابل رویت برای دوستان</option>
+                        <option value="2" ng-selected="perm_cv && perm_cv.access_level=='2'">قابل رویت برای همه</option>
+                    </select>
+                </label>
+                <!--================================================================-->
+                <input type="submit" class="btn_blue submit_register" value="ثبت و ذخیره تنظیمات">
+            </form>
+            <!--=================================-->
+            
+            <!--=================================-->
+        </div>
+    </div>
+        <!--=================================-->
+
+</settings-dir>

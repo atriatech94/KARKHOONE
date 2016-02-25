@@ -1,0 +1,86 @@
+<hamber-dir></hamber-dir>
+<settings-dir>
+    <div id="content35" class="snap-content contanet_profile gradiant_orange" >
+        <div id="toolbar">
+            <a href="" id="open-right"></a>
+            <p class="logo_name" >تنظیمات</p>
+            <div class="icons">
+                <a href="" onclick="window.history.back();" class="close"></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <!--=================================-->
+        <div class="tool_bar_fix">
+            <div class="register_form bs">
+                <form class="settings_form" >
+                    <label class="title_form center_all">
+                        <span class="full_center"><i class="fa fa-cog"></i></span>
+                        <text><h3>تنظیمات کارخونه</h3><p>تنظیمات سطح دسترسی</p></text>
+                    </label>
+                    <label>
+                       <select name="requesting" id="requesting">
+                            <option value="2" ng-selected="perm_email && perm_requesting.access_level=='2'">همه افراد بتوانند من را دنبال کنند</option>
+                            <option value="1" ng-selected="perm_email && perm_requesting.access_level=='1'">دنبال کردن من نیاز به تایید دارد</option>
+                        </select>
+                    </label>
+                    <label>
+                       <select name="notif" id="notif">
+                            <option value="2" ng-selected="perm_email && perm_notif.access_level=='2'">اعلان ها برای من ارسال شود</option>
+                            <option value="1" ng-selected="perm_email && perm_notif.access_level=='1'">اعلان ها برای من ارسال نشود</option>
+                        </select>
+                    </label>
+                    <label>
+                       <select name="email" id="email">
+                            <option value="0" ng-selected="perm_email && perm_email.access_level=='0'">ایمیل من را به هیچ کس نمایش نده</option>
+                            <option value="1" ng-selected="perm_email && perm_email.access_level=='1'">ایمیل من را به دوستانم نمایش بده</option>
+                            <option value="2" ng-selected="perm_email && perm_email.access_level=='2'">ایمیل من را به همه نمایش بده</option>
+                        </select>
+                    </label>
+                    <label>
+                        <select  name="mobile" id="mobile">
+                            <option value="0" ng-selected="perm_mobile && perm_mobile.access_level=='0'">شماره همراه من را برای هیچ کس نمایش نده</option>
+                            <option value="1" ng-selected="perm_mobile && perm_mobile.access_level=='1'">شماره همراه من را فقط به دوستانم نمایش بده</option>
+                            <option value="2" ng-selected="perm_mobile && perm_mobile.access_level=='2'">شماره همراه من را به همه نمایش بده</option>
+                        </select>
+                    </label>
+                    <label>
+                        <select name="portfolio" id="portfolio">
+                            <option value="0" ng-selected="perm_portfolio && perm_portfolio.access_level=='0'"> ویدیوها و عکسهای من را به هیچ کس نمایش نده</option>
+                            <option value="1" ng-selected="perm_portfolio && perm_portfolio.access_level=='1'">ویدیوها و عکس های من را به  دوستانم نمایش بده</option>
+                            <option value="2" ng-selected="perm_portfolio && perm_portfolio.access_level=='2'"> ویدیو ها و عکس های من را به همه نمایش بده</option>
+                        </select>
+                    </label>
+                    <label>
+                        <select name="resume" id="resume">
+                            <option value="0" ng-selected="perm_cv && perm_cv.access_level=='0'">سوابق من را به هیچ کس نمایش نده</option>
+                            <option value="1" ng-selected="perm_cv && perm_cv.access_level=='1'">سوابق من را فقط به دوستانم نمایش بده</option>
+                            <option value="2" ng-selected="perm_cv && perm_cv.access_level=='2'">سوابق من را به همه نمایش بده</option>
+                        </select>
+                    </label>
+                    <label>
+                        <select name="follower" id="follower">
+                            <option value="0" ng-selected="perm_follower && perm_follower.access_level=='0'">دنبال کننده های  من را به هیچ کس نمایش نده</option>
+                            <option value="1" ng-selected="perm_follower && perm_follower.access_level=='1'">دنبال کننده های من را فقط به دوستانم نمایش بده</option>
+                            <option value="2" ng-selected="perm_follower && perm_follower.access_level=='2'">دنبال کننده های من را به همه نمایش بده</option>
+                        </select>
+                    </label>
+                    <label>
+                        <select name="following" id="following">
+                            <option value="0" ng-selected="perm_following && perm_following.access_level=='0'">دنبال شونده های  من را به هیچ کس نمایش نده</option>
+                            <option value="1" ng-selected="perm_following && perm_following.access_level=='1'">دنبال شونده های من را فقط به دوستانم نمایش بده</option>
+                            <option value="2" ng-selected="perm_following && perm_following.access_level=='2'">دنبال شونده های من را به همه نمایش بده</option>
+                        </select>
+                    </label>
+                    <br>
+                    <label class="submit mt_10"><input type="submit" class="btn_white submit_register" value="ثبت و ذخیره تنظیمات"></label>
+                </form>
+            <!--=================end register_form============================-->
+            </div>
+            <!--=================================-->
+        </div>
+        <!--=================================-->
+    </div>
+        
+
+</settings-dir>

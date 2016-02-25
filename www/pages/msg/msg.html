@@ -1,0 +1,41 @@
+<msgdetail-dir>
+    <div id="content19" class="snap-content contanet_profile showuser5-dir">
+        <div id="toolbar" class="msg_toolbar">
+            <a href="#/profile/{{user_info[0].member_id}}" ng-if="user_info[0].picname" id="user_img" style='background-image:url({{base_url}}uploads/user_img-small/{{user_info[0].picname}});'></a>
+            <a href="#/profile/{{user_info[0].member_id}}" ng-if="!user_info[0].picname && user_info[0].gender == 0" id="user_img" style='background-image:url(img/user_men.jpg);'></a>
+            <a href="#/profile/{{user_info[0].member_id}}" ng-if="!user_info[0].picname && user_info[0].gender == 1" id="user_img" style='background-image:url(img/user_women.jpg);'></a>
+            <p class="logo_name" your_id="{{chat[0].member_id}}"><a href="#/profile/{{user_info[0].member_id}}" >{{user_info[0].name}}</a></p>
+            <div class="icons">
+                <a href="" onclick="window.history.back();" class="close chat_close"></a>
+                <a href="" class="option_chat_icon">
+                    <div class="option_chat">
+                        <span class="delete_chat"  msg_chat_id="{{user_info[0].msg_chat_id}}" your_id="{{user_info[0].member_id}}" >حذف این گفتگو</span>
+                        <span class="delete_block_chat" msg_chat_id="{{user_info[0].msg_chat_id}}" your_id="{{user_info[0].member_id}}" >حذف گفتگو و انسداد کاربر</span>
+                    </div>
+                </a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+        <!--=================================-->
+        <div class="mt_15 grid msg_archive">
+            <div class="msg_chat">
+                <div class="msg_list_chat"  msg_chat_id="{{user_info[0].msg_chat_id}}"></div>
+                <div class="clear"></div>
+                <!--==============end msg_list_chat===================-->
+                 <div class="editor">
+                    <form class="msg_submit">
+                        <textarea name="msg_text" class="msg_text" placeholder="پیام خود را بنویسید ... "></textarea>
+                        <span class="cirlce_b"><button class="msg_submit_form"></button></span>
+                        <input type="hidden" name="my_id"  value="{{user_id}}">
+                        <input type="hidden" name="your_id"  value="{{user_info[0].member_id}}">
+                    </form>
+                </div>
+            <!--===============end msg_chat==================-->
+            </div>
+        </div>
+        <!--==================end msg_archive===============-->
+    </div>
+    <!--=================================-->
+</msgdetail-dir>
+
