@@ -36,15 +36,13 @@
     <gap:plugin name="org.apache.cordova.media" />
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.splashscreen" />
-    <plugin name="es.abrego.plugins.socketclient" spec="2.0" source="pgb" />
+  
  
-  
-  
-   
     <gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />
     <plugin name="com.dawsonloudon.videoplayer" spec="1.0.0" source="pgb" />
     <plugin name="phonegap-plugin-push" source="npm" />
     <plugin name="com.joandilee.imeiplugin" spec="0.1" source="pgb" />
+    <plugin name="cordova-plugin-websocket"  source="npm" />
     
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
