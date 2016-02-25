@@ -13,6 +13,9 @@ var days3 = moment().subtract(24, 'hour').valueOf() ;
 
 /*======================================*/
 /*
+
+*/
+/*======================================*/
 if (!window.WebSocket && window.MozWebSocket) {
     window.WebSocket = window.MozWebSocket;
     alert('MozWebSocket');
@@ -23,9 +26,6 @@ else if (!window.WebSocket) {
 else{
     alert('wtf!? '+window.WebSocket);
 }
-*/
-/*======================================*/
-
 
 function init(member_id, callback) {
     var host = "ws://kaarkhoone.ir:18000/kaarkhooneh/socket/chatServer.php"; // SET THIS TO YOUR SERVER
