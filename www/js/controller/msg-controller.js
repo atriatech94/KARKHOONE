@@ -4,6 +4,9 @@ angular.module('myapp')
     $scope.datas =1;
     $scope.base_url = base_url;
     $scope.user_id = localStorage.getItem('user_id');
+    if(socket == null){
+        init($scope.user_id);
+    }
 })
 .directive('msgarchiveDir' , function ($rootScope){
 		return {
