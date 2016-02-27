@@ -16,7 +16,10 @@ var app1 = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-        
+        if(socket == null && localStorage.getItem('user_id') != null){
+            var user_id = localStorage.getItem('user_id');
+            init(user_id);
+        }
          push = PushNotification.init({
             "android": {
                 "senderID": "1092587381698",

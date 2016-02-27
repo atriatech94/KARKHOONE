@@ -277,8 +277,19 @@ function amintest(){
 	}
     if(loc == "wall" || loc == "select")
     {
-        
-      
+         if($('body .alert').hasClass('none'))
+         {
+             $('body .alert .msg').text("برای خروج از برنامه یک بار دیگر دکمه ی بازگشت را بزنید").parent('.alert').removeClass('none');
+             setTimeout(function(){
+                 $('body .alert').addClass('none');
+             },5000);        
+         }
+        else{
+            $('body .alert').addClass('none');
+            navigator.app.exitApp();
+        }
+              
+        return false;
     }
     else if(loc == "forget_pass" || loc == "profile" || loc == "register_one" || loc == "register_two" || loc == "register_three" ||
             loc == "myprofile" || loc == "mycv" ||   loc == "edit_info" || loc == "follower" || loc == "following" ||  loc =="notification" ||
