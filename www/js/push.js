@@ -16,7 +16,7 @@ var app1 = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
-      
+        
          push = PushNotification.init({
             "android": {
                 "senderID": "1092587381698",

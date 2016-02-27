@@ -13,9 +13,20 @@ var days3 = moment().subtract(24, 'hour').valueOf() ;
 
 /*======================================*/
 /*
-
+if (!window.WebSocket && window.MozWebSocket) {
+    window.WebSocket = window.MozWebSocket;
+    alert('MozWebSocket');
+}
+else if (!window.WebSocket) {
+    alert("WebSocket not supported by this browser");
+}
+else{
+    alert('wtf!? '+window.WebSocket);
+}
 */
+/**/
 /*======================================*/
+
 
 function init(member_id, callback) {
     var host = "ws://kaarkhoone.ir:18000/kaarkhooneh/socket/chatServer.php"; // SET THIS TO YOUR SERVER
@@ -267,14 +278,11 @@ function amintest(){
     if(loc == "wall" || loc == "select")
     {
         
-        if (confirm("آبا برای خروج اطمینان دارید") == true) {
-            navigator.app.exitApp();
-        }        
-        return false;
+      
     }
     else if(loc == "forget_pass" || loc == "profile" || loc == "register_one" || loc == "register_two" || loc == "register_three" ||
             loc == "myprofile" || loc == "mycv" ||   loc == "edit_info" || loc == "follower" || loc == "following" ||  loc =="notification" ||
-            loc == "search_result" || loc == "mycv"  || loc == "msg_detail" || loc == "setting"  || loc == "setting"  || loc =="user_follower" || loc =="user_following"  )
+            loc == "search_result" || loc == "mycv"  || loc == "msg_detail" || loc == "setting"  ||  loc =="user_follower" || loc =="user_following"  || loc =="portfolio_detail"  )
     {
          window.history.back() ;
     }
