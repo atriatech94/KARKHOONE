@@ -298,7 +298,7 @@ function amintest(){
          window.history.back() ;
     }
     else if(loc == "msg"){
-        return false;
+        window.location.hash = "#/wall";
     }
     else if(loc == "login")
     {
