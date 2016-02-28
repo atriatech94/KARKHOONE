@@ -279,11 +279,10 @@ function amintest(){
     {
          if($('body .alert').hasClass('none'))
          {
-             window.plugins.toast.showShortTop('Hello there!', function(a){console.log('toast success: ' + a)}, function(b){alert('toast error: ' + b)});
-            // $('body .alert .msg').text("برای خروج از برنامه یک بار دیگر دکمه ی بازگشت را بزنید").parent('.alert').removeClass('none');
-           //  setTimeout(function(){
-            //     $('body .alert').addClass('none');
-           //  },5000);        
+            $('body .alert .msg').text("برای خروج از برنامه یک بار دیگر دکمه ی بازگشت را بزنید").parent('.alert').removeClass('none');
+             setTimeout(function(){
+                $('body .alert').addClass('none');
+             },5000);        
          }
         else{
             $('body .alert').addClass('none');
