@@ -1,6 +1,7 @@
 var insert_chat = 0 ;
 angular.module('myapp')
 .controller('msgController', function($scope) {
+    navigator.notification.alert("salam",null, ["title"], ["buttonName"])
     $scope.datas =1;
     $scope.base_url = base_url;
     $scope.user_id = localStorage.getItem('user_id');
@@ -144,6 +145,9 @@ angular.module('myapp')
             }/* end */
 }})
 .controller('msgdetailController', function($scope,$rootScope) {
+    if(socket == null){
+        init($scope.user_id);
+    }
     $scope.user_id = localStorage.getItem("user_id");
     $scope.base_url = base_url;
     if($rootScope.chat !== undefined){
@@ -154,9 +158,8 @@ angular.module('myapp')
         $scope.chat = JSON.parse(localStorage.getItem("chat"));
         $scope.user_info = $scope.chat ;
     }
-    //console.log($scope.user_info);
-    //console.log(JSON.parse(localStorage.getItem("chat")));
-    //console.log($rootScope.chat[0].msg_chat_id);
+    
+
 })
 
 
