@@ -11,147 +11,149 @@
         </div>
     <div class="tool_bar_fix">
         <!--=================toolbar fix start================-->
-        <!--=======================contant_profile=======================-->
-        <div class="contant_profile bs">
-            <input type="hidden" class="chnage_ppp" value="{{portfolio}}"> 
-            <!--=============================-->
-            <div class="short_info" ng-init=" user_info[0].gender = '1' ">
-                <div class="profile_short_info bs">
-                    <h3 >{{user_info[0].name}}</h3>
-                    <h5 ng-if="user_info[0].field">{{user_info[0].field}}</h5>
-                    <span class="vline">{{now_year - user_info[0].age}} ساله </span>
-                    <span> {{user_info[0].state}} ، {{user_info[0].city}} </span>
-                    <div class="fl_list">
-                        <span ng-if="count_fllower" class="vline"><a href="#/user_follower/{{user_info[0].member_id}}">{{ count_fllower}} دنبال کننده </a></span>
-                        <span ng-if="count_fllowing"><a href="#/user_following/{{user_info[0].member_id}}">{{count_fllowing}} دنبال شونده</a></span>
-                    </div>
-                </div>
-                 <!--=============end profile_short_info================-->
-                <div ng-if="user_spam == '0'" class="setting_link bs"><img src="img/menu_setting.png"><div class="spam"><ul><li>گزارش تخلف کاربر</li></ul></div></div>
-                <div ng-if="user_spam == '1'" class="setting_link_forbidden bs"><img src="img/svg/forbidden.svg"></div>
-                <!--===========end setting_link==================-->
-                <div class="clear"></div>
+        <div class="haminjouri">
+            <!--=======================contant_profile=======================-->
+            <div class="contant_profile bs">
+                <input type="hidden" class="chnage_ppp" value="{{portfolio}}"> 
                 <!--=============================-->
-                
-                <div ng-if="user_info[0].picname" mhref="{{base_url}}uploads/user_img-large/{{user_info[0].picname}}" class="user_img bs single_4_img"><span style='background-image:url({{base_url}}uploads/user_img-medium/{{user_info[0].picname}});'></span></div>
-                <div ng-if="!user_info[0].picname && user_info[0].gender == 0" class="user_img bs"><span style='background-image:url(img/user_men.jpg);'></span></div>
-                <div ng-if="!user_info[0].picname && user_info[0].gender == 1" class="user_img bs"><span style='background-image:url(img/user_women.jpg);'></span></div>
-                <div ng-if="!user_info[0].picname && !user_info[0].gender" class="user_img bs"><span style='background-image:url(img/user_men.jpg);'></span></div>
-                
-                
-                <!--================end user_img=============-->
-                <div class="some_flowers bs">
-                    <h3>شاید شما بشناسید</h3>
-                    <ul>
-                        <a ng-if="followers.length > 0" ng-repeat="follower in followers" href="#/profile/{{follower.member_id}}" style="background-image:url('{{base_url}}/uploads/user_img-small/{{follower.picname}}');"></a>
-                    </ul>
-                     <!--================end some_flowers=============-->
+                <div class="short_info" ng-init=" user_info[0].gender = '1' ">
+                    <div class="profile_short_info bs">
+                        <h3 >{{user_info[0].name}}</h3>
+                        <h5 ng-if="user_info[0].field">{{user_info[0].field}}</h5>
+                        <span class="vline">{{now_year - user_info[0].age}} ساله </span>
+                        <span> {{user_info[0].state}} ، {{user_info[0].city}} </span>
+                        <div class="fl_list">
+                            <span ng-if="count_fllower" class="vline"><a href="#/user_follower/{{user_info[0].member_id}}">{{ count_fllower}} دنبال کننده </a></span>
+                            <span ng-if="count_fllowing"><a href="#/user_following/{{user_info[0].member_id}}">{{count_fllowing}} دنبال شونده</a></span>
+                        </div>
+                    </div>
+                     <!--=============end profile_short_info================-->
+                    <div ng-if="user_spam == '0'" class="setting_link bs"><img src="img/menu_setting.png"><div class="spam"><ul><li>گزارش تخلف کاربر</li></ul></div></div>
+                    <div ng-if="user_spam == '1'" class="setting_link_forbidden bs"><img src="img/svg/forbidden.svg"></div>
+                    <!--===========end setting_link==================-->
                     <div class="clear"></div>
-                    <div class="btn_profile">
-                        <div><span class="btn_profile_like">{{user_info[0].followers}}&zwnj;</span></div>
-                        <div><span class="btn_profile_msg">{{user_info[0].msg}}&zwnj;</span></div>
-                        <div><span class="btn_profile_view">{{user_info[0].view}}&zwnj;</span></div>
+                    <!--=============================-->
+
+                    <div ng-if="user_info[0].picname" mhref="{{base_url}}uploads/user_img-large/{{user_info[0].picname}}" class="user_img bs single_4_img"><span style='background-image:url({{base_url}}uploads/user_img-medium/{{user_info[0].picname}});'></span></div>
+                    <div ng-if="!user_info[0].picname && user_info[0].gender == 0" class="user_img bs"><span style='background-image:url(img/user_men.jpg);'></span></div>
+                    <div ng-if="!user_info[0].picname && user_info[0].gender == 1" class="user_img bs"><span style='background-image:url(img/user_women.jpg);'></span></div>
+                    <div ng-if="!user_info[0].picname && !user_info[0].gender" class="user_img bs"><span style='background-image:url(img/user_men.jpg);'></span></div>
+
+
+                    <!--================end user_img=============-->
+                    <div class="some_flowers bs">
+                        <h3>شاید شما بشناسید</h3>
+                        <ul>
+                            <a ng-if="followers.length > 0" ng-repeat="follower in followers" href="#/profile/{{follower.member_id}}" style="background-image:url('{{base_url}}/uploads/user_img-small/{{follower.picname}}');"></a>
+                        </ul>
+                         <!--================end some_flowers=============-->
                         <div class="clear"></div>
+                        <div class="btn_profile">
+                            <div><span class="btn_profile_like">{{user_info[0].followers}}&zwnj;</span></div>
+                            <div><span class="btn_profile_msg">{{user_info[0].msg}}&zwnj;</span></div>
+                            <div><span class="btn_profile_view">{{user_info[0].view}}&zwnj;</span></div>
+                            <div class="clear"></div>
+                        </div>
+                        <!--================end btn_profile=============-->
+                        <div class="circle_btn">
+                            <div ng-if="follower.indexOf(user_info[0].member_id) > -1"><span class="circle_btn_like active"  user_id="{{user_info[0].member_id}}" ></span></div>
+                            <div ng-if="follower.indexOf(user_info[0].member_id) == -1"><span class="circle_btn_like"  user_id="{{user_info[0].member_id}}" ></span></div>
+                            <div><span class="circle_btn_msg" is_chat="{{is_chat}}"></span></div>
+                            <div ng-if="checked.indexOf(user_info[0].member_id) !== -1" ><span class="circle_btn_view active" user_id="{{user_info[0].member_id}}" ></span></div>
+                            <div ng-if="checked.indexOf(user_info[0].member_id) == -1" ><span class="circle_btn_view" user_id="{{user_info[0].member_id}}"  ></span></div>
+                            <div class="clear"></div>
+                        </div>
                     </div>
-                    <!--================end btn_profile=============-->
-                    <div class="circle_btn">
-                        <div ng-if="follower.indexOf(user_info[0].member_id) > -1"><span class="circle_btn_like active"  user_id="{{user_info[0].member_id}}" ></span></div>
-                        <div ng-if="follower.indexOf(user_info[0].member_id) == -1"><span class="circle_btn_like"  user_id="{{user_info[0].member_id}}" ></span></div>
-                        <div><span class="circle_btn_msg" is_chat="{{is_chat}}"></span></div>
-                        <div ng-if="checked.indexOf(user_info[0].member_id) !== -1" ><span class="circle_btn_view active" user_id="{{user_info[0].member_id}}" ></span></div>
-                        <div ng-if="checked.indexOf(user_info[0].member_id) == -1" ><span class="circle_btn_view" user_id="{{user_info[0].member_id}}"  ></span></div>
-                        <div class="clear"></div>
+                    <div class="clear"></div>
+                    <!--================end friends=============-->
+                </div>
+                <!--============end short_info=================-->
+            </div>
+        <div class="want_hide">
+                <div class="content_user bs">
+                   <div class="short_skills">
+                       <span ng-if="user_info[0].grade==0"><i class="fa fa-graduation-cap"></i>دیپلم</span>
+                       <span ng-if="user_info[0].grade==1"><i class="fa fa-graduation-cap"></i>کاردانی</span>
+                       <span ng-if="user_info[0].grade==2"><i class="fa fa-graduation-cap"></i>کارشناسی</span>
+                       <span ng-if="user_info[0].grade==3"><i class="fa fa-graduation-cap"></i>کارشناسی ارشد</span>
+                       <span ng-if="user_info[0].grade==4"><i class="fa fa-graduation-cap"></i>دکترا</span>
+                       <span ng-if="user_info[0].married==0"><i class="fa fa-venus"></i>مجرد</span>
+                       <span ng-if="user_info[0].married==1"><i class="fa fa-venus-double"></i>متاحل</span>
+                       <span ng-if="user_info[0].gender==0"><i class="fa fa-male"></i>مرد</span>
+                       <span ng-if="user_info[0].gender==1"><i class="fa fa-female"></i>زن</span>
+                       <span ng-if="user_info[0].status==0"><i class="fa fa-cogs"></i>آماده به کار</span>
+                       <span ng-if="user_info[0].status==1"><i class="fa fa-cog"></i>صاحب کار</span>
                     </div>
                 </div>
-                <div class="clear"></div>
-                <!--================end friends=============-->
-            </div>
-            <!--============end short_info=================-->
+                <!--======================end contant_profile====================-->
+                <div class="skills" ng-if="count_s1 != 0" >
+                    <i class="fa fa-graduation-cap"></i>
+                    <span ng-repeat="row in user_skill" ><p ng-if="row[2]==0">{{row[0]}}</p></span>
+                </div>
+                <!--======================end contant_profile====================-->
+                <div class="skills resume" ng-if="count_s2 != 0">
+                    <i class="fa fa-briefcase"></i>
+                    <span ng-repeat="row in user_skill" ><p ng-if="row[2]==1">{{row[0]}}</p></span>
+                </div>
+                <!--======================end contant_profile====================-->
+                <!--======================end contant_profile====================-->
+                <div ng-if="user_info[0].description" class="about_person">
+                    <span class="info_about">در باره {{user_info[0].name}}</span>
+                    <p>{{user_info[0].description}}</p>
+                </div>
+                <!--======================end contant_profile====================-->
+                <div   class="profile_about_us">
+                    <div ng-if="user_info[0].email" class="email about_us_b">
+                        <div class="img"><img src="img/message-64.png" ></div>
+                        <span><a ng-href="mailto:{{user_info[0].email}}"></a> {{user_info[0].email}}</span>
+                    </div>
+                    <div ng-if="user_info[0].mobile" class="tell about_us_b">
+                        <div class="img"><img src="img/phone8-64.png" ></div>
+                        <span> {{user_info[0].mobile}}</span>
+                    </div>
+                    <div ng-if="user_info[0].address" class="address about_us_b">
+                        <div class="img"><img src="img/City-64.png" ></div>
+                        <span> {{user_info[0].address}}</span>
+                    </div>
+                </div>
+                <!--======================end about_us====================-->
+
         </div>
-    <div class="want_hide">
-            <div class="content_user bs">
-               <div class="short_skills">
-                   <span ng-if="user_info[0].grade==0"><i class="fa fa-graduation-cap"></i>دیپلم</span>
-                   <span ng-if="user_info[0].grade==1"><i class="fa fa-graduation-cap"></i>کاردانی</span>
-                   <span ng-if="user_info[0].grade==2"><i class="fa fa-graduation-cap"></i>کارشناسی</span>
-                   <span ng-if="user_info[0].grade==3"><i class="fa fa-graduation-cap"></i>کارشناسی ارشد</span>
-                   <span ng-if="user_info[0].grade==4"><i class="fa fa-graduation-cap"></i>دکترا</span>
-                   <span ng-if="user_info[0].married==0"><i class="fa fa-venus"></i>مجرد</span>
-                   <span ng-if="user_info[0].married==1"><i class="fa fa-venus-double"></i>متاحل</span>
-                   <span ng-if="user_info[0].gender==0"><i class="fa fa-male"></i>مرد</span>
-                   <span ng-if="user_info[0].gender==1"><i class="fa fa-female"></i>زن</span>
-                   <span ng-if="user_info[0].status==0"><i class="fa fa-cogs"></i>آماده به کار</span>
-                   <span ng-if="user_info[0].status==1"><i class="fa fa-cog"></i>صاحب کار</span>
+        <!--=======end want_hide=======Cv_list===================-->
+        <div class="click_to_hide"><i class="fa fa-angle-up"></i></div>
+        <!--=======end want_hide=======Cv_list===================-->
+            <div class="cv_list">
+                <!--===============cv_one==================-->
+                <div class="cv_one"  ng-repeat="element in portfolio_you | orderBy:'-parseInt(p_id)' " p_id="{{element.p_id}}">
+                    <div class="photo_cv" p_id="{{element.p_id}}">
+                        <div class="img" ng-if="element.p_type == '0'" style="background-image:url('{{base_url}}/uploads/portfolio/images-small/{{element.p_name}}')"></div>
+                        <div class="img video" ng-if="element.p_type == '1'" style="background-image:url('{{base_url}}/uploads/portfolio/video_image/{{element.p_name.split('.')[0]}}.jpg')"></div>
+                        <span class="date">{{element.dates}}</span><span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}-{{element.member_id}}-{{element.p_date | create_link}}"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="{{base_url}}api_show/portfolio_dl/{{element.p_name}}-{{element.member_id}}-{{element.p_date | create_link}}"><i class="fa fa-cloud-download"></i></span>
+                        <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}}</span></span>
+                        <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}}</span></span>
+                        <span ng-if="element.p_type== 1" class="video_duration"><span class="value">{{element.duration | timeing}}</span></span>
+                    </div>
+                    <div class="extra bs">
+                        <span class="text">{{element.p_text}}</span>
+                        <ul class="count">
+                            <li ng-if="element.l_count && element.member_do_like" class="like do_like liked">{{element.l_count}}&zwnj;</li>
+                            <li ng-if="element.l_count && !element.member_do_like"  class="like do_like unliked">{{element.l_count}}&zwnj;</li>
+                            <li ng-if="!element.l_count" class="like do_like unliked">0</li>
+                            <li ng-if="element.c_count" class="comment">{{element.c_count }}</li>
+                            <li ng-if="!element.c_count" class="comment">0</li>
+                            <li ng-if="element.v_count" class="view">{{element.v_count }}</li>
+                            <li ng-if="!element.v_count" class="view">0</li>
+                            <li ng-if="element.report == null" class="more">&zwnj;
+                                <div class="porfolio_spam" p_id="{{element.p_id}}"><span>گزارش تخلف</span></div>
+                            </li>
+                            <li ng-if="element.report != null" p_id="{{element.p_id}}" class="portfolio_drop portfolio_unviolation"><span></span></li>
+                        </ul>
+                    </div>
                 </div>
+                <!--=================================-->
             </div>
-            <!--======================end contant_profile====================-->
-            <div class="skills" ng-if="count_s1 != 0" >
-                <i class="fa fa-graduation-cap"></i>
-                <span ng-repeat="row in user_skill" ><p ng-if="row[2]==0">{{row[0]}}</p></span>
-            </div>
-            <!--======================end contant_profile====================-->
-            <div class="skills resume" ng-if="count_s2 != 0">
-                <i class="fa fa-briefcase"></i>
-                <span ng-repeat="row in user_skill" ><p ng-if="row[2]==1">{{row[0]}}</p></span>
-            </div>
-            <!--======================end contant_profile====================-->
-            <!--======================end contant_profile====================-->
-            <div ng-if="user_info[0].description" class="about_person">
-                <span class="info_about">در باره {{user_info[0].name}}</span>
-                <p>{{user_info[0].description}}</p>
-            </div>
-            <!--======================end contant_profile====================-->
-            <div   class="profile_about_us">
-                <div ng-if="user_info[0].email" class="email about_us_b">
-                    <div class="img"><img src="img/message-64.png" ></div>
-                    <span><a ng-href="mailto:{{user_info[0].email}}"></a> {{user_info[0].email}}</span>
-                </div>
-                <div ng-if="user_info[0].mobile" class="tell about_us_b">
-                    <div class="img"><img src="img/phone8-64.png" ></div>
-                    <span> {{user_info[0].mobile}}</span>
-                </div>
-                <div ng-if="user_info[0].address" class="address about_us_b">
-                    <div class="img"><img src="img/City-64.png" ></div>
-                    <span> {{user_info[0].address}}</span>
-                </div>
-            </div>
-            <!--======================end about_us====================-->
-      
-    </div>
-    <!--=======end want_hide=======Cv_list===================-->
-    <div class="click_to_hide"><i class="fa fa-angle-up"></i></div>
-    <!--=======end want_hide=======Cv_list===================-->
-        <div class="cv_list">
-            <!--===============cv_one==================-->
-            <div class="cv_one"  ng-repeat="element in portfolio_you | orderBy:'-parseInt(p_id)' " p_id="{{element.p_id}}">
-                <div class="photo_cv" p_id="{{element.p_id}}">
-                    <div class="img" ng-if="element.p_type == '0'" style="background-image:url('{{base_url}}/uploads/portfolio/images-small/{{element.p_name}}')"></div>
-                    <div class="img video" ng-if="element.p_type == '1'" style="background-image:url('{{base_url}}/uploads/portfolio/video_image/{{element.p_name.split('.')[0]}}.jpg')"></div>
-                    <span class="date">{{element.dates}}</span><span class="share_btn" share_url="{{base_url}}api_show/portfolio/{{element.p_id}}-{{element.member_id}}-{{element.p_date | create_link}}"><i class="fa fa-share-alt"></i></span><span class="dl_btn" share_url="{{base_url}}api_show/portfolio_dl/{{element.p_name}}-{{element.member_id}}-{{element.p_date | create_link}}"><i class="fa fa-cloud-download"></i></span>
-                    <span ng-if="element.p_type== 0" class="type type-0"><span class="value">{{element.p_filesize/1048576 | number:2}}</span></span>
-                    <span ng-if="element.p_type== 1" class="type type-1"><span class="value">{{element.p_filesize/1048576 | number:2}}</span></span>
-                    <span ng-if="element.p_type== 1" class="video_duration"><span class="value">{{element.duration | timeing}}</span></span>
-                </div>
-                <div class="extra bs">
-                    <span class="text">{{element.p_text}}</span>
-                    <ul class="count">
-                        <li ng-if="element.l_count && element.member_do_like" class="like do_like liked">{{element.l_count}}&zwnj;</li>
-                        <li ng-if="element.l_count && !element.member_do_like"  class="like do_like unliked">{{element.l_count}}&zwnj;</li>
-                        <li ng-if="!element.l_count" class="like do_like unliked">0</li>
-                        <li ng-if="element.c_count" class="comment">{{element.c_count }}</li>
-                        <li ng-if="!element.c_count" class="comment">0</li>
-                        <li ng-if="element.v_count" class="view">{{element.v_count }}</li>
-                        <li ng-if="!element.v_count" class="view">0</li>
-                        <li ng-if="element.report == null" class="more">&zwnj;
-                            <div class="porfolio_spam" p_id="{{element.p_id}}"><span>گزارش تخلف</span></div>
-                        </li>
-                        <li ng-if="element.report != null" p_id="{{element.p_id}}" class="portfolio_drop portfolio_unviolation"><span></span></li>
-                    </ul>
-                </div>
-            </div>
-            <!--=================================-->
+            <!--===========end cv_list======================-->
         </div>
-        <!--===========end cv_list======================-->
     </div>
         <!--===========end fix toolbar======================-->
     </div>

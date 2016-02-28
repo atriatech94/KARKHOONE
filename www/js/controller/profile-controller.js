@@ -195,32 +195,48 @@ angular.module('myapp')
                     function() {
                         
                         if(scope.portfolios == "havij"){
-                            show_anim();
-                            $.get(base_url+"/api_upload/portfolio/UPLo-098UYH-ooeWu/"+$routeParams.user_id+"/20/"+ofset+"/"+localStorage.getItem("user_id"),function(datas){
-                                hide_anim();
-                                
-                                data = JSON.parse(datas);
-                                //console.log(data);
-                                if(data == null){return;}
-                                data.forEach(function(element,index){
-                                    element.dates =  moment(element.p_date).calendar();
-                                    element.cap = Math.round(parseInt(element.p_filesize)/1048576)/100;
-                                    post_one.push(element);
-                                });
-                                scope.$apply(function(){
-                                    scope.portfolio_you = post_one ;
-                                    $rootScope.portfolio_user = post_one ;
-                                    $rootScope.portfolio_user_ofset = ofset;
-                                }); 
-
-                            });
+                            fetch_por();
                         }/*if scope.portfolio != 2*/
                     }
                  );
           
             
             /*===============================================================================*/  
+                function fetch_por(){
+                    show_anim();
+                    is_req = 1;
+                    $.get(base_url+"/api_upload/portfolio/UPLo-098UYH-ooeWu/"+$routeParams.user_id+"/20/"+ofset+"/"+localStorage.getItem("user_id"),function(datas){
+                        hide_anim();
+                                        
+                        data = JSON.parse(datas);
+                        if(data.length >0){
+                                //console.log(data);
+                            data.forEach(function(element,index){
+                                element.dates =  moment(element.p_date).calendar();
+                                element.cap = Math.round(parseInt(element.p_filesize)/1048576)/100;
+                                post_one.push(element);
+                            });
+                            scope.$apply(function(){
+                                scope.portfolio_you = post_one ;
+                                $rootScope.portfolio_user = post_one ;
+                                $rootScope.portfolio_user_ofset = ofset;
+                            }); 
+                            ofset = 20 + ofset;
+                            is_req = 0;
+
+                        }
+                    });
       
+                }
+        /*====================================================*/
+                 $('.tool_bar_fix').on("scroll",function(){
+                    win_height = $(window).height()+ 400 ;
+                    var content = $('.tool_bar_fix') ;
+                    var ones =  content.scrollTop()  + content.height();
+                    var twoes =  $('.haminjouri').height() ;
+                    console.log(twoes - ones , win_height );
+                    if(( twoes  - ones  ) < win_height && is_req==0 ){is_req = 1;fetch_por();}
+                });
         /*=================================end click show user==============================================*/  
                 console.log($rootScope.myfollowing);
         $(".short_info").on("click",".circle_btn_like",function(){
