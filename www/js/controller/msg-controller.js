@@ -12,6 +12,7 @@ angular.module('myapp')
 		return {
 			link: function(scope) {
                 
+                
 				/*===============================================================================*/  
                 var snapper = new Snap({ element: document.getElementById('content20'), disable: 'left'});
                 $("body #content20").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
@@ -20,6 +21,7 @@ angular.module('myapp')
                     $rootScope.msg = undefined;
                     $rootScope.msg_ofset  = undefined;
                 }
+
                 /*=================================================*/ 
                 var ofset = 0;
                 var last_id = 0;
@@ -265,7 +267,22 @@ angular.module('myapp')
                          $('.msg_list_chat').scrollTop($('.msg_list_chat')[0].scrollHeight);
                      });
                  });
-               
+                window_height = $(window).height();
+                $(window).resize(function(){
+                    setTimeout(function(){
+                        
+                        if($(window).height()<window_height){
+                            $('.msg_list_chat').scrollTop($('.msg_list_chat')[0].scrollHeight);
+                           $('.editor').css("height","19%");
+                           $('.msg_list_chat').css("height","80%");
+                        }else{
+                            $('.editor').css("height","12%");
+                            $('.msg_list_chat').css("height","90%");
+                            $('.msg_list_chat').scrollTop($('.msg_list_chat')[0].scrollHeight);
+                        }
+                        
+                    },1000)
+                });
                 /*=============================================================*/
               
           

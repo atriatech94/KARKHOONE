@@ -19,7 +19,7 @@ angular.module('myapp')
                 }
                 else{
                     user_info = JSON.parse(localStorage.getItem("user_info_temp"));
-                    console.log(user_info);
+                   
                     $("#name input").val(user_info.name);
                     $("#age input").val(user_info.age);
                     $("#field input").val(user_info.field);
@@ -36,7 +36,7 @@ angular.module('myapp')
                     localStorage.setItem("city",JSON.stringify(cities));
                     localStorage.setItem("state",JSON.stringify(states));
                     
-                    console.log(localStorage.getItem("city"),localStorage.getItem("state"));
+                    
                     // <option value="null">شهر محل سکونت</option>
                     state_select = '<option value="0" selected>استان محل سکونت</option>';
                     states.forEach(function(element,index){

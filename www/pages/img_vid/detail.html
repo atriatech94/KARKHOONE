@@ -59,6 +59,7 @@
 
                                 <span class="user_text"><a href="#/profile/{{element.member_id}}" class="user_name">{{element.name}}</a> {{element.comment}}</span>
                                 <span class="user_time">{{element.date | fromNow}}</span>
+                                <span ng-if="scope_portfolio_id == user_id || element.member_id == user_id " class="user_remove" data-member_id="{{element.member_id}}" data-cm_id = "{{element.id}}" data-p_id = "{{element.p_id}}" data-p_date="{{element.date | create_link }}"><i class="fa fa-remove"></i> حذف نظر </span>
                             </div>
                         </div>
                         <!--=================================-->

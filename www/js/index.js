@@ -302,7 +302,7 @@ function amintest(){
     }
     else if(loc == "login")
     {
-         window.location.hash = "#/select";
+        window.location.hash = "#/select";
     }
     else
     {
@@ -457,7 +457,8 @@ function share_fn(url){
     window.plugins.socialsharing.share('کارخونه', null,null, url);                
 }
 $(function(){
-    $('body').on("click",".dl_btn",function(){
+    $('body').on("click",".dl_btn",function(event){
+        
         dl_link =  $(this).attr("share_url");
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onRequestFileSystemSuccess, null); 
         downloadFile2(dl_link);

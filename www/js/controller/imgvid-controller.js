@@ -22,8 +22,7 @@ angular.module('myapp')
                     ofset = $rootScope.portfolio_ofset ;
                 }
                 
-                /*===============================================================================*/  
-                 function load_p(){
+                function load_p(){
                      show_anim(); 
                      $.get(base_url+"/api_upload/portfolio/UPLo-098UYH-ooeWu/"+localStorage.getItem("user_id")+"/20/"+ofset+"/"+localStorage.getItem("user_id"),function(datas){
                          hide_anim();
@@ -61,7 +60,7 @@ angular.module('myapp')
                     var content = $('.tool_bar_fix') ;
                     var ones =  content.scrollTop()  + content.height();
                     var twoes =  $('.user_list').height() ;
-                    console.log(ones , twoes );
+                    console.log(ones- twoes,win_height );
                     if((   twoes - ones ) < win_height && is_req==0 ){is_req = 1;load_p(ofset);}
                 });
                 /*===============================================================================*/  
@@ -112,6 +111,14 @@ angular.module('myapp')
                             
                             progressOuter.style.display = 'block'; // make progress bar visible
                             
+                        },
+                        onChange: function(filename){
+                           if(isImage(filename) || isVideo(filename))
+                           {
+                               $('.changable_text').text('برای ذخیره فایل دکمه ی ارسال را لمس کنید .');
+                           }else{
+                               $('.changable_text').text('فرمت فایل انتخابی نا معتبر است .');
+                           }
                         },
                         onSubmit: function(filename, extension) {
                            
@@ -174,7 +181,8 @@ angular.module('myapp')
 
                             } else {
                                 if ( response.msg )  {
-                                    msgBox.innerHTML = escapeTags( response.msg );
+                                    $('.changable_text').text(response.msg);
+                                   
                                     
                                 } else {
                                     $('.changable_text').text( 'خطایی در هنگام آپلود رخ داده است - لطفا دقایقی بعد مجدد تلاش نمایید' );
@@ -277,8 +285,6 @@ angular.module('myapp')
 }})
 .filter('timeing', function() {
 
-  // In the return function, we must pass in a single parameter which will be the data we will work on.
-  // We have the ability to support multiple other parameters that can be passed into the filter optionally
   return function(input) {
 
       var s;
@@ -290,9 +296,6 @@ angular.module('myapp')
       s = s >= 10 ? s : '0' + s;    
       amin =  m + ':' + s;
       return amin;
-    // Do filter work here
-
-    //return output;
 
   }
 

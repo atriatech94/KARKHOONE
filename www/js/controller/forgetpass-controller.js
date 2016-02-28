@@ -31,12 +31,10 @@ angular.module('myapp')
                                     $("#reset_pass_form").removeClass("none");
                                     $('body .lpro').addClass("none");
                                     
-                                    var text = " کد بازیابی رمز برای ";
-                                    if(user_data.email != "null"){ text +=" پست الکترونیک "+user_data.email;}
-                                    if(user_data.mobile != "null"){text +=" و شماره همراه "+user_data.mobile;}
-                                    text +="ارسال شد";
-                                    localStorage.setItem("user_id",user_data.member_id);
-                                    $('body .alert .msg').text(text).parent('.alert').removeClass('none');
+                                    var text = " کد فعال سازی کلمه ی عبور برای پست الکترونیک و تلفت همراه شما وارد شد ";
+                                    
+                                    localStorage.setItem("users_id",user_data.member_id);
+                                    $('body .alert .msg').text("").parent('.alert').removeClass('none');
                                     
                                 }
                         }).fail(function(){
@@ -53,7 +51,7 @@ angular.module('myapp')
                         $('body .alert .msg').text("فیلد کد خالی است").parent('.alert').removeClass('none');
                         return false;
                     }
-                    $.post(base_url+"api/reset_passwd/Passwd123/",{code:$("#code").val(),user:localStorage.getItem("user_id")},function(data){
+                    $.post(base_url+"api/reset_passwd/Passwd123/",{code:$("#code").val(),user:localStorage.getItem("users_id")},function(data){
                                 
                         chech_res = JSON.parse(data);   
                         if(chech_res.msg_code == "0")
@@ -101,7 +99,7 @@ angular.module('myapp')
                     }
                     
                     $('body .lpro').removeClass("none");
-                     $.post(base_url+"api/set_new_passwd/Passwd123/",{ new_pass : pass , user:localStorage.getItem("user_id") },function(data){
+                     $.post(base_url+"api/set_new_passwd/Passwd123/",{ new_pass : pass , user:localStorage.getItem("users_id") },function(data){
                          $('body .lpro').addClass("none");
                          $('body .alert .msg').text("رمز عبور شما با موفقیت تغییر پیدا کرد").parent('.alert').removeClass('none');
                          $('#reset_form').addClass("none");

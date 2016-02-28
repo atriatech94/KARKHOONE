@@ -3,6 +3,7 @@ angular.module('myapp')
     show_anim();
     $scope.base_url = base_url ;
     $scope.user_id = localStorage.getItem("user_id") ;
+    $scope.scope_portfolio_id = 0;
     if($rootScope.p_one_detail !== undefined)
     {
         $scope.p_one_detail = $rootScope.p_one_detail ;
@@ -18,6 +19,7 @@ angular.module('myapp')
             data.forEach(function(element,index){
                 element.dates =  moment(element.p_date).calendar();
                 element.cap = Math.round(parseInt(element.p_filesize)/1048576)/100;
+                $scope.scope_portfolio_id = element.member_id
                 
             });
             $scope.p_one_detail = data;
@@ -182,6 +184,17 @@ angular.module('myapp')
                     var url = $(this).attr('share_url');
                     share_fn(url);// dar index.js hast
                 });
+		/*====================================================*/
+                $('.cv_list').on("click",'.user_remove',function(){
+                    var member_id = $(this).data("member_id");
+                    var cm_id = $(this).data("cm_id");
+                    var p_id = $(this).data("p_id");
+                    var p_date = $(this).data("p_date");
+                    console.log(member_id,cm_id,p_id,p_date);
+                    $.get(base_url+'/api_upload/portfolio_del_cm/UdsfsdfMdfPLo1-0df98sCfsdfUYH-ooWWdfdfsfu/'+member_id+'/'+cm_id+'/'+p_id+'/'+p_date );
+                    $(this).parents('.commment').remove();
+                    //comment_post
+                })
 		/*====================================================*/
             }/* end */
 }}) 

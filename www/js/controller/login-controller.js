@@ -64,10 +64,11 @@ angular.module('myapp')
                                 
                                 localStorage.setItem("user_info",user_info);
                                 localStorage.setItem("user_id",user_data.user_info[0].member_id);
-                                 if(localStorage.getItem("reg_id") == "" || localStorage.getItem("reg_id") == null )
+                                if(localStorage.getItem("reg_id") == "" || localStorage.getItem("reg_id") == null )
                                 {
                                    app1.initialize();
                                 }
+                
                                 localStorage.setItem("city",city);
                                 localStorage.setItem("state",state);
                                 localStorage.setItem("user_skill",user_skill);
@@ -80,8 +81,7 @@ angular.module('myapp')
                                      localStorage.setItem("IMEI",imei);
                                      $.post(base_url+"api/user_imei/Attmi3-HasJ00B3-9854NEsIHY",{user_id:localStorage.getItem("user_id"),model:localStorage.getItem("model"),IMEI:localStorage.getItem("IMEI")});      
                                 }
-      
-                                
+                                                        
                                 $('body .lpro').addClass("none");
 
                                 init(user_data.user_info[0].member_id);
