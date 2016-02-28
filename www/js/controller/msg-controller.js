@@ -1,7 +1,6 @@
 var insert_chat = 0 ;
 angular.module('myapp')
 .controller('msgController', function($scope) {
-    navigator.notification.alert("salam",null, ["title"], ["buttonName"])
     $scope.datas =1;
     $scope.base_url = base_url;
     $scope.user_id = localStorage.getItem('user_id');
