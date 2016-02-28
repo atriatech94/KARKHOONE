@@ -31,10 +31,10 @@ angular.module('myapp')
                                     $("#reset_pass_form").removeClass("none");
                                     $('body .lpro').addClass("none");
                                     
-                                    var text = " کد فعال سازی کلمه ی عبور برای پست الکترونیک و تلفت همراه شما وارد شد ";
+                                    var text = " کد بازیابی کلمه ی عبور برای پست الکترونیک و تلفن همراه شما ارسال شد ";
                                     
                                     localStorage.setItem("users_id",user_data.member_id);
-                                    $('body .alert .msg').text("").parent('.alert').removeClass('none');
+                                    $('body .alert .msg').text(text).parent('.alert').removeClass('none');
                                     
                                 }
                         }).fail(function(){

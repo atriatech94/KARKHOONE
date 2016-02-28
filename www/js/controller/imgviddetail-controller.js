@@ -100,6 +100,7 @@ angular.module('myapp')
 
                       $.post(base_url+"/api_upload/comment/UPLo-098UYH-oou/"+localStorage.getItem("user_id")+"/"+$routeParams.p_id,ser)
                       .success(function(response){
+                          response = JSON.parse(response)
                           $('.loading_text').addClass("none");
                           var data_new = {comment:txt,
                                            is_active: "1",
@@ -109,15 +110,15 @@ angular.module('myapp')
                                            member_id:user_info[0].member_id,
                                            picname:user_info[0].picname,
                                            date : response.date,
-                                           id:response.id
+                                           id:response.cm_id
                                           };
                         
                           if(scope.commnet !== undefined){
-                            scope.$apply(function(){scope.commnet.push(data_new);scope.p_one_detail[0].c_count = parseInt(scope.p_one_detail[0].c_count)+1; });
+                            scope.$apply(function(){scope.commnet.push(data_new);scope.p_one_detail[0].c_count = parseInt(scope.p_one_detail[0].c_count)+1;$('.cv_one .count .comment').text(scope.commnet.length);  });
                           }else{
-                              scope.$apply(function(){scope.commnet = array(data_new);scope.p_one_detail[0].c_count = parseInt(scope.p_one_detail[0].c_count)+1;});
+                              scope.$apply(function(){scope.commnet = array(data_new);scope.p_one_detail[0].c_count = parseInt(scope.p_one_detail[0].c_count)+1;$('.cv_one .count .comment').text(scope.commnet.length); });
                           }
-                         
+                          
                           $('.comment_text').val("").focus();
                       }).fail(function(){
                           $('.loading_text').addClass("none");
@@ -184,15 +185,24 @@ angular.module('myapp')
                     var url = $(this).attr('share_url');
                     share_fn(url);// dar index.js hast
                 });
+                
 		/*====================================================*/
                 $('.cv_list').on("click",'.user_remove',function(){
+                    
                     var member_id = $(this).data("member_id");
                     var cm_id = $(this).data("cm_id");
                     var p_id = $(this).data("p_id");
                     var p_date = $(this).data("p_date");
-                    console.log(member_id,cm_id,p_id,p_date);
+                    var arr = $.grep( scope.commnet ,function(element){
+                        return element.id !=  cm_id;
+                    });
+                     scope.$apply(function(){
+                                scope.commnet= arr;
+                     });
+                    $('.cv_one .count .comment').text(scope.commnet.length);
+                   
                     $.get(base_url+'/api_upload/portfolio_del_cm/UdsfsdfMdfPLo1-0df98sCfsdfUYH-ooWWdfdfsfu/'+member_id+'/'+cm_id+'/'+p_id+'/'+p_date );
-                    $(this).parents('.commment').remove();
+                   // $(this).parents('.commment').remove();
                     //comment_post
                 })
 		/*====================================================*/

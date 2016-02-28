@@ -41,9 +41,7 @@
     <plugin name="phonegap-plugin-push" source="npm" />
     <plugin name="com.joandilee.imeiplugin" spec="0.1" source="pgb" />
     <plugin name="com.ququplay.websocket.websocket" spec="0.1.0" source="pgb" />
-    <gap:plugin name="cordova-plugin-x-toast" source="npm" />
- 
-    
+
     <icon src="icon.png" />
     <icon gap:platform="android" gap:qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
     <icon gap:platform="android" gap:qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />

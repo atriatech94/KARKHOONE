@@ -21,8 +21,8 @@ angular.module('myapp')
                     scope.portfolio = $rootScope.portfolio ;
                     ofset = $rootScope.portfolio_ofset ;
                 }
-                
-                function load_p(){
+                  /*===============================================================================*/  
+                 function load_p(){
                      show_anim(); 
                      $.get(base_url+"/api_upload/portfolio/UPLo-098UYH-ooeWu/"+localStorage.getItem("user_id")+"/20/"+ofset+"/"+localStorage.getItem("user_id"),function(datas){
                          hide_anim();
@@ -285,6 +285,8 @@ angular.module('myapp')
 }})
 .filter('timeing', function() {
 
+  // In the return function, we must pass in a single parameter which will be the data we will work on.
+  // We have the ability to support multiple other parameters that can be passed into the filter optionally
   return function(input) {
 
       var s;
@@ -296,6 +298,9 @@ angular.module('myapp')
       s = s >= 10 ? s : '0' + s;    
       amin =  m + ':' + s;
       return amin;
+    // Do filter work here
+
+    //return output;
 
   }
 

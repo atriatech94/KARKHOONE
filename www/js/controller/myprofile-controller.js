@@ -47,6 +47,10 @@ angular.module('myapp')
 				/*====================================================*/
                 var image_resize ;
 				/*========================fancy============================*/
+                if(now_h != "portfolio_detail" ){
+                    $rootScope.portfolio = undefined ;
+                    $rootScope.portfolio_ofset = undefined;
+                }
 				/*====================================================*/
                 $('.contant_profile').delegate(".user_img","click",function(){
                      if(!$(this).hasClass("user_img_change")){
@@ -127,29 +131,39 @@ angular.module('myapp')
 				/*===============================================================================*/  
                 if($rootScope.portfolio === undefined)
                 {
-                    show_anim();
-                     $.get(base_url+"/api_upload/portfolio/UPLo-098UYH-ooeWu/"+localStorage.getItem("user_id")+"/20/"+ofset+"/"+localStorage.getItem("user_id"),function(datas){
-                         hide_anim();
-                         data = JSON.parse(datas);
-                         data.forEach(function(element,index){
-                             element.dates =  moment(element.p_date).calendar();
-                             element.cap = Math.round(parseInt(element.p_filesize)/1048576)/100;
-                             post_one.push(element);
-                         });
-                         scope.$apply(function(){
-                             scope.portfolio = post_one ;
-                           //  scope.portfolio[0].p_date = moment(scope.portfolio[0].p_date).calendar();
-                             $rootScope.portfolio = post_one ;
-                             $rootScope.portfolio_ofset = ofset;
-                         }); 
-
-                     }); 
+                    fetch_por();
+                    
                 }else{
                     scope.portfolio = $rootScope.portfolio ;
                     ofset = $rootScope.portfolio_ofset ;
                     console.log($rootScope.msg);
                 }
+                
                 /*===============================================================================*/  
+                function fetch_por(){
+                    show_anim();
+                    is_req = 1;
+                     $.get(base_url+"/api_upload/portfolio/UPLo-098UYH-ooeWu/"+localStorage.getItem("user_id")+"/20/"+ofset+"/"+localStorage.getItem("user_id"),function(datas){
+                         hide_anim();
+                         data = JSON.parse(datas);
+                         if(data.length > 0){
+                             data.forEach(function(element,index){
+                                 element.dates =  moment(element.p_date).calendar();
+                                 element.cap = Math.round(parseInt(element.p_filesize)/1048576)/100;
+                                 post_one.push(element);
+                             });
+                             scope.$apply(function(){
+                                 scope.portfolio = post_one ;
+                               //  scope.portfolio[0].p_date = moment(scope.portfolio[0].p_date).calendar();
+                                 $rootScope.portfolio = post_one ;
+                                 $rootScope.portfolio_ofset = ofset;
+                             }); 
+                             ofset = ofset + 20;
+                             is_req = 0;
+                         }
+
+                     }); 
+                }
                 /*===============================================================================*/ 
                   $('.cv_list').on("click",".photo_cv",function(){
                       var p_id = $(this).attr('p_id');
@@ -162,6 +176,15 @@ angular.module('myapp')
                       window.location.hash = "#/portfolio_detail/"+p_id;
                   });
                   
+                /*====================================================*/
+                 $('.tool_bar_fix').on("scroll",function(){
+                    win_height = $(window).height()+ 400 ;
+                    var content = $('.tool_bar_fix') ;
+                    var ones =  content.scrollTop()  + content.height();
+                    var twoes =  $('.haminjouri').height() ;
+                    console.log(twoes - ones , win_height );
+                    if((  twoes - ones ) < win_height && is_req==0 ){is_req = 1;fetch_por();}
+                });
                 /*====================================================*/
                 $('.cv_list').on('click','.remove_portfolio',function(){
                     var p_id = $(this).attr('p_id');
@@ -546,4 +569,4 @@ angular.module('myapp')
 				/*====================================================*/
 				/*====================================================*/
             }
-}})
+}});
