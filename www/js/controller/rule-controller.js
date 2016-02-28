@@ -1,1 +1,32 @@
-angular.module("myapp").controller("ruleController",function(e,n){show_anim(),$.get(base_url+"/api_upload/rule_karkhaneh/UsfasdfgPLo-09sdf56ghs32UYH-oofsdssdfadfgu",function(t){hide_anim(),console.log(t),e.rule=JSON.parse(t),e.rule1=n.trustAsHtml(e.rule[0].text)}).fail(function(){$(".one_ids").next(".refresh_loading").show()})}).directive("ruleDir",function(e){return{link:function(e){$(document).ready(function(){var e=new Snap({element:document.getElementById("content435"),disable:"left"});$("body #content435").on("click","#open-right",function(){"right"==e.state().state?e.close():e.open("right")})})}}});
+angular.module('myapp')
+.controller('ruleController', function($scope, $sce) {
+   show_anim();
+    $.get(base_url+"/api_upload/rule_karkhaneh/UsfasdfgPLo-09sdf56ghs32UYH-oofsdssdfadfgu",function(datas){
+        hide_anim();
+        console.log(datas);
+        $scope.rule = JSON.parse(datas);
+        $scope.rule1 = $sce.trustAsHtml($scope.rule[0].text);
+        
+    }).fail(function(){
+        $(".one_ids").next('.refresh_loading').show();
+    });
+    
+})
+.directive('ruleDir' , function ($rootScope){
+		return {
+			link: function(scope) {
+				/*====================================================*/
+				$(document).ready(function(){
+                    var snapper = new Snap({ element: document.getElementById('content435'), disable: 'left'});
+                    $("body #content435").on('click','#open-right',function(){if( snapper.state().state=="right" ){snapper.close();}else{snapper.open('right');}});
+                });
+				/*====================================================*/
+               
+				/*====================================================*/
+                   /*===============================================================================*/
+
+               
+                
+            }/* end */
+}})
+/*============================================================================================*/

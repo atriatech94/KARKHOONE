@@ -1,1 +1,131 @@
-angular.module("myapp").directive("slideroneDir",function(e){return{link:function(){function s(s){$(".one_ids").next(".loading_users").show(),$(".one_ids").next(".refresh_loading").hide(),$.getJSON(base_url+"/api_inapp/get_new_user/Ami3-nKaORd7-9854KIHY/"+s+"/"+o,function(s){$(".one_ids").next(".loading_users").hide(),console.log(s),s.length>0?(s.forEach(function(e,s){var i='<div class="user_one" user_id="'+e.member_id+'" scope="postone" >';""==e.picname?("0"==e.gender&&(i+='<div class="user_one_image"><span style="background-image:url(img/user_men.jpg)"></span></div>'),"1"==e.gender&&(i+='<div class="user_one_image"><span style="background-image:url(img/user_women.jpg)"></span></div>')):i+='<div class="user_one_image"><span style="background-image:url('+base_url+"uploads/user_img-small/"+e.picname+');"></span></div>',i+='<div class="user_one_info">',i+="<h3>"+e.name+"</h3>",i+="<h5>"+e.field+"</h5>",i+='<span class="vline">'+(a-parseInt(e.age))+" ساله </span>",i+="<span>"+e.state+"، "+e.city+" </span>",i+="</div>",i+='<div class="user_one_options">',i+='<span class="user_cm">'+e.msg+"</span>",i+='<span class="user_like">'+e.followers+"</span>",i+='<span class="user_view">'+e.view+"</span>",i+="</div>",i+='<div class="clear"></div>',i+="</div>",$("#one_ids .user_list").append(i),r.push(e)}),l+=20,n=0,e.postone=r,e.postone_ofset=l):0==l&&$(".one_ids").next(".refresh_loading").show()}).fail(function(){$("sliderone-dir .refresh_loading").show(),$(".one_ids").next(".loading_users").hide(),$("body .alert .msg").text("خطا در اتصال - مجدد تلاش نمایید ").parent(".alert").removeClass("none")})}var i=0,n=0,a=moment().format("jYYYY"),o=localStorage.getItem("user_id"),r=Array(),l=0;if("profile"!=now_h&&(e.postone=void 0,e.postone_ofset=void 0,e.profile_info_tab=void 0),void 0!==e.postone){var d=e.postone;d.forEach(function(e,s){var i='<div class="user_one" user_id="'+e.member_id+'" scope="postone" >';""==e.picname?("0"==e.gender&&(i+='<div class="user_one_image"><span style="background-image:url(img/user_men.jpg)"></span></div>'),"1"==e.gender&&(i+='<div class="user_one_image"><span style="background-image:url(img/user_women.jpg)"></span></div>')):i+='<div class="user_one_image"><span style="background-image:url('+base_url+"uploads/user_img-small/"+e.picname+');"></span></div>',i+='<div class="user_one_info">',i+="<h3>"+e.name+"</h3>",i+="<h5>"+e.field+"</h5>",i+='<span class="vline">'+(a-parseInt(e.age))+" ساله </span>",i+="<span>"+e.state+"، "+e.city+" </span>",i+="</div>",i+='<div class="user_one_options">',i+='<span class="user_cm">'+e.msg+"</span>",i+='<span class="user_like">'+e.followers+"</span>",i+='<span class="user_view">'+e.view+"</span>",i+="</div>",i+='<div class="clear"></div>',i+="</div>",$("#one_ids .user_list").append(i)}),l=e.postone_ofset,$(".swiper-slide-active").attr("actives")==e.profile_info_tab&&($(".swiper-slide-active").animate({scrollTop:e.profile_info_top+"px"},0),e.profile_info_top=void 0,e.profile_info_tab=void 0,e.profile_info_tab_index=void 0)}else s(l);swiper2.on("slideChangeEnd",function(){"#one_id"==$(".swiper-slide-active").attr("actives")&&0==i&&(console.log($(".swiper-slide-active").attr("actives")),i++)}),$("#one_ids .refresh_loading").on("click",function(){s(l)}),$("#one_ids").on("scroll",function(){win_height=$(window).height()+400;var e=$("#one_ids"),i=e.scrollTop()-e.height()+$(window).height(),a=$("#one_ids .user_list").height();console.log(a-i,win_height),a-i<parseInt(win_height)&&0==n&&(n=1,s(l))})},templateUrl:"pages/wall/slider_one.html"}});
+angular.module('myapp')
+.directive('slideroneDir' , function ($rootScope){
+		return {
+			link: function() {
+                /*====================================================*/
+                /*=====================Varibales===============================*/
+                var is_active = 0;
+                var is_req = 0;
+                var now_year = moment().format('jYYYY');
+                var user_id = localStorage.getItem("user_id");
+                var post_one = Array();
+                var ofs_one = 0;
+                var time_one = 0;
+                /*====================================================*/
+                if(now_h != "profile" ){
+                    $rootScope.postone = undefined;
+                    $rootScope.postone_ofset  = undefined;
+                    $rootScope.profile_info_tab = undefined;
+                }
+                /*====================================================*/
+                if($rootScope.postone !== undefined){
+                    
+                    var data =  $rootScope.postone ;
+                    data.forEach(function(element,index){
+                        var result ='<div class="user_one" user_id="'+element.member_id+'" scope="postone" >';
+                        if(element.picname == "")
+                        {
+                            if(element.gender == "0")
+                                result += '<div class="user_one_image"><span style="background-image:url(img/user_men.jpg)"></span></div>';
+                            if(element.gender == "1")
+                                result += '<div class="user_one_image"><span style="background-image:url(img/user_women.jpg)"></span></div>';
+                        }
+                        else
+                        { result += '<div class="user_one_image"><span style="background-image:url('+base_url+'uploads/user_img-small/'+element.picname+');"></span></div>'; }
+                        result +='<div class="user_one_info">';
+                        result +='<h3>'+element.name+'</h3>';
+                        result +='<h5>'+element.field+'</h5>';
+                        result +='<span class="vline">'+(now_year - parseInt(element.age) ) +' ساله </span>';
+                        result +='<span>'+element.state+'، '+element.city+' </span>';
+                        result +='</div>';
+                        result +='<div class="user_one_options">';
+                        result +='<span class="user_cm">'+element.msg+'</span>';
+                        result +='<span class="user_like">'+element.followers+'</span>';
+                        result +='<span class="user_view">'+element.view+'</span>';
+                        result +='</div>';
+                        result +='<div class="clear"></div>';
+                        result +='</div>';
+                        $('#one_ids .user_list').append(result);
+                        
+                    });
+                    ofs_one = $rootScope.postone_ofset ;
+                    if($(".swiper-slide-active").attr('actives') == $rootScope.profile_info_tab){
+                        $(".swiper-slide-active").animate({ scrollTop: $rootScope.profile_info_top+"px" }  , 0 );
+                        $rootScope.profile_info_top = undefined;$rootScope.profile_info_tab = undefined;$rootScope.profile_info_tab_index = undefined;
+                    }
+                    
+                }
+                else{fetch_one(ofs_one);}
+                    
+               
+                
+                /*====================================================*/
+                swiper2.on('slideChangeEnd', function () {
+                    if( $(".swiper-slide-active").attr('actives') == "#one_id" && is_active == 0 ){console.log($(".swiper-slide-active").attr('actives'));is_active++; }/*end if*/
+                });  
+                
+                /*==============================is not request true======================*/
+                $('#one_ids .refresh_loading').on("click",function(){fetch_one(ofs_one);});
+                /*=========ofs = ofset ========Request===================================*/
+                function fetch_one(ofs){
+                    $(".one_ids").next('.loading_users').show();
+                    $(".one_ids").next('.refresh_loading').hide();
+
+                    $.getJSON( base_url+"/api_inapp/get_new_user/Ami3-nKaORd7-9854KIHY/"+ofs+"/"+user_id , function(data) {
+                        $(".one_ids").next('.loading_users').hide();
+                         console.log(data);
+                        if(data.length > 0 )
+                        {
+                            data.forEach(function(element,index){
+                              var result ='<div class="user_one" user_id="'+element.member_id+'" scope="postone" >';
+                                if(element.picname == "")
+                                {
+                                    if(element.gender == "0")
+                                    result += '<div class="user_one_image"><span style="background-image:url(img/user_men.jpg)"></span></div>';
+                                    if(element.gender == "1")
+                                    result += '<div class="user_one_image"><span style="background-image:url(img/user_women.jpg)"></span></div>';
+                                }
+                                else
+                                { result += '<div class="user_one_image"><span style="background-image:url('+base_url+'uploads/user_img-small/'+element.picname+');"></span></div>'; }
+                                  result +='<div class="user_one_info">';
+                                  result +='<h3>'+element.name+'</h3>';
+                                  result +='<h5>'+element.field+'</h5>';
+                                  result +='<span class="vline">'+(now_year - parseInt(element.age) ) +' ساله </span>';
+                                  result +='<span>'+element.state+'، '+element.city+' </span>';
+                                  result +='</div>';
+                                  result +='<div class="user_one_options">';
+                                  result +='<span class="user_cm">'+element.msg+'</span>';
+                                  result +='<span class="user_like">'+element.followers+'</span>';
+                                  result +='<span class="user_view">'+element.view+'</span>';
+                                  result +='</div>';
+                                  result +='<div class="clear"></div>';
+                                  result +='</div>';
+                                $('#one_ids .user_list').append(result);
+                                post_one.push(element);
+                            });
+                            
+                            ofs_one+=20;
+                            is_req = 0;
+                            $rootScope.postone = post_one ;
+                            $rootScope.postone_ofset = ofs_one;
+    
+                        }
+                        else if(ofs_one == 0){$(".one_ids").next('.refresh_loading').show();}
+                    }).
+                    fail(function(){$("sliderone-dir .refresh_loading").show();$(".one_ids").next('.loading_users').hide();$('body .alert .msg').text("خطا در اتصال - مجدد تلاش نمایید ").parent('.alert').removeClass('none');});
+                }
+                /*=====================Scroll Page===============================*/
+
+                $('#one_ids').on("scroll",function(){
+                    win_height = $(window).height()+ 400 ;
+                    var content = $('#one_ids') ;
+                    var ones = ( content.scrollTop() - content.height() ) + $(window).height();
+                    var twoes =  $('#one_ids .user_list').height() ;
+                    console.log((twoes - ones),win_height)
+                    if((   twoes - ones ) < parseInt(win_height) && is_req==0 ){is_req = 1;fetch_one(ofs_one);}
+                });
+                
+                /*====================================================*/
+            },/* end */
+            templateUrl :  "pages/wall/slider_one.html"
+}});
