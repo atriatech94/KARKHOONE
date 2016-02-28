@@ -144,10 +144,11 @@ angular.module('myapp')
             }/* end */
 }})
 .controller('msgdetailController', function($scope,$rootScope) {
-    if(socket == null){
+  
+    $scope.user_id = localStorage.getItem("user_id");
+     if(socket == null){
         init($scope.user_id);
     }
-    $scope.user_id = localStorage.getItem("user_id");
     $scope.base_url = base_url;
     if($rootScope.chat !== undefined){
         $scope.user_info = $rootScope.chat;
