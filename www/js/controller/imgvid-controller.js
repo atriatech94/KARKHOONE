@@ -200,7 +200,7 @@ angular.module('myapp')
                         onError: function(e) {
                             console.log(e);
                             //progressOuter.style.display = 'none';
-                            $('.changable_text').text('خطا در آپلود - لطفا ssدقایقی بعد مجدد تلاش نمایید');
+                            $('.changable_text').text('خطا در آپلود - لطفا دقایقی بعد مجدد تلاش نمایید');
                             $('.mvd_img').show();
                             $('.percent_upload').hide(0);
                             $('.loading_uploading').hide(0);
