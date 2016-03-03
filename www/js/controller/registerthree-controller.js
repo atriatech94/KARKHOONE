@@ -95,6 +95,8 @@ angular.module('myapp')
                              var result_update = JSON.stringify(user_data_update);
                              localStorage.setItem("user_info",result_update);
                              localStorage.setItem("user_id",(user_data_update[0].member_id));
+                             localStorage.setItem("city",JSON.stringify(user_data.city));
+                             localStorage.setItem("state",JSON.stringify(user_data.state));
                               if(localStorage.getItem("reg_id") == "" || localStorage.getItem("reg_id") == null )
                                 {
                                    app1.initialize();
