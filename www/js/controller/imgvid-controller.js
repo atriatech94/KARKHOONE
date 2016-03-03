@@ -93,7 +93,7 @@ angular.module('myapp')
                         multipart: true,
                         form : form_upload ,
                         async:true,
-                        maxSize: 102400,/*kb*/
+                        maxSize: 10240000,/*kb*/
                         data:{ text: $('.text_img_vid').val().replace( /(<([^>]+)>)/ig , "" ) },
                         crossDomain:true,
                         hoverClass: 'hover',
@@ -201,9 +201,11 @@ angular.module('myapp')
                             console.log(e);
                             //progressOuter.style.display = 'none';
                             $('.changable_text').text('خطا در آپلود - لطفا دقایقی بعد مجدد تلاش نمایید');
-                            $('.mvd_img').show();
-                            $('.percent_upload').hide(0);
-                            $('.loading_uploading').hide(0);
+                            setTimeout(function(){
+                                $('.mvd_img,.text_img_vid,.submit_register').show();
+                                $('.percent_upload,.ui-state-disabled,.loading_uploading').hide(0);
+                                progressOuter.style.display = 'none';
+                            },100);
                         }
                     });
                     
