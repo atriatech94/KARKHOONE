@@ -354,10 +354,14 @@ angular.module('myapp')
                     /*====================================================*/
                     $("#name").val(user_info[0].name);
                     $("#age").val(user_info[0].age);
-                    $("#married option[value="+user_info[0].married+"]").prop('selected', true);
-                    $("#grade option[value="+user_info[0].grade+"]").prop('selected', true);
-                    $("#gender option[value="+user_info[0].gender+"]").prop('selected', true);
-                    $("#status option[value="+user_info[0].status+"]").prop('selected', true);
+                    if(user_info[0].married)
+                    {$("#married option[value="+user_info[0].married+"]").prop('selected', true);}
+                    if(user_info[0].grade)
+                    { $("#grade option[value="+user_info[0].grade+"]").prop('selected', true);}
+                    if(user_info[0].gender)
+                    {$("#gender option[value="+user_info[0].gender+"]").prop('selected', true);}
+                    if(user_info[0].status)
+                    {$("#status option[value="+user_info[0].status+"]").prop('selected', true);}
                     $("#description").val(user_info[0].description);
                     $("#field").val(user_info[0].field);
                     /*====================================================*/
