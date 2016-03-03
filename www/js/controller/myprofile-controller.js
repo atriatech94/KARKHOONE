@@ -361,23 +361,28 @@ angular.module('myapp')
                     $("#description").val(user_info[0].description);
                     $("#field").val(user_info[0].field);
                     /*====================================================*/
-                    states = JSON.parse(localStorage.getItem("state"));
-                    cities = JSON.parse(localStorage.getItem("city")) ;
-                    state_select = '<option value="0" selected>استان محل سکونت</option>';
-                    states.forEach(function(element,index){state_select += '<option value="'+element.state_id+'" >'+element.state_name+'</option>';});
-                    $("label#state select").append(state_select);
-                    $("label#state select option[value="+user_info[0].state_id+"]").prop('selected', true);
-                    /*====================================================*/
-                    status_id = user_info[0].state_id;
-                    arr = jQuery.grep(cities,function( st ){return st.state_id == status_id ; });
-                    var city_select = '<option value="0" selected>شهر محل سکونت</option>' ;
-                    cities.forEach(function(element,index){city_select +='<option value="'+element.city_id+'">'+element.city_name+'</option>';});
-                    $("label#city select").html(city_select);
-                    var text_City = $("#city select option[value="+user_info[0].city_id+"] ").text();
-                    arr = jQuery.grep(cities , function( st ) {return st.state_id == status_id ;});
-                    arr.forEach(function(element,index){city_select +='<option value="'+element.city_id+'">'+element.city_name+'</option>';});
-                    $("label#city select").html(city_select);
-                    $("#city select option[value="+user_info[0].city_id+"]").attr("selected","selected");
+                    $.get(base_url+"api/get_city/akldhgv-asdiv-ascasc",function(data){
+                                data = JSON.parse(data);
+                                 var states = data.state;
+                                 var cities = data.city ;
+                                 state_select = '<option value="0" selected>استان محل سکونت</option>';
+                                states.forEach(function(element,index){state_select += '<option value="'+element.state_id+'" >'+element.state_name+'</option>';});
+                                $("label#state select").append(state_select);
+                                $("label#state select option[value="+user_info[0].state_id+"]").prop('selected', true);
+                                /*====================================================*/
+                                status_id = user_info[0].state_id;
+                                arr = jQuery.grep(cities,function( st ){return st.state_id == status_id ; });
+                                var city_select = '<option value="0" selected>شهر محل سکونت</option>' ;
+                                cities.forEach(function(element,index){city_select +='<option value="'+element.city_id+'">'+element.city_name+'</option>';});
+                                $("label#city select").html(city_select);
+                                var text_City = $("#city select option[value="+user_info[0].city_id+"] ").text();
+                                arr = jQuery.grep(cities , function( st ) {return st.state_id == status_id ;});
+                                arr.forEach(function(element,index){city_select +='<option value="'+element.city_id+'">'+element.city_name+'</option>';});
+                                $("label#city select").html(city_select);
+                                $("#city select option[value="+user_info[0].city_id+"]").attr("selected","selected");
+                    
+                    
+                    });
                     /*====================================================*/
                     $("label#state select").on("change",function(){
                         status_id =  $(this).val();
