@@ -374,7 +374,10 @@ angular.module('myapp')
                     cities.forEach(function(element,index){city_select +='<option value="'+element.city_id+'">'+element.city_name+'</option>';});
                     $("label#city select").html(city_select);
                     var text_City = $("#city select option[value="+user_info[0].city_id+"] ").text();
-                    $("#city select").html("<option value="+user_info[0].city_id+">"+text_City+"</option>")
+                    arr = jQuery.grep(cities , function( st ) {return st.state_id == status_id ;});
+                    arr.forEach(function(element,index){city_select +='<option value="'+element.city_id+'">'+element.city_name+'</option>';});
+                    $("label#city select").html(city_select);
+                    $("#city select option[value="+user_info[0].city_id+"]").attr("selected","selected");
                     /*====================================================*/
                     $("label#state select").on("change",function(){
                         status_id =  $(this).val();
