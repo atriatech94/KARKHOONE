@@ -377,13 +377,13 @@ angular.module('myapp')
                                 status_id = user_info[0].state_id;
                                 arr = jQuery.grep(cities,function( st ){return st.state_id == status_id ; });
                                 var city_select = '<option value="0" selected>شهر محل سکونت</option>' ;
-                                cities.forEach(function(element,index){city_select +='<option value="'+element.city_id+'">'+element.city_name+'</option>';});
-                                $("label#city select").html(city_select);
-                                var text_City = $("#city select option[value="+user_info[0].city_id+"] ").text();
+                                
+                                //$("#city select").html("<option value="+user_info[0].city_id+">"+text_City+"</option>");
                                 arr = jQuery.grep(cities , function( st ) {return st.state_id == status_id ;});
+                                console.log(arr);
                                 arr.forEach(function(element,index){city_select +='<option value="'+element.city_id+'">'+element.city_name+'</option>';});
                                 $("label#city select").html(city_select);
-                                $("#city select option[value="+user_info[0].city_id+"]").attr("selected","selected");
+                                $("#city select option[value="+user_info[0].city_id+"]").prop('selected', true);
                     
                     
                     });
