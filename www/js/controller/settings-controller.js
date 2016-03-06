@@ -180,6 +180,10 @@ angular.module('myapp')
 
                     }).success(function(){
                         $('body .lpro').addClass("none");
+                        $('body .alert .msg').text("تنظیمات با موفقیت اعمال شد").parent('.alert').removeClass('none');
+                        setTimeout(function(){
+                            $('body .alert').addClass('none');
+                        },5000);        
                          window.location.hash = "#/settings";
                         return true;                        
                      }).fail(function(){
