@@ -30,16 +30,16 @@
                     <div ng-repeat="portfolio_like in portfolio_likes | orderBy:'date':true "   class="user_one chat_one notif_block"  user_id="{{portfolio_like.member_id}}"  scope="search" >
                         <div ng-if="portfolio_like.picname == '' && portfolio_like.gender == '0'" class="user_one_image"><span style="background-image:url(img/user_men.jpg)"></span></div>
                         <div ng-if="portfolio_like.picname == '' && portfolio_like.gender == '1'" class="user_one_image"><span style="background-image:url(img/user_women.jpg)"></span></div>
-                        <div ng-if="portfolio_like.picname !='' " class="user_one_image"><span style="background-image:url({{base_url}}/uploads/user_img/{{portfolio_like.picname}});"></span></div>
+                        <div ng-if="portfolio_like.picname !='' " class="user_one_image"><span style="background-image:url({{base_url}}/uploads/user_img-small/{{portfolio_like.picname}});"></span></div>
                         <div class="user_one_info">
                             <h3 ng-if="portfolio_like.age" class="nm_ch notif_h3" your_id="{{portfolio_like.member_id}}"  user_image="{{portfolio_like.picname}}"><a href="#/profile/{{portfolio_like.member_id}}">{{portfolio_like.name}}</a>
                                 برای این
-                                <a href="#/portfolio_detail/{{portfolio_like.p_id}}">نمونه کار</a>
+                                <a href="#/portfolio_detail/{{portfolio_like.p_id}}">پست</a>
                                نظر داده است .
                             </h3>
                             <h3 ng-if="!portfolio_like.age" class="nm_ch notif_h3" your_id="{{portfolio_like.member_id}}"  user_image="{{portfolio_like.picname}}"><a href="#/profile/{{portfolio_like.member_id}}">{{portfolio_like.name}}</a>
                                این
-                                <a href="#/portfolio_detail/{{portfolio_like.p_id}}">نمونه کار</a>
+                                <a href="#/portfolio_detail/{{portfolio_like.p_id}}">پست</a>
                               را پسندیده است .
                             </h3>
                             

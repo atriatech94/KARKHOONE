@@ -11,7 +11,7 @@ angular.module('myapp')
             email: "------@------.--",
             field: "------",
             followers: "0",
-            gender: "0",
+            gender: "1",
             grade: "0",
             married: "0",
             mobile: "000000000",

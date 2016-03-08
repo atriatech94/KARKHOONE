@@ -367,8 +367,8 @@ angular.module('myapp')
                     /*====================================================*/
                     $.get(base_url+"api/get_city/akldhgv-asdiv-ascasc",function(data){
                                 data = JSON.parse(data);
-                                 var states = data.state;
-                                 var cities = data.city ;
+                                 states = data.state;
+                                 cities = data.city ;
                                  state_select = '<option value="0" selected>استان محل سکونت</option>';
                                 states.forEach(function(element,index){state_select += '<option value="'+element.state_id+'" >'+element.state_name+'</option>';});
                                 $("label#state select").append(state_select);
