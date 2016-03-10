@@ -358,6 +358,7 @@ function isImage(filename) {
     var ext = getExtension(filename);
     switch (ext.toLowerCase()) {
     case 'jpg':
+    case 'jpeg':
     case 'gif':
     case 'bmp':
     case 'png':
@@ -373,6 +374,9 @@ function isVideo(filename) {
     case 'avi':
     case 'mpg':
     case 'mp4':
+    case 'flv':
+    case 'mpeg':
+    case '3gp':
         // etc
         return true;
     }
