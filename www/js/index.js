@@ -362,8 +362,7 @@ function isImage(filename) {
     case 'gif':
     case 'bmp':
     case 'png':
-        //etc
-        return true;
+       return true;
     }
     return false;
 }
@@ -377,8 +376,7 @@ function isVideo(filename) {
     case 'flv':
     case 'mpeg':
     case '3gp':
-        // etc
-        return true;
+      return true;
     }
     return false;
 }
