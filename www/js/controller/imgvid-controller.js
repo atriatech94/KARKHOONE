@@ -113,9 +113,8 @@ angular.module('myapp')
                             
                         },
                         onChange: function(filename){
-                            alert(filename);
                            if(isImage(filename) || isVideo(filename))
-                           {    alert(is_image);
+                           {   
                                $('.changable_text').text('برای ذخیره فایل دکمه ی ارسال را لمس کنید .');
                            }else{
                                $('.changable_text').text('فرمت فایل انتخابی نا معتبر است .');
